@@ -1,0 +1,20 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+LAYOUT_TOP_DOWN()
+title UP Notificaciones - Componentes
+System_Ext(web, "Aplicación Web", "Panel de alertas y preferencias.")
+System_Ext(postfix, "Servidor de Correos", "Despacho final.")
+System_Boundary(sistema, "ConectaPUCP") {
+  Container(ctrl, "Controlador de Notificaciones", "Controller", "Entrada HTTP.")
+  Container(gest, "Gestor de Notificaciones", "Facade + Observer", "Orquesta reglas, preferencias y trazabilidad.")
+  Container(tpl, "Motor de Plantillas", "Template Method", "Genera cuerpo HTML por tipo de evento.")
+  Container(mail, "Mailer Client", "Adapter SMTP", "Envía correos mediante Postfix/SMTP.")
+  Container(grid, "Cliente Grilla de Datos", "Hazelcast Adapter", "Preferencias, trazabilidad y reintentos.")
+}
+Rel(web, ctrl, "HTTPS")
+Rel(ctrl, gest, "solicitud/consulta")
+Rel(gest, tpl, "renderizar")
+Rel(gest, grid, "preferencias y log")
+Rel(gest, mail, "enviar")
+Rel(mail, postfix, "SMTP")
+@enduml

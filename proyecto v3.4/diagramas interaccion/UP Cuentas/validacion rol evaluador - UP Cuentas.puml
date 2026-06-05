@@ -1,0 +1,80 @@
+@startuml
+title Diagrama de Interacción - Validación de postulante a evaluador (UP Cuentas)
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+actor "Administrador" as adm
+participant "Aplicación\nWeb" as web
+participant "Controlador\nCuentas" as ctrl
+participant "Gestor\nRoles" as roles
+participant "Solicitud\nEvaluador Repo" as solRepo
+participant "Estrategia\nAprobar Evaluador" as estrategia
+participant "Auditoría\nCuentas" as audit
+participant "Grilla\nDatos" as grid
+participant "Grilla\nMensajería" as kafka
+participant "Data\nWriter" as writer
+
+adm -> web: revisa evidencias del postulante
+activate web
+web -> ctrl: PUT /roles/evaluador/{solicitudId}
+activate ctrl
+ctrl -> roles: validarSolicitudEvaluador(cmd)
+activate roles
+roles -> solRepo: findById(solicitudId)
+activate solRepo
+solRepo --> roles: SolicitudEvaluador + evidencias
+deactivate solRepo
+roles -> estrategia: ejecutar(cmd, solicitud)
+activate estrategia
+
+alt [solicitud vigente y evidencias válidas]
+  estrategia --> roles: ResultadoCambioRol(aprobado)
+  deactivate estrategia
+  roles -> audit: registrarCambioPrivilegio(actor, usuario, rolAnterior, Evaluador)
+  activate audit
+  audit --> roles: PrivilegeChangeLog(hashActual)
+  deactivate audit
+  roles -> grid: actualizarRoles(usuarioId, Evaluador)
+  activate grid
+  grid --> roles: rol actualizado en Space
+  deactivate grid
+  roles ->> kafka: publicar PersistenceEvent(ROL_ACTUALIZADO)
+  activate kafka
+  kafka ->> writer: entregar evento a Data Writer
+  activate writer
+  writer --> kafka: ACK persistencia recibida
+  deactivate writer
+  deactivate kafka
+  roles --> ctrl: Solicitud aprobada
+  ctrl --> web: 200 OK + resultado
+  web --> adm: muestra aprobación
+else [solicitud vencida o evidencia inválida]
+  estrategia --> roles: ResultadoCambioRol(rechazado/vencido)
+  deactivate estrategia
+  roles -> audit: registrarRechazoOAnulacion(actor, solicitud)
+  activate audit
+  audit --> roles: AuditEvent registrado
+  deactivate audit
+  roles ->> kafka: publicar PersistenceEvent(SOLICITUD_EVALUADOR_RECHAZADA)
+  roles --> ctrl: Solicitud rechazada o anulada
+  ctrl --> web: 200 OK + resultado
+  web --> adm: muestra rechazo/anulación
+end
+
+deactivate roles
+deactivate ctrl
+deactivate web
+
+note right of audit
+RC14: el cambio de privilegio se registra
+con actor, usuario afectado, fecha/hora,
+rol anterior, rol nuevo y hash de integridad.
+end note
+
+note right of kafka
+El evento será consumido por Data Writer,
+el cual delega en RolActualizadoWriteHandler
+y mappers persistentes.
+end note
+@enduml

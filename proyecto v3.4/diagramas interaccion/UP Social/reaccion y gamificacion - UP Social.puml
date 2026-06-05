@@ -1,0 +1,54 @@
+@startuml
+title Diagrama de Interacción - Reacción y gamificación (UP Social)
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+actor "Usuario" as u
+participant "Aplicación\nWeb" as web
+participant "ForoController" as ctrl
+participant "Comentario\nService" as com
+participant "Grilla\nDatos" as grid
+participant "Gamificación" as gam
+participant "UP\nCuentas" as cuentas
+
+u -> web: like/dislike
+activate web
+web -> ctrl: POST /reacciones
+activate ctrl
+ctrl -> com: reaccionar(idPub,idUsuario,tipo)
+activate com
+com -> grid: verificarUnicidad(usuario, publicación)
+activate grid
+grid --> com: resultado verificación
+deactivate grid
+
+alt [sin reacción previa]
+  com -> grid: guardarReaccion
+  activate grid
+  grid --> com: reacción registrada
+  deactivate grid
+  com ->> gam: evento RECIBIR_LIKE
+  activate gam
+  gam -> grid: actualizar puntos/ranking
+  activate grid
+  grid --> gam: puntaje actualizado
+  deactivate grid
+  opt [nuevo rango alcanzado]
+    gam ->> cuentas: actualizar rango si aplica
+  end
+  gam --> com: gamificación procesada
+  deactivate gam
+  com --> ctrl: ReactionDTO(ok)
+  ctrl --> web: respuesta 201
+  web --> u: muestra reacción registrada
+else [ya existe reacción]
+  com --> ctrl: ReactionDTO(error duplicado)
+  ctrl --> web: respuesta 409
+  web --> u: muestra aviso de reacción previa
+end
+
+deactivate com
+deactivate ctrl
+deactivate web
+@enduml

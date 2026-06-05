@@ -1,0 +1,119 @@
+@startuml
+title Vista de Código - Gestor de Roles\nStrategy + RBAC + Solicitud Evaluador
+skinparam classAttributeIconSize 0
+left to right direction
+
+class "GestorRolesService" as svc  {
+  -estrategias: Map~TipoCambioRol, IEstrategiaCambioRol~
+  -audit: AuditService
+  -gridClient: IGridClient
+  --
+  +asignarRol(cmd): void
+  +revocarRol(cmd): void
+  +validarSolicitudEvaluador(cmd): ResultadoCambioRol
+  +validarPermiso(usuario, permiso): boolean
+}
+
+interface "IEstrategiaCambioRol" as strategy  {
+  +ejecutar(cmd): ResultadoCambioRol
+}
+
+class "EstrategiaAprobarEvaluador" as ev <<Strategy>> {
+  -solicitudRepo: SolicitudEvaluadorRepository
+  -usuarioRepo: UsuarioRolRepository
+  +ejecutar(cmd): ResultadoCambioRol
+  -validarVigencia(solicitud): boolean
+  -validarEvidencias(solicitud): boolean
+}
+
+class "EstrategiaSuspenderUsuario" as susp <<Strategy>> {
+  +ejecutar(cmd): ResultadoCambioRol
+}
+
+class "EstrategiaActivarUsuario" as act <<Strategy>> {
+  +ejecutar(cmd): ResultadoCambioRol
+}
+
+class "SolicitudEvaluadorRepository" as solRepo {
+  +findById(idSolicitud): SolicitudEvaluador
+  +marcarAprobada(idSolicitud): void
+  +marcarRechazada(idSolicitud): void
+  +marcarVencida(idSolicitud): void
+}
+
+class "UsuarioRolRepository" as usrRepo {
+  +obtenerRolActual(idUsuario): Rol
+  +actualizarRol(idUsuario, rol): void
+}
+
+interface "IGridClient" as grid {
+  +actualizarRoles(idUsuario, roles): void
+  +publicarEvento(evento): void
+}
+
+class "SolicitudEvaluador" as sol {
+  -idSolicitud: GUID
+  -postulanteId: GUID
+  -estado: EstadoSolicitud
+  -fechaCreacion: DateTime
+  -fechaExpiracion: DateTime
+  -evidencias: List~EvidenciaPostulacion~
+  +estaVigente(fechaActual): boolean
+}
+
+class "EvidenciaPostulacion" as evid {
+  -idEvidencia: GUID
+  -objectKey: String
+  -checksum: String
+  -tipo: String
+}
+
+class "Rol" as rol  {
+  -id: GUID
+  -nombre: String
+  -permisos: Set~Permiso~
+}
+
+class "Permiso" as perm  {
+  -codigo: String
+  -descripcion: String
+}
+
+class "RoleChangedEvent" as roleEvent <<DTO>> {
+  -eventType: String
+  -usuarioId: GUID
+  -rolAnterior: String
+  -rolNuevo: String
+  -solicitudId: GUID
+  -actorId: GUID
+}
+
+svc ..> strategy : selecciona
+svc --> grid : propaga cambio
+svc ..> roleEvent : publica
+
+ev ..|> strategy
+susp ..|> strategy
+act ..|> strategy
+
+ev --> solRepo : consulta solicitud
+ ev --> usrRepo : actualiza rol
+solRepo --> sol
+usrRepo --> rol
+sol *-- evid : evidencias
+rol o-- perm : contiene
+
+note right of ev
+RF09/RF32:
+solo aprueba rol Evaluador si
+la solicitud está vigente y
+sus evidencias son válidas.
+end note
+
+note bottom of svc
+RC15:
+el rol actualizado se propaga
+a la Grilla de Datos y al bus
+de eventos para persistencia.
+end note
+@enduml

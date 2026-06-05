@@ -1,0 +1,74 @@
+@startuml
+title Vista de Código - Auditoría de Cuentas\nObserver + Audit Logger append-only
+skinparam classAttributeIconSize 0
+left to right direction
+
+class "AccountEventPublisher" as subject  {
+  -observers: List~IAccountObserver~
+  --
+  +suscribir(obs): void
+  +publicar(evento): void
+}
+
+interface "IAccountObserver" as obs  {
+  +onAccountEvent(evento): void
+}
+
+class "AuditService" as audit <<Observer>> {
+  -repository: GridAuditRepository
+  -hashService: AuditHashService
+  +onAccountEvent(evento): void
+  +registrarCambioPrivilegio(log): void
+  +registrarLog(evento): void
+}
+
+class "GridAuditRepository" as grid  {
+  +append(evento): void
+  +listarPorUsuario(id): List~AuditEvent~
+}
+
+class "AuditHashService" as hash {
+  +calcularHash(evento): String
+  +validarCadena(eventos): boolean
+}
+
+class "AuditEvent" as event  {
+  -idEvento: GUID
+  -actor: String
+  -accion: String
+  -timestamp: DateTime
+  -hashPrevio: String
+  -hashActual: String
+}
+
+class "PrivilegeChangeLog" as pcl <<Audit Log>> {
+  -idLog: GUID
+  -actorId: GUID
+  -usuarioAfectadoId: GUID
+  -rolAnterior: String
+  -rolNuevo: String
+  -timestamp: DateTime
+  -solicitudId: GUID
+  -hashPrevio: String
+  -hashActual: String
+}
+
+subject --> obs : notifica
+audit ..|> obs
+audit --> grid : append
+audit --> hash : calcula hash
+audit --> event : crea
+audit --> pcl : crea
+
+note right of grid
+RC14:
+repositorio append-only.
+No expone update ni delete.
+end note
+
+note bottom of pcl
+Registra quién modificó el privilegio,
+cuándo lo hizo, usuario afectado,
+rol anterior, rol nuevo y solicitud RF09.
+end note
+@enduml

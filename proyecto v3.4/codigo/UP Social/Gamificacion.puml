@@ -1,0 +1,38 @@
+@startuml
+title Vista de Código - Gamificación\nStrategy / Rules Engine
+skinparam classAttributeIconSize 0
+left to right direction
+class "GamificacionSubscriber" as sub  {
+  +onEventoSocial(evento): void
+}
+class "CalculadoraPuntosService" as calc  {
+  -motor: IMotorReglasService
+  -estrategia: IPuntajeStrategy
+  --
+  +procesarEvento(evento): void
+  +evaluarSubidaNivel(idUsuario): void
+}
+interface "IPuntajeStrategy" as str  {
+  +calcular(evento, regla): int
+}
+class "PuntajeForoStrategy" as foro <<Strategy>> {
+  +calcular(evento, regla): int
+}
+class "PuntajeDocumentoStrategy" as doc <<Strategy>> {
+  +calcular(evento, regla): int
+}
+class "PuntajeGrupoStrategy" as grupo <<Strategy>> {
+  +calcular(evento, regla): int
+}
+class "ReglaPuntaje" as rule  {
+  -tipo: TipoAccion
+  -puntaje: int
+  -limiteDiario: int
+}
+sub --> calc : evento
+calc ..> str
+foro ..|> str
+doc ..|> str
+grupo ..|> str
+calc --> rule : consulta
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+LAYOUT_TOP_DOWN()
+title ConectaPUCP - Vista de Contexto C4
+Person(usuario, "Usuario PUCP", "Estudiantes, evaluadores, profesores y administradores.")
+System_Ext(cas, "Sistema CAS PUCP", "Valida identidad institucional mediante SSO CAS.")
+System_Ext(correo, "Correo Institucional", "Recibe notificaciones por correo PUCP.")
+System_Boundary(sistema, "ConectaPUCP") {
+  Container(conecta, "ConectaPUCP", "Sistema", "Plataforma web para recursos académicos, foros, archivos y gamificación.")
+}
+Rel(usuario, conecta, "Usa la plataforma")
+Rel(conecta, cas, "Valida credenciales institucionales")
+Rel_D(conecta, correo, "Envía alertas institucionales")
+@enduml

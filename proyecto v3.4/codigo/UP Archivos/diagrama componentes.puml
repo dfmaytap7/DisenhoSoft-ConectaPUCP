@@ -1,0 +1,38 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN()
+
+title UP Archivos - Vista de Componentes
+
+Container_Ext(web, "Aplicación Web", "Frontend JS", "Carga y descarga archivos.")
+ContainerDb_Ext(grid, "Grilla de Datos / Space", "Hazelcast", "Metadata, objectKey y estado temporal.")
+ContainerDb_Ext(s3, "Object Storage", "MinIO / S3", "Binarios pesados y URLs firmadas.")
+
+System_Boundary(up_archivos, "Servicio de Archivos UP") {
+
+  Component(ctrl, "Controlador de Archivos", "Express.js + Multer", "Entrada HTTP para carga y descarga. Valida identidad y transforma la petición inicial.")
+
+  Component(gest, "Gestión de Archivos", "Facade", "Coordina el flujo de subida, validación, almacenamiento de metadata y generación de respuesta.")
+
+  Component(val, "Validación de Material", "Chain of Responsibility", "Valida tamaño, extensión, firma MIME, curso y ciclo académico.")
+
+  Component(repo, "Repositorio de Archivos", "Proxy", "Controla el acceso a la metadata del archivo, objectKey y referencias de descarga.")
+
+  Component(gridClient, "Cliente Grilla de Datos", "Hazelcast Client / Adapter", "Encapsula las operaciones técnicas de lectura y escritura sobre la Grilla de Datos.")
+
+  Component(dtoMapper, "ArchivoDTOAssembler", "DTO Mapper", "Convierte entidades internas en DTOs y evita exponer objectKey, checksum o detalles internos.")
+}
+
+Rel(web, ctrl, "Carga/descarga archivos", "HTTPS")
+Rel(ctrl, gest, "procesarSubida() / solicitarDescarga()")
+Rel(gest, val, "validarArchivo()")
+Rel(gest, repo, "guardarMetadata() / obtenerMetadata()")
+Rel(gest, dtoMapper, "crearDTO()")
+
+Rel(repo, gridClient, "guardar/consultar metadata y objectKey")
+Rel(gridClient, grid, "lee/escribe", "Hazelcast protocol")
+
+Rel(repo, s3, "guardar binario / generar URL firmada")
+
+@enduml

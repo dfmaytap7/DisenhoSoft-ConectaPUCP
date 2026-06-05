@@ -1,0 +1,48 @@
+@startuml
+title Patrones de Persistencia e Interacción BD - UP Archivos\nDTO aclarado
+skinparam classAttributeIconSize 0
+left to right direction
+class "Archivo" as archivo  {
+  -id: GUID <<Identity Field>>
+  -objectKey: String
+  -checksum: String
+  -curso: String
+  -ciclo: String
+  -socialRefs: List<SocialReference>
+}
+class "SocialReference" as ref  {
+  -idPublicacion: String
+  -tipoUso: String
+}
+class "ArchivoRecordSnapshot" as snap <<Persistable Snapshot>> {
+  +id: GUID
+  +objectKey: String
+  +metadataJson: CLOB
+  +checksum: String
+}
+class "ArchivoDataMapper" as dataMapper <<Data Mapper>> {
+  +toSnapshot(archivo): ArchivoRecordSnapshot
+  +toEntity(snapshot): Archivo
+  +insert(snapshot): void
+  +findById(id): ArchivoRecordSnapshot
+}
+class "ArchivoDTO" as dto <<DTO>> {
+  +idArchivo: String
+  +nombre: String
+  +curso: String
+  +ciclo: String
+  +urlDescarga: String
+}
+class "ArchivoDTOAssembler" as assembler <<Assembler>> {
+  +toDTO(archivo, url): ArchivoDTO
+  +fromRequest(dto): Archivo
+}
+archivo *-- ref : Dependent Mapping
+dataMapper --> archivo : mapea entidad
+dataMapper --> snap : registro persistente
+assembler --> archivo : lee dominio
+assembler --> dto : expone a cliente
+note right of archivo
+DTO = Data Transfer Object: objeto serializable para transportar solo datos necesarios entre cliente y servidor. No es el Data Mapper de BD.
+end note
+@enduml

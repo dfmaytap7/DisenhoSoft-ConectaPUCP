@@ -1,0 +1,349 @@
+@startuml
+title Vista de Código - Componente Mappers / Repositorios\nData Mapper + Gateway + Snapshots
+
+skinparam classAttributeIconSize 0
+left to right direction
+
+package "Servicio de Persistencia Read/Write" {
+
+    interface IDatabaseGateway {
+        +execute(sql: String, params: Object): void
+        +queryOne(sql: String, params: Object): DbRecord
+        +queryList(sql: String, params: Object): List
+    }
+
+    class PostgreSqlGateway <<Gateway>> {
+        -connectionString: String
+        +execute(sql: String, params: Object): void
+        +queryOne(sql: String, params: Object): DbRecord
+        +queryList(sql: String, params: Object): List
+    }
+
+    abstract class BasePersistenceMapper {
+        #db: IDatabaseGateway
+    }
+
+    interface IArchivoMapper {
+        +save(snapshot: ArchivoSnapshot): void
+        +findById(idArchivo: String): ArchivoSnapshot
+        +findByCursoCiclo(cursoId: String, cicloId: String): List
+        +updateEstado(idArchivo: String, estado: String): void
+    }
+
+    interface IPublicacionMapper {
+        +save(snapshot: PublicacionSnapshot): void
+        +findById(idPublicacion: String): PublicacionSnapshot
+        +findArchivadas(criterio: Object): List
+        +vincularArchivo(idPublicacion: String, idArchivo: String): void
+    }
+
+    interface IUsuarioMapper {
+        +save(snapshot: UsuarioSnapshot): void
+        +findById(idUsuario: String): UsuarioSnapshot
+        +updateRol(idUsuario: String, idRol: String): void
+        +updateEstadoCuenta(idUsuario: String, estado: String): void
+    }
+
+    interface ISolicitudEvaluadorMapper {
+        +save(snapshot: SolicitudEvaluadorSnapshot): void
+        +findById(idSolicitud: String): SolicitudEvaluadorSnapshot
+        +findPendientesVigentes(fecha: Date): List
+        +updateEstado(idSolicitud: String, estado: String): void
+    }
+
+    interface IPrivilegioAuditMapper {
+        +append(snapshot: PrivilegioAuditSnapshot): void
+        +findByUsuario(idUsuario: String): List
+    }
+
+    interface IGamificacionMapper {
+        +save(snapshot: PuntajeSnapshot): void
+        +findByUsuario(idUsuario: String): PuntajeSnapshot
+        +actualizarRanking(idUsuario: String): void
+    }
+
+    class ArchivoMapper <<Data Mapper>> {
+        +save(snapshot: ArchivoSnapshot): void
+        +findById(idArchivo: String): ArchivoSnapshot
+        +findByCursoCiclo(cursoId: String, cicloId: String): List
+        +updateEstado(idArchivo: String, estado: String): void
+        +toRecord(snapshot: ArchivoSnapshot): ArchivoRecord
+        +toSnapshot(record: ArchivoRecord): ArchivoSnapshot
+    }
+
+    class PublicacionMapper <<Data Mapper>> {
+        +save(snapshot: PublicacionSnapshot): void
+        +findById(idPublicacion: String): PublicacionSnapshot
+        +findArchivadas(criterio: Object): List
+        +vincularArchivo(idPublicacion: String, idArchivo: String): void
+        +toRecord(snapshot: PublicacionSnapshot): PublicacionRecord
+        +toSnapshot(record: PublicacionRecord): PublicacionSnapshot
+    }
+
+    class UsuarioMapper <<Data Mapper>> {
+        +save(snapshot: UsuarioSnapshot): void
+        +findById(idUsuario: String): UsuarioSnapshot
+        +updateRol(idUsuario: String, idRol: String): void
+        +updateEstadoCuenta(idUsuario: String, estado: String): void
+        +toRecord(snapshot: UsuarioSnapshot): UsuarioRecord
+        +toSnapshot(record: UsuarioRecord): UsuarioSnapshot
+    }
+
+    class SolicitudEvaluadorMapper <<Data Mapper>> {
+        +save(snapshot: SolicitudEvaluadorSnapshot): void
+        +findById(idSolicitud: String): SolicitudEvaluadorSnapshot
+        +findPendientesVigentes(fecha: Date): List
+        +updateEstado(idSolicitud: String, estado: String): void
+        +toRecord(snapshot: SolicitudEvaluadorSnapshot): SolicitudEvaluadorRecord
+        +toSnapshot(record: SolicitudEvaluadorRecord): SolicitudEvaluadorSnapshot
+    }
+
+    class PrivilegioAuditMapper <<Data Mapper>> {
+        +append(snapshot: PrivilegioAuditSnapshot): void
+        +findByUsuario(idUsuario: String): List
+        +toRecord(snapshot: PrivilegioAuditSnapshot): PrivilegioAuditRecord
+    }
+
+    class GamificacionMapper <<Data Mapper>> {
+        +save(snapshot: PuntajeSnapshot): void
+        +findByUsuario(idUsuario: String): PuntajeSnapshot
+        +actualizarRanking(idUsuario: String): void
+        +toRecord(snapshot: PuntajeSnapshot): PuntajeRecord
+        +toSnapshot(record: PuntajeRecord): PuntajeSnapshot
+    }
+
+    class DbRecord <<DTO>> {
+        +fields: Object
+    }
+}
+
+package "Snapshots / DTOs de Persistencia" {
+
+    class ArchivoSnapshot <<DTO>> {
+        +idArchivo: String
+        +nombre: String
+        +cursoId: String
+        +cicloId: String
+        +formato: String
+        +mimeType: String
+        +pesoBytes: Long
+        +objectKey: String
+        +estado: String
+        +metadata: MetadataArchivoSnapshot
+    }
+
+    class MetadataArchivoSnapshot <<DTO>> {
+        +checksum: String
+        +fechaSubida: Date
+        +autorId: String
+        +descripcion: String
+    }
+
+    class PublicacionSnapshot <<DTO>> {
+        +idPublicacion: String
+        +autorId: String
+        +titulo: String
+        +contenido: String
+        +estadoModeracion: String
+        +archivoIds: List
+    }
+
+    class UsuarioSnapshot <<DTO>> {
+        +idUsuario: String
+        +codigoPucp: String
+        +correoInstitucional: String
+        +estadoCuenta: String
+        +rolId: String
+    }
+
+    class SolicitudEvaluadorSnapshot <<DTO>> {
+        +idSolicitud: String
+        +postulanteId: String
+        +estado: String
+        +fechaCreacion: Date
+        +fechaExpiracion: Date
+        +evidencias: List
+    }
+
+    class EvidenciaPostulacionSnapshot <<DTO>> {
+        +idEvidencia: String
+        +idSolicitud: String
+        +objectKey: String
+        +checksum: String
+        +tipo: String
+    }
+
+    class PrivilegioAuditSnapshot <<DTO>> {
+        +idLog: String
+        +actorId: String
+        +usuarioAfectadoId: String
+        +rolAnterior: String
+        +rolNuevo: String
+        +timestamp: Date
+        +solicitudId: String
+        +hashPrevio: String
+        +hashActual: String
+    }
+
+    class PuntajeSnapshot <<DTO>> {
+        +idPuntaje: String
+        +usuarioId: String
+        +puntos: Integer
+        +nivel: String
+        +ultimaActualizacion: Date
+    }
+}
+
+package "Registros PostgreSQL" {
+
+    class ArchivoRecord <<Table Row>> {
+        +id_archivo: String
+        +nombre: String
+        +curso_id: String
+        +ciclo_id: String
+        +formato: String
+        +mime_type: String
+        +peso_bytes: Long
+        +object_key: String
+        +estado: String
+    }
+
+    class MetadataArchivoRecord <<Table Row>> {
+        +id_archivo: String
+        +checksum: String
+        +fecha_subida: Date
+        +autor_id: String
+        +descripcion: String
+    }
+
+    class PublicacionRecord <<Table Row>> {
+        +id_publicacion: String
+        +autor_id: String
+        +titulo: String
+        +contenido: String
+        +estado_moderacion: String
+    }
+
+    class PublicacionArchivoRecord <<Join Table>> {
+        +id_publicacion: String
+        +id_archivo: String
+    }
+
+    class UsuarioRecord <<Table Row>> {
+        +id_usuario: String
+        +codigo_pucp: String
+        +correo_institucional: String
+        +estado_cuenta: String
+        +rol_id: String
+    }
+
+    class SolicitudEvaluadorRecord <<Table Row>> {
+        +id_solicitud: String
+        +postulante_id: String
+        +estado: String
+        +fecha_creacion: Date
+        +fecha_expiracion: Date
+    }
+
+    class EvidenciaPostulacionRecord <<Table Row>> {
+        +id_evidencia: String
+        +id_solicitud: String
+        +object_key: String
+        +checksum: String
+        +tipo: String
+    }
+
+    class PrivilegioAuditRecord <<Table Row>> {
+        +id_log: String
+        +actor_id: String
+        +usuario_afectado_id: String
+        +rol_anterior: String
+        +rol_nuevo: String
+        +timestamp: Date
+        +solicitud_id: String
+        +hash_previo: String
+        +hash_actual: String
+    }
+
+    class PuntajeRecord <<Table Row>> {
+        +id_puntaje: String
+        +usuario_id: String
+        +puntos: Integer
+        +nivel: String
+        +ultima_actualizacion: Date
+    }
+}
+
+IDatabaseGateway <|.. PostgreSqlGateway
+
+BasePersistenceMapper --> IDatabaseGateway
+
+BasePersistenceMapper <|-- ArchivoMapper
+BasePersistenceMapper <|-- PublicacionMapper
+BasePersistenceMapper <|-- UsuarioMapper
+BasePersistenceMapper <|-- SolicitudEvaluadorMapper
+BasePersistenceMapper <|-- PrivilegioAuditMapper
+BasePersistenceMapper <|-- GamificacionMapper
+
+IArchivoMapper <|.. ArchivoMapper
+IPublicacionMapper <|.. PublicacionMapper
+IUsuarioMapper <|.. UsuarioMapper
+ISolicitudEvaluadorMapper <|.. SolicitudEvaluadorMapper
+IPrivilegioAuditMapper <|.. PrivilegioAuditMapper
+IGamificacionMapper <|.. GamificacionMapper
+
+ArchivoMapper ..> ArchivoSnapshot
+ArchivoMapper ..> ArchivoRecord
+ArchivoMapper ..> MetadataArchivoRecord
+
+PublicacionMapper ..> PublicacionSnapshot
+PublicacionMapper ..> PublicacionRecord
+PublicacionMapper ..> PublicacionArchivoRecord
+
+UsuarioMapper ..> UsuarioSnapshot
+UsuarioMapper ..> UsuarioRecord
+
+SolicitudEvaluadorMapper ..> SolicitudEvaluadorSnapshot
+SolicitudEvaluadorMapper ..> SolicitudEvaluadorRecord
+SolicitudEvaluadorMapper ..> EvidenciaPostulacionRecord
+
+PrivilegioAuditMapper ..> PrivilegioAuditSnapshot
+PrivilegioAuditMapper ..> PrivilegioAuditRecord
+
+GamificacionMapper ..> PuntajeSnapshot
+GamificacionMapper ..> PuntajeRecord
+
+ArchivoSnapshot *-- MetadataArchivoSnapshot : contiene
+SolicitudEvaluadorSnapshot *-- EvidenciaPostulacionSnapshot : contiene
+PublicacionSnapshot --> UsuarioSnapshot : autorId
+PublicacionSnapshot --> ArchivoSnapshot : archivoIds
+PuntajeSnapshot --> UsuarioSnapshot : usuarioId
+PrivilegioAuditSnapshot --> UsuarioSnapshot : usuarioAfectadoId
+PrivilegioAuditSnapshot --> SolicitudEvaluadorSnapshot : solicitudId
+
+note right of ArchivoMapper
+Data Mapper:
+convierte snapshots persistibles
+en registros SQL y viceversa.
+end note
+
+note right of PrivilegioAuditMapper
+RC14:
+mapper append-only.
+Solo expone append(),
+no update ni delete.
+end note
+
+note right of SolicitudEvaluadorRecord
+RF09:
+la solicitud tiene fecha_expiracion
+para anular postulaciones vencidas.
+end note
+
+note bottom of EvidenciaPostulacionSnapshot
+Dependent Mapping:
+la evidencia depende de la solicitud
+y se persiste junto al proceso RF09.
+end note
+
+@enduml

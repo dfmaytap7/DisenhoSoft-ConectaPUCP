@@ -1,0 +1,87 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_TOP_DOWN()
+
+title ConectaPUCP - Vista de Contenedores V4.1\nSpace-Based con Servicio de Persistencia unificado
+
+Person(usuario, "Usuario PUCP", "Estudiantes, evaluadores y administradores.")
+
+System_Ext(cas, "Sistema CAS PUCP", "Valida identidad institucional.")
+System_Ext(gmail, "Correo Institucional", "Bandeja del usuario PUCP.")
+
+System_Boundary(sistema, "ConectaPUCP") {
+
+  Container(web, "Aplicación Web", "Frontend JS", "Interfaz para estudiantes, evaluadores y administradores.")
+
+  Container(gateway, "API Gateway", "Nginx / Kong", "Entrada única HTTPS y ruteo hacia las UPs.")
+
+  Container(cuentas, "Servicio de Cuentas UP", "Node.js", "Autenticación, roles, sesiones y auditoría.")
+
+  Container(archivos, "Servicio de Archivos UP", "Node.js", "Carga, validación, metadata y descarga de materiales.")
+
+  Container(social, "Servicio Social UP", "Node.js", "Foros, publicaciones, likes, eventos y gamificación.")
+
+  Container(notificaciones, "Servicio de Notificaciones UP", "Node.js", "Preferencias, trazabilidad y correos.")
+
+  ContainerDb(hazelcast, "Grilla de Datos / Space", "Hazelcast", "Estado compartido de lectura/escritura para las UPs.")
+
+  ContainerQueue(kafka, "Grilla de Mensajería / Data Pump", "Kafka / RabbitMQ", "Eventos de persistencia, cache miss y reintentos.")
+
+  Container(persistencia, "Servicio de Persistencia", "Workers / Data Reader / Data Writer / Data Mapper", "Agrupa la lectura, escritura y transformación de datos persistentes. Consume eventos, actualiza BD/índices y recarga el Space.")
+
+  ContainerDb(postgres, "Base de Datos", "PostgreSQL", "Usuarios, roles, auditoría, publicaciones, gamificación y metadata de archivos.")
+
+  ContainerDb(elastic, "Motor de Búsqueda", "Elasticsearch", "Índices por palabra clave, curso, ciclo y filtros.")
+
+  ContainerDb(s3, "Object Storage", "MinIO / S3", "Binarios pesados y URLs firmadas.")
+
+  Container(postfix, "Servidor de Correos", "Postfix SMTP", "Despacho de correos.")
+}
+
+Rel(usuario, web, "Usa", "HTTPS")
+Rel(web, gateway, "Consume API", "JSON/HTTPS")
+
+Rel(gateway, cuentas, "Rutea", "/api/cuentas")
+Rel(gateway, archivos, "Rutea", "/api/archivos")
+Rel(gateway, social, "Rutea", "/api/social")
+Rel(gateway, notificaciones, "Rutea", "/api/notificaciones")
+
+Rel(cuentas, cas, "Valida identidad", "SSO CAS")
+
+Rel(notificaciones, postfix, "Envía correos", "SMTP")
+Rel(postfix, gmail, "Entrega correos", "SMTP")
+
+Rel(archivos, s3, "Carga/descarga binarios", "URLs firmadas")
+
+Rel(cuentas, hazelcast, "Lee/escribe sesiones, roles y tokens")
+Rel(archivos, hazelcast, "Lee/escribe metadata y objectKey")
+Rel(social, hazelcast, "Lee/escribe foros, likes y rankings")
+Rel(notificaciones, hazelcast, "Lee/escribe preferencias y trazabilidad")
+
+Rel_D(hazelcast, kafka, "Publica eventos de cambios y cache miss")
+Rel_D(kafka, persistencia, "Entrega eventos de lectura/escritura")
+
+Rel(persistencia, postgres, "Lee/escribe datos persistentes", "SQL/JDBC")
+Rel_D(persistencia, elastic, "Actualiza índices de búsqueda")
+Rel(persistencia, hazelcast, "Recarga/actualiza el Space")
+Rel(persistencia, s3, "Consulta referencias objectKey y genera URL firmada")
+
+note right of persistencia
+Contenedor unificado de persistencia.
+
+Internamente contiene:
+- Data Writer: consume eventos y sincroniza BD/índices.
+- Data Reader: atiende cache miss y precarga datos.
+- Data Mapper: transforma entidades, snapshots y registros.
+
+Las UPs no ejecutan SQL directo.
+end note
+
+note right of hazelcast
+Fuente operativa principal para las UPs.
+Las UPs leen/escriben en el Space y el Servicio
+de Persistencia resuelve la permanencia.
+end note
+
+@enduml

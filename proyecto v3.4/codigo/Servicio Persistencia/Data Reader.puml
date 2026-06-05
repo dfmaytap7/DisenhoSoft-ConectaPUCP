@@ -1,0 +1,32 @@
+@startuml
+title Vista de Código - Data Reader\nRead-through / Cache Miss
+skinparam classAttributeIconSize 0
+left to right direction
+class "CacheMissListener" as listener  {
+  +onCacheMiss(key): void
+  +solicitarCarga(key): void
+}
+class "DataReader" as reader  {
+  -registry: MapperRegistry
+  -gridWriter: GridReloadPort
+  --
+  +cargarPorClave(key): void
+  +preload(domain): void
+  +cargarArchivado(criteria): List<Object>
+}
+interface "IDataMapper" as mapper  {
+  +findById(id): Snapshot
+  +findByCriteria(criteria): List<Snapshot>
+}
+interface "GridReloadPort" as reload  {
+  +put(key, entity): void
+  +putAll(entries): void
+}
+class "SignedUrlService" as url  {
+  +generarUrl(objectKey): String
+}
+listener --> reader : solicita lectura
+reader ..> mapper : consulta BD
+reader ..> reload : recarga Space
+reader --> url : URL firmada
+@enduml

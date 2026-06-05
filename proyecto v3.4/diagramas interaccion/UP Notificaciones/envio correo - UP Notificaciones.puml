@@ -1,0 +1,54 @@
+@startuml
+title Diagrama de Interacción - Envío de correo (UP Notificaciones)
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+participant "Evento\nDominio" as evento
+participant "Gestor\nNotificaciones" as gest
+participant "Grilla\nDatos" as grid
+participant "Motor\nPlantillas" as tpl
+participant "Mailer\nClient" as mail
+participant "Postfix\nSMTP" as smtp
+participant "Correo\nPUCP" as gmail
+
+evento ->> gest: actividad generada
+activate gest
+gest -> grid: consultarPreferencias(usuario)
+activate grid
+grid --> gest: preferencias usuario
+deactivate grid
+
+alt [preferencia activa]
+  gest -> tpl: render(tipo, datos)
+  activate tpl
+  tpl --> gest: HTML
+  deactivate tpl
+  gest -> mail: enviar(EmailMessageDTO)
+  activate mail
+  mail -> smtp: enviarSMTP(mensaje)
+  activate smtp
+  alt [envío exitoso]
+    smtp ->> gmail: despacho correo
+    smtp --> mail: aceptación SMTP
+    mail --> gest: MailResultDTO(ok)
+  else [error SMTP]
+    smtp --> mail: error temporal
+    mail --> gest: MailResultDTO(error)
+    gest ->> grid: registrarReintentoPendiente
+  end
+  deactivate smtp
+  deactivate mail
+  gest -> grid: registrar trazabilidad
+  activate grid
+  grid --> gest: trazabilidad guardada
+  deactivate grid
+else [preferencia desactivada]
+  gest -> grid: registrar evento omitido
+  activate grid
+  grid --> gest: omisión registrada
+  deactivate grid
+end
+
+deactivate gest
+@enduml

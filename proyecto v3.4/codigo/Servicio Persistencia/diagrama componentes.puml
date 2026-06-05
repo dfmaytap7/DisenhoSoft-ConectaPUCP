@@ -1,0 +1,23 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+LAYOUT_TOP_DOWN()
+title Servicio de Persistencia - Componentes
+System_Ext(kafka, "Grilla de Mensajería", "Eventos de escritura y solicitudes de lectura.")
+System_Ext(hazelcast, "Grilla de Datos", "Cache/estado compartido.")
+System_Ext(db, "PostgreSQL", "Persistencia relacional.")
+System_Ext(elastic, "Elasticsearch", "Búsquedas rápidas.")
+System_Ext(s3, "Object Storage", "Binarios pesados.")
+System_Boundary(sistema, "ConectaPUCP") {
+  Container(writer, "Data Writer", "Component", "Persiste eventos mediante Data Mapper.")
+  Container(reader, "Data Reader", "Component", "Resuelve cache miss y precargas.")
+  Container(mapper, "Mapper Registry", "Data Mapper", "Selecciona mapper por dominio.")
+}
+Rel_D(kafka, writer, "eventos de escritura")
+Rel(hazelcast, reader, "cache miss")
+Rel(writer, mapper, "usa")
+Rel(reader, mapper, "usa")
+Rel(mapper, db, "SQL")
+Rel_D(writer, elastic, "actualiza")
+Rel(reader, s3, "URL firmada")
+Rel(writer, s3, "objectKey")
+@enduml

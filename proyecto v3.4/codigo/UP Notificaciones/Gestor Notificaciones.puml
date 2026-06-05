@@ -1,0 +1,33 @@
+@startuml
+title Vista de Código - Gestor de Notificaciones\nFacade + Observer
+skinparam classAttributeIconSize 0
+left to right direction
+class "NotificationController" as ctrl  {
+  +consultarPanel(token): List<NotificacionDTO>
+  +actualizarPreferencias(dto): void
+}
+class "NotificationManager" as facade <<Facade>> {
+  -templateEngine: ITemplateEngine
+  -mailSender: IMailSender
+  -prefRepo: IPreferenceRepository
+  --
+  +procesarEvento(evento): void
+  +notificarUsuario(id,event): void
+}
+interface "IEventoNotificableObserver" as obs  {
+  +onEventoDominio(evento): void
+}
+class "NotificationManagerObserver" as managerobs <<Observer>> {
+  +onEventoDominio(evento): void
+}
+class "NotificacionDTO" as dto <<DTO>> {
+  +id: String
+  +asunto: String
+  +estado: String
+  +fecha: String
+}
+ctrl --> facade : usa
+managerobs ..|> obs
+managerobs --> facade : delega
+facade ..> dto
+@enduml

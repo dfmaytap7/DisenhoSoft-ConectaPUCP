@@ -1,0 +1,236 @@
+@startuml
+title Vista de Código - Componente Data Writer\nWrite-behind + Strategy + Data Mapper
+
+skinparam classAttributeIconSize 0
+left to right direction
+
+package "Servicio de Persistencia Read/Write" {
+
+    interface IDataWriter {
+        +handle(event: PersistenceEvent): void
+    }
+
+    class DataWriter {
+        -registry: WriteHandlerRegistry
+        -transactionManager: ITransactionManager
+        -auditLogger: IWriteAuditLogger
+        -failurePublisher: IFailurePublisher
+
+        +handle(event: PersistenceEvent): void
+        -process(event: PersistenceEvent): void
+        -confirm(event: PersistenceEvent): void
+        -reject(event: PersistenceEvent, reason: string): void
+    }
+
+    class KafkaEventAdapter <<Adapter>> {
+        -dataWriter: IDataWriter
+        -brokerClient: IMessageBrokerClient
+        -deserializer: IEventDeserializer
+
+        +start(): void
+        +stop(): void
+        -onMessage(message: RawMessage): void
+    }
+
+    interface IMessageBrokerClient {
+        +subscribe(topic: string): void
+        +ack(messageId: string): void
+        +reject(messageId: string): void
+    }
+
+    class KafkaBrokerClient <<Adapter>> {
+        -bootstrapServers: string
+        -consumerGroup: string
+
+        +subscribe(topic: string): void
+        +ack(messageId: string): void
+        +reject(messageId: string): void
+    }
+
+    interface IEventDeserializer {
+        +deserialize(message: RawMessage): PersistenceEvent
+    }
+
+    class JsonEventDeserializer {
+        +deserialize(message: RawMessage): PersistenceEvent
+    }
+
+    class WriteHandlerRegistry {
+        -handlers: Map
+        +register(eventType: string, handler: IWriteHandler): void
+        +getHandler(eventType: string): IWriteHandler
+    }
+
+    interface IWriteHandler {
+        +write(event: PersistenceEvent): void
+    }
+
+    class ArchivoValidadoWriteHandler <<Strategy>> {
+        -archivoMapper: IArchivoMapper
+        -searchIndexer: ISearchIndexer
+        +write(event: PersistenceEvent): void
+    }
+
+    class PublicacionCreadaWriteHandler <<Strategy>> {
+        -publicacionMapper: IPublicacionMapper
+        -searchIndexer: ISearchIndexer
+        +write(event: PersistenceEvent): void
+    }
+
+    class RolActualizadoWriteHandler <<Strategy>> {
+        -usuarioMapper: IUsuarioMapper
+        -solicitudMapper: ISolicitudEvaluadorMapper
+        -privilegioAuditMapper: IPrivilegioAuditMapper
+        +write(event: PersistenceEvent): void
+    }
+
+    class PuntajeAsignadoWriteHandler <<Strategy>> {
+        -gamificacionMapper: IGamificacionMapper
+        +write(event: PersistenceEvent): void
+    }
+
+    interface ISearchIndexer {
+        +indexarArchivo(event: PersistenceEvent): void
+        +indexarPublicacion(event: PersistenceEvent): void
+        +eliminarDocumento(indexName: string, documentId: string): void
+    }
+
+    class ElasticsearchIndexer <<Adapter>> {
+        -baseUrl: string
+        +indexarArchivo(event: PersistenceEvent): void
+        +indexarPublicacion(event: PersistenceEvent): void
+        +eliminarDocumento(indexName: string, documentId: string): void
+    }
+
+    interface ITransactionManager {
+        +begin(): void
+        +commit(): void
+        +rollback(): void
+    }
+
+    class SqlTransactionManager {
+        +begin(): void
+        +commit(): void
+        +rollback(): void
+    }
+
+    interface IWriteAuditLogger {
+        +logEventReceived(event: PersistenceEvent): void
+        +logEventPersisted(event: PersistenceEvent): void
+        +logEventError(event: PersistenceEvent, reason: string): void
+    }
+
+    class WriteAuditLogger {
+        +logEventReceived(event: PersistenceEvent): void
+        +logEventPersisted(event: PersistenceEvent): void
+        +logEventError(event: PersistenceEvent, reason: string): void
+    }
+
+    interface IFailurePublisher {
+        +publishFailedEvent(event: PersistenceEvent, reason: string): void
+    }
+
+    class DeadLetterPublisher {
+        -brokerClient: IMessageBrokerClient
+        +publishFailedEvent(event: PersistenceEvent, reason: string): void
+    }
+
+    class RawMessage <<DTO>> {
+        +messageId: string
+        +topic: string
+        +body: string
+        +timestamp: Date
+    }
+
+    class PersistenceEvent <<DTO>> {
+        +eventId: string
+        +eventType: string
+        +aggregateId: string
+        +actorId: string
+        +occurredAt: Date
+        +payload: object
+    }
+}
+
+package "Mappers / Repositorios" {
+
+    interface IArchivoMapper {
+        +saveMetadata(event: PersistenceEvent): void
+        +updateEstado(idArchivo: string, estado: string): void
+    }
+
+    interface IPublicacionMapper {
+        +save(event: PersistenceEvent): void
+        +updateEstado(idPublicacion: string, estado: string): void
+        +vincularArchivo(idPublicacion: string, idArchivo: string): void
+    }
+
+    interface IUsuarioMapper {
+        +updateRol(idUsuario: string, idRol: string): void
+        +updateEstadoCuenta(idUsuario: string, estado: string): void
+    }
+
+    interface ISolicitudEvaluadorMapper {
+        +updateEstado(idSolicitud: string, estado: string): void
+    }
+
+    interface IPrivilegioAuditMapper {
+        +append(event: PersistenceEvent): void
+    }
+
+    interface IGamificacionMapper {
+        +registrarPuntaje(event: PersistenceEvent): void
+        +actualizarRanking(idUsuario: string): void
+    }
+}
+
+IDataWriter <|.. DataWriter
+
+KafkaEventAdapter --> IDataWriter
+KafkaEventAdapter --> IMessageBrokerClient
+KafkaEventAdapter --> IEventDeserializer
+KafkaEventAdapter ..> RawMessage
+
+IMessageBrokerClient <|.. KafkaBrokerClient
+IEventDeserializer <|.. JsonEventDeserializer
+
+DataWriter --> WriteHandlerRegistry
+DataWriter --> ITransactionManager
+DataWriter --> IWriteAuditLogger
+DataWriter --> IFailurePublisher
+DataWriter ..> PersistenceEvent
+
+WriteHandlerRegistry --> IWriteHandler
+
+IWriteHandler <|.. ArchivoValidadoWriteHandler
+IWriteHandler <|.. PublicacionCreadaWriteHandler
+IWriteHandler <|.. RolActualizadoWriteHandler
+IWriteHandler <|.. PuntajeAsignadoWriteHandler
+
+ArchivoValidadoWriteHandler --> IArchivoMapper
+ArchivoValidadoWriteHandler --> ISearchIndexer
+
+PublicacionCreadaWriteHandler --> IPublicacionMapper
+PublicacionCreadaWriteHandler --> ISearchIndexer
+
+RolActualizadoWriteHandler --> IUsuarioMapper
+RolActualizadoWriteHandler --> ISolicitudEvaluadorMapper
+RolActualizadoWriteHandler --> IPrivilegioAuditMapper
+
+PuntajeAsignadoWriteHandler --> IGamificacionMapper
+
+ISearchIndexer <|.. ElasticsearchIndexer
+ITransactionManager <|.. SqlTransactionManager
+IWriteAuditLogger <|.. WriteAuditLogger
+IFailurePublisher <|.. DeadLetterPublisher
+
+DeadLetterPublisher --> IMessageBrokerClient
+
+note right of RolActualizadoWriteHandler
+RF09/RF32/RC14:
+actualiza rol, estado de solicitud
+y registra auditoría append-only
+usando mappers, no SQL directo.
+end note
+
+@enduml

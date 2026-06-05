@@ -1,0 +1,24 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+LAYOUT_TOP_DOWN()
+title UP Cuentas - Componentes
+System_Ext(web, "Aplicación Web", "Solicitudes de cuentas.")
+System_Ext(cas, "Sistema CAS", "SSO PUCP.")
+System_Boundary(sistema, "ConectaPUCP") {
+  Container(ctrl, "Controlador de Cuentas", "Page Controller", "Entrada HTTP y validación inicial.")
+  Container(auth, "Autenticación de Cuentas", "Adapter CAS", "Traduce ticket CAS a identidad local.")
+  Container(gest, "Gestión de Cuentas", "Facade", "Orquesta CRUD, sesión y estado de cuenta.")
+  Container(roles, "Gestor de Roles", "RBAC / Strategy", "Permisos, jerarquías y solicitud evaluador.")
+  Container(aud, "Auditoría de Cuentas", "Observer / Audit Logger", "Registra cambios sensibles.")
+  Container(grid, "Cliente Grilla de Datos", "Adapter Hazelcast", "Sesiones, tokens, roles y auditoría.")
+}
+Rel(web, ctrl, "HTTPS")
+Rel(ctrl, auth, "login CAS")
+Rel(auth, cas, "validar ticket")
+Rel(ctrl, gest, "orquesta")
+Rel(gest, roles, "consulta permisos")
+Rel_D(gest, aud, "registra acción")
+Rel(gest, grid, "sesión/perfil")
+Rel(roles, grid, "roles/permisos")
+Rel(aud, grid, "log inalterable")
+@enduml

@@ -1,0 +1,57 @@
+@startuml
+title Diagrama de Interacción - Subida de archivo (UP Archivos)
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+actor "Estudiante /\nEvaluador" as u
+participant "Aplicación\nWeb" as web
+participant "Controlador\nArchivos" as ctrl
+participant "Gestión\nArchivos" as facade
+participant "Validación\nMaterial" as val
+participant "Repositorio\nArchivos" as repo
+participant "Object\nStorage" as s3
+participant "Grilla\nDatos" as grid
+participant "Data\nWriter" as writer
+
+u -> web: selecciona archivo
+activate web
+web -> ctrl: POST /archivos
+activate ctrl
+ctrl -> facade: procesarSubida(dto, stream)
+activate facade
+facade -> val: validar tamaño/extensión/MIME
+activate val
+val --> facade: ValidationResponseDTO
+deactivate val
+
+alt [archivo válido]
+  facade -> s3: guardarBinario(stream)
+  activate s3
+  s3 --> facade: objectKey + checksum
+  deactivate s3
+  facade -> repo: guardarMetadata(Archivo)
+  activate repo
+  repo -> grid: put(metadata, objectKey)
+  activate grid
+  grid ->> writer: evento write-behind
+  grid --> repo: confirmación en Space
+  deactivate grid
+  repo --> facade: Archivo registrado
+  deactivate repo
+  facade --> ctrl: ArchivoDTO sin binario
+  ctrl --> web: respuesta 202 pendiente de aprobación
+  web --> u: muestra resultado exitoso
+else [archivo inválido]
+  facade --> ctrl: ValidationResponseDTO(error)
+  ctrl --> web: respuesta 400
+  web --> u: muestra error técnico detallado
+end
+
+deactivate facade
+deactivate ctrl
+deactivate web
+note right of facade
+DTO no transporta el BLOB: lleva id, nombre, curso, ciclo, estado y URL/clave técnica.
+end note
+@enduml

@@ -1,0 +1,73 @@
+@startuml
+title Diagrama de Interacción - Write-behind (Servicio Persistencia)
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+participant "Grilla\nDatos" as grid
+participant "Grilla\nMensajería" as kafka
+participant "KafkaEvent\nAdapter" as adapter
+participant "Data\nWriter" as writer
+participant "WriteHandler\nRegistry" as registry
+participant "IWriteHandler\n(Strategy)" as handler
+participant "Transaction\nManager" as tx
+participant "Mappers /\nRepositorios" as mappers
+participant "Motor\nBúsqueda" as elastic
+participant "Dead Letter\nPublisher" as dlq
+
+grid ->> kafka: publicar evento de cambio
+activate kafka
+kafka -> adapter: onMessage(rawMessage)
+activate adapter
+adapter -> writer: handle(PersistenceEvent)
+activate writer
+writer -> tx: begin()
+activate tx
+tx --> writer: transacción iniciada
+deactivate tx
+writer -> registry: getHandler(eventType)
+activate registry
+registry --> writer: handler específico
+deactivate registry
+writer -> handler: write(event)
+activate handler
+handler -> mappers: save/update/append(snapshot)
+activate mappers
+mappers --> handler: operación preparada
+deactivate mappers
+
+opt [evento indexable]
+  handler ->> elastic: actualizar índice de búsqueda
+end
+
+handler --> writer: escritura correcta
+deactivate handler
+writer -> tx: commit()
+activate tx
+tx --> writer: transacción confirmada
+deactivate tx
+writer --> adapter: confirm(event)
+adapter --> kafka: ACK
+
+deactivate writer
+deactivate adapter
+deactivate kafka
+
+alt [error de persistencia]
+  writer -> tx: rollback()
+  writer -> dlq: publishFailedEvent(event, reason)
+  writer --> adapter: reject(event)
+  adapter --> kafka: reject(messageId)
+end
+
+note right of handler
+Cada evento se atiende con un handler Strategy:
+ArchivoValidado, PublicacionCreada,
+RolActualizado o PuntajeAsignado.
+end note
+
+note right of mappers
+Los mappers encapsulan SQL y transforman
+snapshots persistibles en registros PostgreSQL.
+end note
+@enduml

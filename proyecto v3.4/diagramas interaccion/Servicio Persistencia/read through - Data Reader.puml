@@ -1,0 +1,41 @@
+@startuml
+title Diagrama de Interacción - Read-through / Cache miss (Servicio Persistencia)
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+participant "Grilla\nDatos" as grid
+participant "Data\nReader" as reader
+participant "Data\nMapper" as mapper
+participant "PostgreSQL" as db
+participant "Object\nStorage" as s3
+
+grid -> reader: solicitarCarga(id)
+activate reader
+reader -> mapper: findById(id)
+activate mapper
+mapper -> db: SELECT entidad por id
+activate db
+db --> mapper: registro persistente
+deactivate db
+mapper --> reader: entidad / snapshot
+deactivate mapper
+
+opt [entidad referencia archivo]
+  reader -> s3: generarUrlFirmada(objectKey)
+  activate s3
+  s3 --> reader: urlDescarga
+  deactivate s3
+end
+
+reader -> grid: put(entidadActualizada)
+activate grid
+grid --> reader: confirmación cache
+ deactivate grid
+reader --> grid: entidad disponible
+deactivate reader
+note right of reader
+Data Reader resuelve lecturas faltantes o precargas hacia el Space.
+La UP no consulta directamente PostgreSQL.
+end note
+@enduml
