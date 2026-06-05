@@ -1,0 +1,751 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+
+  .app { width: 100%; }
+
+  .nav-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    margin-bottom: 0;
+    overflow-x: auto;
+    background: var(--color-background-primary);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav-tab {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-tab:hover { color: var(--color-text-primary); background: var(--color-background-secondary); }
+  .nav-tab.active {
+    color: #185FA5;
+    border-bottom: 2px solid #185FA5;
+  }
+  .nav-tab .tab-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    font-size: 11px;
+    background: var(--color-background-secondary);
+    color: var(--color-text-secondary);
+  }
+  .nav-tab.active .tab-num {
+    background: #E6F1FB;
+    color: #185FA5;
+  }
+
+  .screen { display: none; padding: 1.5rem 1rem; }
+  .screen.active { display: block; }
+
+  .screen-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+  .screen-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--border-radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .screen-icon.blue { background: #E6F1FB; color: #185FA5; }
+  .screen-icon.teal { background: #E1F5EE; color: #0F6E56; }
+  .screen-icon.amber { background: #FAEEDA; color: #854F0B; }
+  .screen-icon.purple { background: #EEEDFE; color: #534AB7; }
+
+  .screen-title { font-size: 16px; font-weight: 500; color: var(--color-text-primary); }
+  .screen-subtitle { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+  .service-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: var(--border-radius-md);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .service-badge.blue { background: #E6F1FB; color: #185FA5; }
+  .service-badge.teal { background: #E1F5EE; color: #0F6E56; }
+  .service-badge.amber { background: #FAEEDA; color: #854F0B; }
+  .service-badge.purple { background: #EEEDFE; color: #534AB7; }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-grid.single { grid-template-columns: 1fr; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field.span2 { grid-column: span 2; }
+  .field label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .field label .req { color: #E24B4A; }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    transition: border-color 0.15s;
+    outline: none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: #185FA5;
+    box-shadow: 0 0 0 2px #E6F1FB;
+  }
+  .field textarea { resize: vertical; min-height: 80px; }
+  .field .hint { font-size: 11px; color: var(--color-text-tertiary); }
+
+  .avatar-upload {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border: 0.5px dashed var(--color-border-secondary);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-background-secondary);
+  }
+  .avatar-circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: #E6F1FB;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    color: #185FA5;
+    flex-shrink: 0;
+  }
+  .avatar-text { font-size: 13px; color: var(--color-text-secondary); }
+  .avatar-btn {
+    margin-top: 4px;
+    font-size: 12px;
+    padding: 4px 10px;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    font-family: var(--font-sans);
+  }
+  .avatar-btn:hover { background: var(--color-background-secondary); }
+
+  .file-drop {
+    border: 0.5px dashed var(--color-border-secondary);
+    border-radius: var(--border-radius-lg);
+    padding: 20px;
+    text-align: center;
+    background: var(--color-background-secondary);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .file-drop:hover { background: var(--color-background-tertiary); }
+  .file-drop i { font-size: 28px; color: var(--color-text-secondary); display: block; margin-bottom: 8px; }
+  .file-drop p { font-size: 13px; color: var(--color-text-secondary); }
+  .file-drop .formats { font-size: 11px; color: var(--color-text-tertiary); margin-top: 4px; }
+
+  .tags-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 6px 8px;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    background: var(--color-background-primary);
+    min-height: 38px;
+    cursor: text;
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: #E6F1FB;
+    color: #185FA5;
+    font-size: 12px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .tag button {
+    background: none; border: none; cursor: pointer;
+    color: #185FA5; font-size: 12px; padding: 0; line-height: 1;
+  }
+  .tags-input input {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 2px 4px !important;
+    font-size: 13px;
+    flex: 1;
+    min-width: 80px;
+    background: transparent;
+  }
+
+  .visibility-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .vis-option {
+    padding: 10px 8px;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+    background: var(--color-background-primary);
+  }
+  .vis-option:hover { background: var(--color-background-secondary); }
+  .vis-option.selected { border-color: #185FA5; background: #E6F1FB; }
+  .vis-option i { font-size: 18px; display: block; margin-bottom: 4px; }
+  .vis-option span { font-size: 11px; font-weight: 500; }
+  .vis-option.selected i, .vis-option.selected span { color: #185FA5; }
+  .vis-option:not(.selected) i, .vis-option:not(.selected) span { color: var(--color-text-secondary); }
+
+  .section-sep {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 1.25rem 0 0.75rem;
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .form-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 0.5px solid var(--color-border-tertiary);
+    justify-content: flex-end;
+  }
+  .btn-secondary {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    background: var(--color-background-primary);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: all 0.15s;
+  }
+  .btn-secondary:hover { background: var(--color-background-secondary); color: var(--color-text-primary); }
+  .btn-primary {
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+  }
+  .btn-primary.blue { background: #185FA5; color: white; }
+  .btn-primary.blue:hover { background: #0C447C; }
+  .btn-primary.teal { background: #0F6E56; color: white; }
+  .btn-primary.teal:hover { background: #085041; }
+  .btn-primary.amber { background: #854F0B; color: white; }
+  .btn-primary.amber:hover { background: #633806; }
+  .btn-primary.purple { background: #534AB7; color: white; }
+  .btn-primary.purple:hover { background: #3C3489; }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .info-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: var(--border-radius-md);
+    font-size: 12px;
+    margin-bottom: 1rem;
+  }
+  .info-banner.blue { background: #E6F1FB; color: #185FA5; }
+  .info-banner.amber { background: #FAEEDA; color: #854F0B; }
+  .info-banner i { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  .char-counter { font-size: 11px; color: var(--color-text-tertiary); text-align: right; margin-top: 2px; }
+
+  .rich-toolbar {
+    display: flex;
+    gap: 2px;
+    padding: 6px 8px;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-bottom: none;
+    border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+    background: var(--color-background-secondary);
+  }
+  .rich-toolbar button {
+    padding: 4px 8px;
+    border: none;
+    background: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans);
+  }
+  .rich-toolbar button:hover { background: var(--color-background-primary); color: var(--color-text-primary); }
+  .rich-area {
+    border-radius: 0 0 var(--border-radius-md) var(--border-radius-md) !important;
+    border-top: none !important;
+  }
+
+  @media (max-width: 520px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .field.span2 { grid-column: span 1; }
+    .visibility-selector { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+
+<h2 class="sr-only">Pantallas de ConectaPUCP: formularios de perfil, postulación, material académico y foro</h2>
+
+<div class="app">
+  <div class="nav-tabs" role="tablist">
+    <button class="nav-tab active" onclick="showScreen(0)" role="tab">
+      <span class="tab-num">1</span> Perfil
+    </button>
+    <button class="nav-tab" onclick="showScreen(1)" role="tab">
+      <span class="tab-num">2</span> Evaluador
+    </button>
+    <button class="nav-tab" onclick="showScreen(2)" role="tab">
+      <span class="tab-num">3</span> Material
+    </button>
+    <button class="nav-tab" onclick="showScreen(3)" role="tab">
+      <span class="tab-num">4</span> Foro
+    </button>
+  </div>
+
+  <!-- PANTALLA 1: Registro / Edición de Perfil -->
+  <div class="screen active" id="screen-0">
+    <div class="screen-header">
+      <div class="screen-icon blue"><i class="ti ti-user-circle" aria-hidden="true"></i></div>
+      <div>
+        <div class="screen-title">Registro / Edición de Perfil</div>
+        <div class="screen-subtitle">Gestiona tu información académica en ConectaPUCP</div>
+        <span class="service-badge blue"><i class="ti ti-server" aria-hidden="true"></i> Servicio de Cuentas · RF30</span>
+      </div>
+    </div>
+
+    <div class="info-banner blue">
+      <i class="ti ti-info-circle" aria-hidden="true"></i>
+      El inicio de sesión se realiza exclusivamente por SSO CAS PUCP. Solo puedes editar los campos habilitados.
+    </div>
+
+    <div class="section-sep"><i class="ti ti-id-badge" aria-hidden="true"></i> Foto de perfil</div>
+    <div class="avatar-upload">
+      <div class="avatar-circle"><i class="ti ti-user" aria-hidden="true"></i></div>
+      <div>
+        <div class="avatar-text">Foto de perfil académico</div>
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:2px;">JPG o PNG, máx. 2 MB</div>
+        <button class="avatar-btn" style="margin-top:6px;"><i class="ti ti-upload" style="font-size:12px;vertical-align:-1px" aria-hidden="true"></i> Cambiar foto</button>
+      </div>
+    </div>
+
+    <div class="section-sep" style="margin-top:1.25rem;"><i class="ti ti-school" aria-hidden="true"></i> Datos académicos</div>
+    <div class="form-grid">
+      <div class="field">
+        <label>Código PUCP <span class="req">*</span></label>
+        <input type="text" value="20222835" readonly style="background:var(--color-background-secondary);color:var(--color-text-secondary);">
+        <span class="hint">Asignado por la universidad, no editable</span>
+      </div>
+      <div class="field">
+        <label>Correo institucional <span class="req">*</span></label>
+        <input type="email" value="a20222835@pucp.edu.pe" readonly style="background:var(--color-background-secondary);color:var(--color-text-secondary);">
+        <span class="hint">Verificado por SSO CAS</span>
+      </div>
+      <div class="field span2">
+        <label>Nombre completo <span class="req">*</span></label>
+        <input type="text" placeholder="Ej. Diego Fernando Camargo Salcedo">
+      </div>
+      <div class="field">
+        <label>Carrera <span class="req">*</span></label>
+        <select>
+          <option value="">Selecciona tu carrera</option>
+          <option>Ingeniería Informática</option>
+          <option>Ingeniería Industrial</option>
+          <option>Ciencias de la Computación</option>
+          <option>Matemáticas</option>
+          <option>Física</option>
+          <option>Economía</option>
+          <option>Derecho</option>
+          <option>Administración</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Ciclo actual <span class="req">*</span></label>
+        <select>
+          <option value="">Selecciona ciclo</option>
+          <option>Ciclo 1</option>
+          <option>Ciclo 2</option>
+          <option>Ciclo 3</option>
+          <option>Ciclo 4</option>
+          <option>Ciclo 5</option>
+          <option>Ciclo 6</option>
+          <option>Ciclo 7</option>
+          <option>Ciclo 8</option>
+          <option>Ciclo 9</option>
+          <option>Ciclo 10+</option>
+        </select>
+      </div>
+      <div class="field span2">
+        <label>Biografía académica</label>
+        <textarea id="bio" placeholder="Describe brevemente tu perfil académico, intereses o áreas de estudio..." oninput="updateCounter('bio','bio-count',300)"></textarea>
+        <div class="char-counter"><span id="bio-count">0</span>/300 caracteres</div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-secondary">Cancelar</button>
+      <button class="btn-primary blue"><i class="ti ti-device-floppy" aria-hidden="true"></i> Guardar cambios</button>
+    </div>
+  </div>
+
+  <!-- PANTALLA 2: Postulación a Evaluador -->
+  <div class="screen" id="screen-1">
+    <div class="screen-header">
+      <div class="screen-icon teal"><i class="ti ti-certificate" aria-hidden="true"></i></div>
+      <div>
+        <div class="screen-title">Postulación a Evaluador</div>
+        <div class="screen-subtitle">Solicita el rol de evaluador para validar material académico</div>
+        <span class="service-badge teal"><i class="ti ti-check-circle" aria-hidden="true"></i> RF09 · RF32 · RF26</span>
+      </div>
+    </div>
+
+    <div class="info-banner amber">
+      <i class="ti ti-clock-hour-4" aria-hidden="true"></i>
+      El administrador revisará tu solicitud en un plazo máximo de 7 días hábiles. Pasado este tiempo, la solicitud se anulará automáticamente (RF09).
+    </div>
+
+    <div class="section-sep"><i class="ti ti-user" aria-hidden="true"></i> Datos del postulante</div>
+    <div class="form-grid">
+      <div class="field span2">
+        <label>Nombre completo <span class="req">*</span></label>
+        <input type="text" placeholder="Ej. John Michel Rosales Arteaga" value="John Michel Rosales Arteaga" readonly style="background:var(--color-background-secondary);color:var(--color-text-secondary);">
+        <span class="hint">Obtenido de tu perfil PUCP</span>
+      </div>
+      <div class="field">
+        <label>Código PUCP <span class="req">*</span></label>
+        <input type="text" value="20232273" readonly style="background:var(--color-background-secondary);color:var(--color-text-secondary);">
+      </div>
+      <div class="field">
+        <label>Correo institucional <span class="req">*</span></label>
+        <input type="email" value="a20232273@pucp.edu.pe" readonly style="background:var(--color-background-secondary);color:var(--color-text-secondary);">
+      </div>
+    </div>
+
+    <div class="section-sep"><i class="ti ti-books" aria-hidden="true"></i> Información académica</div>
+    <div class="form-grid">
+      <div class="field span2">
+        <label>Cursos dominados <span class="req">*</span></label>
+        <div class="tags-input" id="cursos-container" onclick="document.getElementById('cursos-input').focus()">
+          <span class="tag">Cálculo 1 <button onclick="removeTag(this)" aria-label="Quitar">×</button></span>
+          <span class="tag">Programación OO <button onclick="removeTag(this)" aria-label="Quitar">×</button></span>
+          <input id="cursos-input" placeholder="Escribe un curso y presiona Enter..." onkeydown="addTag(event,'cursos-container')">
+        </div>
+        <span class="hint">Presiona Enter para añadir cada curso</span>
+      </div>
+      <div class="field span2">
+        <label>Experiencia académica <span class="req">*</span></label>
+        <textarea id="exp" placeholder="Describe tu experiencia como monitor, jefe de práctica, tutor o apoyo a compañeros..." oninput="updateCounter('exp','exp-count',500)" style="min-height:100px;"></textarea>
+        <div class="char-counter"><span id="exp-count">0</span>/500 caracteres</div>
+      </div>
+      <div class="field span2">
+        <label>Motivo de postulación <span class="req">*</span></label>
+        <textarea id="motivo" placeholder="¿Por qué deseas convertirte en evaluador de ConectaPUCP?" oninput="updateCounter('motivo','motivo-count',400)"></textarea>
+        <div class="char-counter"><span id="motivo-count">0</span>/400 caracteres</div>
+      </div>
+    </div>
+
+    <div class="section-sep"><i class="ti ti-paperclip" aria-hidden="true"></i> Evidencia adjunta</div>
+    <div class="field">
+      <label>Documentos de respaldo <span class="req">*</span></label>
+      <div class="file-drop">
+        <i class="ti ti-file-upload" aria-hidden="true"></i>
+        <p>Arrastra tu evidencia aquí o haz clic para seleccionar</p>
+        <div class="formats">Certificados, constancias, actas de notas — PDF, JPG, PNG · Máx. 10 MB</div>
+      </div>
+      <span class="hint">El administrador revisará estas evidencias para validar tu solicitud</span>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-secondary">Cancelar</button>
+      <button class="btn-primary teal"><i class="ti ti-send" aria-hidden="true"></i> Enviar postulación</button>
+    </div>
+  </div>
+
+  <!-- PANTALLA 3: Subida de Material Académico -->
+  <div class="screen" id="screen-2">
+    <div class="screen-header">
+      <div class="screen-icon amber"><i class="ti ti-cloud-upload" aria-hidden="true"></i></div>
+      <div>
+        <div class="screen-title">Subida de Material Académico</div>
+        <div class="screen-subtitle">Comparte apuntes, exámenes y guías con la comunidad PUCP</div>
+        <span class="service-badge amber"><i class="ti ti-archive" aria-hidden="true"></i> Servicio de Archivos · RF17 · RF18 · RF28</span>
+      </div>
+    </div>
+
+    <div class="section-sep"><i class="ti ti-file-description" aria-hidden="true"></i> Archivo a subir</div>
+    <div class="field">
+      <label>Archivo adjunto <span class="req">*</span></label>
+      <div class="file-drop">
+        <i class="ti ti-upload" aria-hidden="true"></i>
+        <p>Arrastra tu archivo aquí o haz clic para seleccionar</p>
+        <div class="formats">PDF, TXT, PNG, JPG, DOCX, PPTX, XLSX, DOC, XLS, PPT · Máx. 100 MB</div>
+      </div>
+    </div>
+    <div class="field" style="margin-top:12px;">
+      <label>Nombre del archivo <span class="req">*</span></label>
+      <input type="text" placeholder="Ej. Examen parcial Cálculo 1 - 2024-1">
+    </div>
+
+    <div class="section-sep"><i class="ti ti-category" aria-hidden="true"></i> Clasificación académica</div>
+    <div class="form-grid">
+      <div class="field">
+        <label>Curso <span class="req">*</span></label>
+        <select>
+          <option value="">Selecciona el curso</option>
+          <option>Cálculo 1</option>
+          <option>Cálculo 2</option>
+          <option>Álgebra Lineal</option>
+          <option>Programación Orientada a Objetos</option>
+          <option>Estructuras de Datos</option>
+          <option>Base de Datos</option>
+          <option>Diseño de Software</option>
+          <option>Física General</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Ciclo académico <span class="req">*</span></label>
+        <select>
+          <option value="">Selecciona el ciclo</option>
+          <option>2025-1</option>
+          <option>2024-2</option>
+          <option>2024-1</option>
+          <option>2023-2</option>
+          <option>2023-1</option>
+          <option>2022-2</option>
+          <option>2022-1</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Tipo de material <span class="req">*</span></label>
+        <select>
+          <option value="">Selecciona el tipo</option>
+          <option>Examen parcial</option>
+          <option>Examen final</option>
+          <option>Práctica calificada</option>
+          <option>Apuntes de clase</option>
+          <option>Guía de estudio</option>
+          <option>Ejercicios resueltos</option>
+          <option>Resumen / Cheat sheet</option>
+          <option>Presentación (slides)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Etiquetas</label>
+        <div class="tags-input" id="tags-container" onclick="document.getElementById('tags-input').focus()">
+          <span class="tag">derivadas <button onclick="removeTag(this)" aria-label="Quitar">×</button></span>
+          <input id="tags-input" placeholder="Añade etiquetas..." onkeydown="addTag(event,'tags-container')">
+        </div>
+      </div>
+      <div class="field span2">
+        <label>Descripción del material</label>
+        <textarea id="desc" placeholder="Describe brevemente el contenido del archivo, temas tratados o contexto útil para otros estudiantes..." oninput="updateCounter('desc','desc-count',300)"></textarea>
+        <div class="char-counter"><span id="desc-count">0</span>/300 caracteres</div>
+      </div>
+    </div>
+
+    <div class="info-banner blue" style="margin-top:1rem;">
+      <i class="ti ti-shield-check" aria-hidden="true"></i>
+      El material será revisado por un evaluador antes de publicarse en el repositorio central (RF18). Recibirás una notificación por correo institucional.
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-secondary">Cancelar</button>
+      <button class="btn-primary amber"><i class="ti ti-cloud-upload" aria-hidden="true"></i> Subir material</button>
+    </div>
+  </div>
+
+  <!-- PANTALLA 4: Crear Publicación en Foro -->
+  <div class="screen" id="screen-3">
+    <div class="screen-header">
+      <div class="screen-icon purple"><i class="ti ti-message-circle-2" aria-hidden="true"></i></div>
+      <div>
+        <div class="screen-title">Crear Publicación en Foro</div>
+        <div class="screen-subtitle">Comparte preguntas, recursos y discusiones con la comunidad</div>
+        <span class="service-badge purple"><i class="ti ti-users" aria-hidden="true"></i> Servicio Social · RF06 · RF07 · RF23</span>
+      </div>
+    </div>
+
+    <div class="section-sep"><i class="ti ti-pencil" aria-hidden="true"></i> Contenido de la publicación</div>
+    <div class="form-grid">
+      <div class="field span2">
+        <label>Título <span class="req">*</span></label>
+        <input type="text" id="titulo" placeholder="Ej. ¿Alguien tiene guías de integrales por partes para el examen final?" oninput="updateCounter('titulo','tit-count',120)">
+        <div class="char-counter"><span id="tit-count">0</span>/120 caracteres</div>
+      </div>
+      <div class="field span2">
+        <label>Contenido <span class="req">*</span></label>
+        <div class="rich-toolbar" aria-label="Barra de formato">
+          <button title="Negrita" aria-label="Negrita"><b>B</b></button>
+          <button title="Cursiva" aria-label="Cursiva"><i>I</i></button>
+          <button title="Lista" aria-label="Lista">≡</button>
+          <button title="Enlace" aria-label="Enlace"><i class="ti ti-link" style="font-size:12px" aria-hidden="true"></i></button>
+          <button title="Código" aria-label="Código"><i class="ti ti-code" style="font-size:12px" aria-hidden="true"></i></button>
+        </div>
+        <textarea id="contenido" class="rich-area" placeholder="Escribe el contenido de tu publicación. Puedes incluir contexto, dudas específicas o información relevante..." oninput="updateCounter('contenido','cont-count',2000)" style="min-height:120px;"></textarea>
+        <div class="char-counter"><span id="cont-count">0</span>/2000 caracteres</div>
+      </div>
+    </div>
+
+    <div class="section-sep"><i class="ti ti-tag" aria-hidden="true"></i> Clasificación</div>
+    <div class="form-grid">
+      <div class="field">
+        <label>Categoría <span class="req">*</span></label>
+        <select>
+          <option value="">Selecciona categoría</option>
+          <option>Dudas académicas</option>
+          <option>Recursos de estudio</option>
+          <option>Grupos de estudio</option>
+          <option>Exámenes y evaluaciones</option>
+          <option>Proyectos y trabajos</option>
+          <option>Vida universitaria</option>
+          <option>Oportunidades académicas</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Curso asociado</label>
+        <select>
+          <option value="">Sin curso específico</option>
+          <option>Cálculo 1</option>
+          <option>Álgebra Lineal</option>
+          <option>Programación OO</option>
+          <option>Estructuras de Datos</option>
+          <option>Base de Datos</option>
+          <option>Diseño de Software</option>
+          <option>Física General</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Etiquetas</label>
+        <div class="tags-input" id="forum-tags" onclick="document.getElementById('ftag-input').focus()">
+          <span class="tag">examen <button onclick="removeTag(this)" aria-label="Quitar">×</button></span>
+          <span class="tag">cálculo <button onclick="removeTag(this)" aria-label="Quitar">×</button></span>
+          <input id="ftag-input" placeholder="Añade etiquetas..." onkeydown="addTag(event,'forum-tags')">
+        </div>
+      </div>
+      <div class="field">
+        <label>Archivo relacionado</label>
+        <div class="file-drop" style="padding:12px;">
+          <i class="ti ti-paperclip" style="font-size:20px;margin-bottom:4px;" aria-hidden="true"></i>
+          <p style="font-size:12px;">Adjuntar archivo (opcional)</p>
+          <div class="formats">PDF, imagen o documento · Máx. 100 MB</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-sep"><i class="ti ti-eye" aria-hidden="true"></i> Nivel de visibilidad <span class="req">*</span></div>
+    <div class="visibility-selector" id="vis-selector">
+      <div class="vis-option selected" onclick="selectVis(this)" role="radio" aria-checked="true" tabindex="0">
+        <i class="ti ti-world" aria-hidden="true"></i>
+        <span>Público</span>
+      </div>
+      <div class="vis-option" onclick="selectVis(this)" role="radio" aria-checked="false" tabindex="0">
+        <i class="ti ti-school" aria-hidden="true"></i>
+        <span>Solo PUCP</span>
+      </div>
+      <div class="vis-option" onclick="selectVis(this)" role="radio" aria-checked="false" tabindex="0">
+        <i class="ti ti-lock" aria-hidden="true"></i>
+        <span>Privado</span>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:6px;">
+      Público: visible para todos · Solo PUCP: requiere cuenta institucional · Privado: solo tú
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-secondary">Guardar borrador</button>
+      <button class="btn-primary purple"><i class="ti ti-send" aria-hidden="true"></i> Publicar en foro</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showScreen(n) {
+    document.querySelectorAll('.screen').forEach((s,i) => s.classList.toggle('active', i===n));
+    document.querySelectorAll('.nav-tab').forEach((t,i) => t.classList.toggle('active', i===n));
+  }
+  function updateCounter(id, countId, max) {
+    const el = document.getElementById(id);
+    const cnt = document.getElementById(countId);
+    if (el && cnt) {
+      const len = el.value.length;
+      cnt.textContent = len;
+      cnt.style.color = len > max * 0.9 ? '#E24B4A' : '';
+    }
+  }
+  function addTag(e, containerId) {
+    if (e.key === 'Enter' && e.target.value.trim()) {
+      e.preventDefault();
+      const val = e.target.value.trim();
+      const container = document.getElementById(containerId);
+      const tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.innerHTML = `${val} <button onclick="removeTag(this)" aria-label="Quitar">×</button>`;
+      container.insertBefore(tag, e.target);
+      e.target.value = '';
+    }
+  }
+  function removeTag(btn) {
+    btn.closest('.tag').remove();
+  }
+  function selectVis(el) {
+    document.querySelectorAll('#vis-selector .vis-option').forEach(o => {
+      o.classList.remove('selected');
+      o.setAttribute('aria-checked','false');
+    });
+    el.classList.add('selected');
+    el.setAttribute('aria-checked','true');
+  }
+</script>
