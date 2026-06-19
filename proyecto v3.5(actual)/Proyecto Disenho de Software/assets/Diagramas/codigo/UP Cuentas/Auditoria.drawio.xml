@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="ChatGPT" version="24.0.0">
+  <diagram name="Vista de Código - Auditoría de" id="diag-Vista-de-Código-Auditoría-de-Cuentas-Obs">
+    <mxGraphModel dx="3000" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2100" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="subject" value="AccountEventPublisher" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="80" y="260" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="subject_attrs" value="-observers: List&amp;lt;IAccountObserver&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="subject">
+          <mxGeometry y="26" width="250" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="subject_methods" value="+suscribir(obs): void&lt;br&gt;+publicar(evento): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="subject">
+          <mxGeometry y="52" width="250" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="obs" value="IAccountObserver" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" vertex="1" parent="1">
+          <mxGeometry x="460" y="260" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="obs_methods" value="+onAccountEvent(evento): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="obs">
+          <mxGeometry y="26" width="250" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="audit" value="&amp;lt;&amp;lt;Observer&amp;gt;&amp;gt;&lt;br&gt;AuditService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="830" y="180" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="audit_methods" value="+onAccountEvent(evento): void&lt;br&gt;+registrarLog(evento): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="audit">
+          <mxGeometry y="26" width="250" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="grid" value="GridAuditRepository" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="180" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="grid_methods" value="+guardar(evento): void&lt;br&gt;+listarPorUsuario(id): List&amp;lt;AuditEvent&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="grid">
+          <mxGeometry y="26" width="250" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="event" value="AuditEvent" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="830" y="420" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="event_attrs" value="-idEvento: GUID&lt;br&gt;-actor: String&lt;br&gt;-accion: String&lt;br&gt;-timestamp: DateTime&lt;br&gt;-hashPrevio: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="event">
+          <mxGeometry y="26" width="250" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1" value="" edge="1" parent="1" source="subject" target="obs" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1_label" value="notifica" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="r1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2" value="" edge="1" parent="1" source="audit" target="obs" style="endArrow=block;endFill=0;dashed=1;html=1;rounded=0;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3" value="" edge="1" parent="1" source="audit" target="grid" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3_label" value="persiste" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="r3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4" value="" edge="1" parent="1" source="audit" target="event" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4_label" value="crea" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="r4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

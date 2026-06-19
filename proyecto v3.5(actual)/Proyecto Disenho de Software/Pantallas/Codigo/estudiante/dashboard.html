@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — ConectaPUCP</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .quick-action { background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--r-lg);padding:20px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;text-decoration:none;color:var(--clr-text);transition:box-shadow .15s,border-color .15s; }
+    .quick-action:hover { box-shadow:var(--shadow-md);border-color:var(--clr-primary-border);text-decoration:none; }
+    .qa-icon { width:48px;height:48px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:1.4rem; }
+    .activity-item { display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--clr-border); }
+    .activity-item:last-child { border-bottom:none; }
+    .activity-dot { width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px; }
+    .welcome-card { background:linear-gradient(135deg,#1e293b 0%,#1e3a5f 100%);border-radius:var(--r-xl);padding:28px 32px;color:white;margin-bottom:24px;display:flex;align-items:center;gap:24px; }
+    .welcome-card h2 { font-size:1.375rem;font-weight:700;margin-bottom:4px; }
+    .welcome-card p { opacity:.75;font-size:.9rem; }
+    .rank-progress-card { background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--r-lg);padding:20px 24px;box-shadow:var(--shadow-sm); }
+    .rank-prog-header { display:flex;align-items:center;justify-content:space-between;margin-bottom:12px; }
+    .rank-names { display:flex;justify-content:space-between;font-size:.72rem;color:var(--clr-text-subtle);margin-top:6px; }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <!-- Topbar -->
+  <header class="topbar">
+    <a class="topbar-logo" href="dashboard.html">
+      <div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="12" r="3"/><circle cx="18" cy="8" r="2"/><line x1="11.8" y1="11" x2="16.4" y2="9.2"/></svg></div>
+      <span class="logo-text">Conecta<span>PUCP</span></span>
+    </a>
+    <div class="topbar-search">
+      <svg class="search-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="search" placeholder="Buscar materiales, foros, cursos…">
+    </div>
+    <div class="topbar-actions">
+      <a href="notificaciones.html" class="icon-btn" title="Notificaciones">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="badge-count">3</span>
+      </a>
+      <div class="user-menu">
+        <div class="avatar avatar-blue">DF</div>
+        <div class="user-menu-info">
+          <div class="user-name">Darling Fox</div>
+          <div class="user-role">Estudiante · Ciclo 6</div>
+        </div>
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-user-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DF</div>
+        <div>
+          <div class="user-name">Darling Fox</div>
+          <div class="user-code">20220142 · Inf. Informática</div>
+        </div>
+      </div>
+      <span class="rank-badge-sidebar rank-CACHIMBO" style="background:var(--rank-cachimbo);">
+        ⭐ CACHIMBO
+      </span>
+      <div class="xp-bar-container" style="margin-top:8px;">
+        <div class="xp-bar-label"><span>1,240 pts</span><span>2,000 pts REGULAR</span></div>
+        <div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div>
+      </div>
+    </div>
+
+    <span class="sidebar-section-label">Principal</span>
+    <a href="dashboard.html" class="nav-item active">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </a>
+    <a href="repositorio.html" class="nav-item">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Repositorio
+    </a>
+    <a href="foros.html" class="nav-item">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Foros
+    </a>
+    <a href="#" class="nav-item">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87m-4-12a4 4 0 0 1 0 7.75"/></svg>
+      Grupos de Estudio
+    </a>
+
+    <span class="sidebar-section-label">Yo</span>
+    <a href="ranking.html" class="nav-item">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="18 20 18 10"/><polyline points="12 20 12 4"/><polyline points="6 20 6 14"/></svg>
+      Ranking
+    </a>
+    <a href="notificaciones.html" class="nav-item">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      Notificaciones
+      <span class="nav-badge">3</span>
+    </a>
+    <a href="perfil.html" class="nav-item">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Mi Perfil
+    </a>
+
+    <div class="sidebar-divider" style="margin-top:8px;"></div>
+    <a href="postulacion-evaluador.html" class="sidebar-btn-cta">
+      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Postular a Evaluador
+    </a>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Welcome banner -->
+    <div class="welcome-card">
+      <div style="flex:1;">
+        <h2>¡Hola, Darling! 👋</h2>
+        <p>Tienes <strong style="color:#93c5fd;">3 notificaciones nuevas</strong> y 1 material pendiente de revisión.</p>
+      </div>
+      <div style="display:flex;gap:24px;text-align:center;">
+        <div><div style="font-size:1.5rem;font-weight:800;">1,240</div><div style="font-size:.75rem;opacity:.65;">puntos</div></div>
+        <div><div style="font-size:1.5rem;font-weight:800;">7</div><div style="font-size:.75rem;opacity:.65;">materiales</div></div>
+        <div><div style="font-size:1.5rem;font-weight:800;">23</div><div style="font-size:.75rem;opacity:.65;">respuestas</div></div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--clr-primary-light);color:var(--clr-primary);">📁</div>
+        <div class="stat-label">Materiales subidos</div>
+        <div class="stat-value">7</div>
+        <div class="stat-delta">+2 este ciclo</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--clr-success-light);color:var(--clr-success);">✅</div>
+        <div class="stat-label">Validados</div>
+        <div class="stat-value">5</div>
+        <div class="stat-delta">71% tasa de aprobación</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:#f3e8ff;color:#8b5cf6;">💬</div>
+        <div class="stat-label">Participaciones foro</div>
+        <div class="stat-value">23</div>
+        <div class="stat-delta">+8 esta semana</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:var(--clr-warning-light);color:var(--clr-warning);">🏆</div>
+        <div class="stat-label">Puntos acumulados</div>
+        <div class="stat-value">1,240</div>
+        <div class="stat-delta">760 pts para REGULAR</div>
+      </div>
+    </div>
+
+    <!-- Progress to next rank -->
+    <div class="rank-progress-card mb-24">
+      <div class="rank-prog-header">
+        <div>
+          <div style="font-size:.78rem;color:var(--clr-text-subtle);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Tu progreso de rango</div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="rank-badge rank-CACHIMBO">⭐ CACHIMBO</span>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            <span class="rank-badge rank-REGULAR">🌟 REGULAR</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:1.125rem;font-weight:800;color:var(--clr-text);">1,240 / 2,000</div>
+          <div style="font-size:.75rem;color:var(--clr-text-subtle);">760 pts restantes</div>
+        </div>
+      </div>
+      <div class="progress-bar" style="height:10px;">
+        <div class="progress-bar-fill pb-blue" style="width:62%;"></div>
+      </div>
+      <div class="rank-names"><span>CACHIMBO</span><span>REGULAR</span><span>EXPERTO</span><span>AVANZADO</span><span>SENIOR</span><span>ELITE</span></div>
+    </div>
+
+    <!-- Quick Actions + Activity -->
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;">
+      <div>
+        <div class="section-title">Acciones rápidas</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;">
+          <a href="subida-material.html" class="quick-action">
+            <div class="qa-icon" style="background:var(--clr-primary-light);color:var(--clr-primary);">📤</div>
+            <div style="font-size:.875rem;font-weight:600;">Subir material</div>
+            <div style="font-size:.75rem;color:var(--clr-text-muted);">Comparte tus apuntes</div>
+          </a>
+          <a href="crear-publicacion.html" class="quick-action">
+            <div class="qa-icon" style="background:#f3e8ff;color:#8b5cf6;">✍️</div>
+            <div style="font-size:.875rem;font-weight:600;">Nueva publicación</div>
+            <div style="font-size:.75rem;color:var(--clr-text-muted);">En el foro</div>
+          </a>
+          <a href="#" class="quick-action">
+            <div class="qa-icon" style="background:var(--clr-success-light);color:var(--clr-success);">👥</div>
+            <div style="font-size:.875rem;font-weight:600;">Crear grupo</div>
+            <div style="font-size:.75rem;color:var(--clr-text-muted);">Grupo de estudio</div>
+          </a>
+        </div>
+
+        <div class="section-title">Materiales recientes del repositorio</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="material-detalle.html" class="material-card">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="mc-type-icon">📄</div>
+              <div style="flex:1;min-width:0;">
+                <div class="mc-title truncate">Examen Parcial Cálculo 3 — 2025-1</div>
+                <div class="mc-meta"><span>MAT258</span><span>Ciclo 6</span><span>PDF</span></div>
+              </div>
+              <span class="badge badge-success">Validado</span>
+            </div>
+          </a>
+          <a href="material-detalle.html" class="material-card">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="mc-type-icon" style="background:#f3e8ff;color:#8b5cf6;">📊</div>
+              <div style="flex:1;min-width:0;">
+                <div class="mc-title truncate">Guía de Derivadas Parciales con Ejemplos</div>
+                <div class="mc-meta"><span>MAT258</span><span>Ciclo 6</span><span>DOCX</span></div>
+              </div>
+              <span class="badge badge-warning">Pendiente</span>
+            </div>
+          </a>
+          <a href="material-detalle.html" class="material-card">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="mc-type-icon" style="background:var(--clr-success-light);color:var(--clr-success);">🖼️</div>
+              <div style="flex:1;min-width:0;">
+                <div class="mc-title truncate">Mapa conceptual: Estructuras de datos</div>
+                <div class="mc-meta"><span>INF1153</span><span>Ciclo 5</span><span>PNG</span></div>
+              </div>
+              <span class="badge badge-success">Validado</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Activity feed -->
+      <div>
+        <div class="section-title">Actividad reciente</div>
+        <div class="card">
+          <div class="card-body" style="padding:16px 20px;">
+            <div class="activity-item">
+              <div class="activity-dot" style="background:var(--clr-success);"></div>
+              <div style="flex:1;">
+                <div style="font-size:.875rem;font-weight:500;">Tu material fue validado</div>
+                <div style="font-size:.78rem;color:var(--clr-text-muted);">Examen Parcial Cálculo 3</div>
+                <div style="font-size:.72rem;color:var(--clr-text-subtle);margin-top:2px;">Hace 2 horas · +50 pts</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot" style="background:var(--clr-primary);"></div>
+              <div style="flex:1;">
+                <div style="font-size:.875rem;font-weight:500;">Respuesta en tu publicación</div>
+                <div style="font-size:.78rem;color:var(--clr-text-muted);">¿Alguien tiene guías de integrales?</div>
+                <div style="font-size:.72rem;color:var(--clr-text-subtle);margin-top:2px;">Hace 4 horas · +10 pts</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot" style="background:#8b5cf6;"></div>
+              <div style="flex:1;">
+                <div style="font-size:.875rem;font-weight:500;">Nuevo miembro en tu grupo</div>
+                <div style="font-size:.78rem;color:var(--clr-text-muted);">Grupo Cálculo 3 — Parciales</div>
+                <div style="font-size:.72rem;color:var(--clr-text-subtle);margin-top:2px;">Ayer</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot" style="background:var(--clr-warning);"></div>
+              <div style="flex:1;">
+                <div style="font-size:.875rem;font-weight:500;">Subiste de rango próximamente</div>
+                <div style="font-size:.78rem;color:var(--clr-text-muted);">Te faltan 760 pts para REGULAR</div>
+                <div style="font-size:.72rem;color:var(--clr-text-subtle);margin-top:2px;">Ayer</div>
+              </div>
+            </div>
+            <div class="activity-item" style="border-bottom:none;">
+              <div class="activity-dot" style="background:var(--clr-success);"></div>
+              <div style="flex:1;">
+                <div style="font-size:.875rem;font-weight:500;">Nuevo like en tu material</div>
+                <div style="font-size:.78rem;color:var(--clr-text-muted);">Mapa conceptual Estructuras</div>
+                <div style="font-size:.72rem;color:var(--clr-text-subtle);margin-top:2px;">Hace 2 días</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="notificaciones.html" style="font-size:.8125rem;color:var(--clr-primary);font-weight:500;">Ver todas las notificaciones →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

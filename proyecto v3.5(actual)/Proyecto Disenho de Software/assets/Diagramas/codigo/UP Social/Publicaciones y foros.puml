@@ -1,0 +1,63 @@
+@startuml
+title Vista de Código - Publicaciones y Foros\nObserver + DTO + DIP
+skinparam classAttributeIconSize 0
+left to right direction
+class "ForoController" as ctrl  {
+  +crearPublicacion(dto): PublicacionDTO
+  +comentar(idPub,dto): ComentarioDTO
+  +reaccionar(idPub,tipo): void
+  +cancelarEvento(idPub): void
+}
+interface "IPublicacionService" as pubif  {
+  +crear(dto): PublicacionDTO
+  +moderar(id, estado): void
+  +suscribir(obs): void
+}
+interface "IComentarioService" as comif  {
+  +agregarComentario(id,dto): ComentarioDTO
+  +reaccionar(id,tipo): void
+}
+class "PublicacionService" as pubsvc <<Subject>> {
+  -observadores: List<IForoObserver>
+  --
+  +crear(dto): PublicacionDTO
+  +notificarCambio(pub): void
+}
+class "ComentarioService" as comsvc  {
+  +agregarComentario(id,dto): ComentarioDTO
+  +reaccionar(id,tipo): void
+}
+interface "IForoObserver" as obs  {
+  +onPublicacionCreada(pub): void
+  +onComentarioAgregado(com): void
+}
+class "NotificacionForoObserver" as noti <<Observer>> {
+  +onPublicacionCreada(pub): void
+}
+class "GamificacionObserver" as gam <<Observer>> {
+  +onComentarioAgregado(com): void
+}
+class "Publicacion" as pub  {
+  -id: GUID
+  -tipo: TipoPublicacion
+  -estado: EstadoModeracion
+  -curso: String
+  -ciclo: String
+}
+class "PublicacionDTO" as dto <<DTO>> {
+  +id: String
+  +titulo: String
+  +curso: String
+  +ciclo: String
+  +urlCompartir: String
+}
+ctrl ..> pubif
+ctrl ..> comif
+pubsvc ..|> pubif
+comsvc ..|> comif
+pubsvc --> obs : notifica
+noti ..|> obs
+gam ..|> obs
+pubsvc --> pub : gestiona
+pubsvc ..> dto
+@enduml

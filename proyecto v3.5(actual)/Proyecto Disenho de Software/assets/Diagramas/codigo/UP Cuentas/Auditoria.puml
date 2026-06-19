@@ -1,0 +1,33 @@
+@startuml
+title Vista de Código - Auditoría de Cuentas\nObserver + Audit Logger
+skinparam classAttributeIconSize 0
+left to right direction
+class "AccountEventPublisher" as subject  {
+  -observers: List<IAccountObserver>
+  --
+  +suscribir(obs): void
+  +publicar(evento): void
+}
+interface "IAccountObserver" as obs  {
+  +onAccountEvent(evento): void
+}
+class "AuditService" as audit <<Observer>> {
+  +onAccountEvent(evento): void
+  +registrarLog(evento): void
+}
+class "GridAuditRepository" as grid  {
+  +guardar(evento): void
+  +listarPorUsuario(id): List<AuditEvent>
+}
+class "AuditEvent" as event  {
+  -idEvento: GUID
+  -actor: String
+  -accion: String
+  -timestamp: DateTime
+  -hashPrevio: String
+}
+subject --> obs : notifica
+audit ..|> obs
+audit --> grid : persiste
+audit --> event : crea
+@enduml

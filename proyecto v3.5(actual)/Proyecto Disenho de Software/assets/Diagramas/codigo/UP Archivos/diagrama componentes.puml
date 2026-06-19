@@ -1,0 +1,22 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+LAYOUT_TOP_DOWN()
+title UP Archivos - Componentes
+System_Ext(web, "Aplicación Web", "Carga y descarga archivos.")
+System_Ext(grid, "Grilla de Datos", "Metadata y estado temporal.")
+System_Ext(s3, "Object Storage", "Binarios pesados y URLs firmadas.")
+System_Boundary(sistema, "ConectaPUCP") {
+  Container(ctrl, "Controlador de Archivos", "Page Controller", "Entrada HTTP y validación de identidad.")
+  Container(gest, "Gestión de Archivos", "Facade", "Coordina validación, repositorio y storage.")
+  Container(val, "Validación de Material", "Chain of Responsibility", "Tamaño, extensión, MIME y políticas.")
+  Container(repo, "Repositorio de Archivos", "Proxy", "Controla acceso a metadata y objectKey.")
+  Container(mapper, "ArchivoDTOAssembler", "DTO Mapper", "Convierte entidad a DTO y oculta datos internos.")
+}
+Rel(web, ctrl, "HTTPS")
+Rel(ctrl, gest, "procesarSubida/descarga")
+Rel(gest, val, "validar archivo")
+Rel(gest, repo, "guardar/consultar metadata")
+Rel(gest, mapper, "crear DTO")
+Rel(repo, grid, "metadata/objectKey")
+Rel(repo, s3, "binario/URL firmada")
+@enduml

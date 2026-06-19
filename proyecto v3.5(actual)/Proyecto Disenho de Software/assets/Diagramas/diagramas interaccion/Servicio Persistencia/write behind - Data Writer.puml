@@ -1,0 +1,38 @@
+@startuml
+title Diagrama de Interacción - Write-behind (Servicio Persistencia)
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+participant "Grilla\nDatos" as grid
+participant "Grilla\nMensajería" as kafka
+participant "Data\nWriter" as writer
+participant "Data\nMapper" as mapper
+participant "PostgreSQL" as db
+participant "Elastic\nSearch" as elastic
+
+grid ->> kafka: publicarEventoCambio(event)
+activate kafka
+kafka -> writer: consumir(event)
+activate writer
+writer -> mapper: toSnapshot(event)
+activate mapper
+mapper --> writer: snapshot persistente
+deactivate mapper
+
+par [persistencia transaccional]
+  writer -> db: insert/update(snapshot)
+  activate db
+  db --> writer: operación confirmada
+  deactivate db
+else [indexación de búsqueda]
+  writer ->> elastic: actualizarÍndice(snapshot)
+end
+
+writer --> kafka: ACK
+deactivate writer
+deactivate kafka
+note right of writer
+Data Writer materializa de forma asíncrona los cambios del Space en BD/índices.
+end note
+@enduml

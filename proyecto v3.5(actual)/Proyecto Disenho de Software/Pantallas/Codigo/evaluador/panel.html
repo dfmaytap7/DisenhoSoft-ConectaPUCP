@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Evaluador — ConectaPUCP</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .eval-grid { display:grid;grid-template-columns:1fr 280px;gap:24px;align-items:start; }
+    .material-eval-card { border:1.5px solid var(--clr-border);border-radius:var(--r-lg);background:white;overflow:hidden;margin-bottom:14px;transition:.15s; }
+    .material-eval-card:hover { box-shadow:var(--shadow-md); }
+    .eval-header { padding:18px 20px;border-bottom:1px solid var(--clr-border); }
+    .eval-body { padding:16px 20px; }
+    .eval-footer { padding:12px 20px;border-top:1px solid var(--clr-border);background:var(--clr-bg-subtle);display:flex;gap:8px;align-items:center; }
+    .decision-panel { display:none;padding:18px 20px;border-top:1px solid var(--clr-border);background:#fafafa; }
+    .decision-panel.open { display:block; }
+    .preview-frame { background:var(--clr-bg);border:1.5px dashed var(--clr-border-mid);border-radius:var(--r-md);height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--clr-text-subtle);margin-bottom:14px; }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="topbar-logo" href="#"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="12" r="3"/><circle cx="18" cy="8" r="2"/><line x1="11.8" y1="11" x2="16.4" y2="9.2"/></svg></div><span class="logo-text">Conecta<span>PUCP</span></span></a>
+    <div class="topbar-search"><svg class="search-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="search" placeholder="Buscar por nombre de material o curso…"></div>
+    <div class="topbar-actions">
+      <button class="icon-btn"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+      <div class="user-menu"><div class="avatar avatar-green">MR</div><div class="user-menu-info"><div class="user-name">María Rodríguez</div><div class="user-role">Evaluador</div></div><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-user-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-green" style="width:40px;height:40px;font-size:.875rem;">MR</div><div><div class="user-name">María Rodríguez</div><div class="user-code">20190087</div></div></div>
+      <span class="rank-badge-sidebar" style="background:var(--rank-elite);">🔥 ELITE</span>
+      <div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>8,120 pts</span><span>ELITE ✓</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:100%;background:var(--rank-elite);"></div></div></div>
+    </div>
+    <span class="sidebar-section-label">Evaluador</span>
+    <a href="panel.html" class="nav-item active"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Materiales pendientes<span class="nav-badge">5</span></a>
+    <a href="#" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Mis evaluaciones</a>
+    <a href="#" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="18 20 18 10"/><polyline points="12 20 12 4"/><polyline points="6 20 6 14"/></svg>Mis estadísticas</a>
+    <span class="sidebar-section-label">Comunidad</span>
+    <a href="../estudiante/repositorio.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Repositorio</a>
+    <a href="../estudiante/foros.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Foros</a>
+    <a href="../estudiante/ranking.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="18 20 18 10"/><polyline points="12 20 12 4"/><polyline points="6 20 6 14"/></svg>Ranking</a>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Materiales pendientes</h1>
+        <p class="page-subtitle">Revisa el contenido enviado por estudiantes y decide si aprobarlo o rechazarlo</p>
+      </div>
+      <select class="form-control" style="width:170px;padding:7px 32px 7px 10px;font-size:.8125rem;" onchange="filterByType(this.value)">
+        <option value="">Todos los tipos</option>
+        <option>Examen</option>
+        <option>Resumen</option>
+        <option>Guía de ejercicios</option>
+        <option>Apuntes de clase</option>
+      </select>
+    </div>
+
+    <!-- Stats -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;">
+      <div class="stat-card"><div class="stat-label">Pendientes hoy</div><div class="stat-value" style="color:var(--clr-warning);">5</div></div>
+      <div class="stat-card"><div class="stat-label">Aprobados este mes</div><div class="stat-value" style="color:var(--clr-success);">34</div></div>
+      <div class="stat-card"><div class="stat-label">Rechazados este mes</div><div class="stat-value" style="color:var(--clr-danger);">6</div></div>
+      <div class="stat-card"><div class="stat-label">Tiempo promedio</div><div class="stat-value">1.2 días</div></div>
+    </div>
+
+    <div class="eval-grid">
+      <div>
+        <div style="font-size:.8125rem;font-weight:600;color:var(--clr-text-muted);margin-bottom:14px;">5 materiales esperando tu revisión</div>
+
+        <!-- Tarjeta 1 -->
+        <div class="material-eval-card" id="card1">
+          <div class="eval-header">
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <div style="width:46px;height:46px;background:#fee2e2;color:#dc2626;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0;">PDF</div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-weight:700;font-size:.9375rem;color:var(--clr-text);margin-bottom:4px;">Resumen Cálculo 3 — Integrales Dobles</div>
+                <div style="display:flex;gap:14px;font-size:.78rem;color:var(--clr-text-muted);flex-wrap:wrap;">
+                  <span>📚 MAT258 · Cálculo 3</span>
+                  <span>📅 2025-1</span>
+                  <span>📁 PDF · 1.8 MB</span>
+                  <span>⏱ Recibido hace 6 horas</span>
+                </div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;">
+                  <span class="badge badge-gray">integrales</span>
+                  <span class="badge badge-gray">dobles</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:8px;padding-top:10px;border-top:1px solid var(--clr-border);">
+              <span style="font-size:.8rem;color:var(--clr-text-muted);">Enviado por: <strong>Jorge Barreto</strong></span>
+            </div>
+          </div>
+          <div class="eval-body" style="padding:12px 20px;">
+            <p style="font-size:.875rem;color:var(--clr-text-muted);line-height:1.6;margin-bottom:10px;"><em>"Resumen del tema 4 sobre integrales dobles en coordenadas rectangulares y polares. Incluye propiedades y ejemplos resueltos."</em></p>
+            <button class="btn btn-secondary btn-sm" onclick="togglePreview('preview1')">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Ver vista previa
+            </button>
+            <div id="preview1" style="display:none;margin-top:10px;">
+              <div class="preview-frame">
+                <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="color:#dc2626;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <div style="font-size:.8125rem;font-weight:500;">Resumen_Calculo3_IntegralesDobles.pdf</div>
+                <div style="font-size:.75rem;">1.8 MB</div>
+                <button class="btn btn-primary btn-sm" onclick="alert('Abriendo archivo para revisión…')">
+                  <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Abrir archivo
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="eval-footer">
+            <button class="btn btn-success btn-sm" onclick="openDecision('card1','decision1','aprobar')">✅ Aprobar</button>
+            <button class="btn btn-danger btn-sm" onclick="openDecision('card1','decision1','rechazar')">❌ Rechazar</button>
+            <div style="margin-left:auto;font-size:.75rem;color:var(--clr-text-subtle);">Fecha límite de revisión: 16 Jun 2026</div>
+          </div>
+          <div class="decision-panel" id="decision1">
+            <div style="font-size:.875rem;font-weight:600;margin-bottom:12px;" id="decision1-title">Motivo del rechazo</div>
+            <div class="form-group">
+              <textarea class="form-control" rows="3" maxlength="500" id="obs1" placeholder="Escribe tus observaciones para que el estudiante sepa cómo mejorar su material…" oninput="document.getElementById('cc1').textContent=this.value.length+' / 500'"></textarea>
+              <div style="display:flex;justify-content:space-between;margin-top:4px;"><div class="field-error" id="err1"></div><span class="char-counter" id="cc1">0 / 500</span></div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;">
+              <button class="btn btn-secondary btn-sm" onclick="closeDecision('decision1')">Cancelar</button>
+              <button class="btn btn-sm" id="confirm1" onclick="confirmDecision('card1','decision1',1)">Confirmar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="material-eval-card" id="card2">
+          <div class="eval-header">
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <div style="width:46px;height:46px;background:#dcfce7;color:#15803d;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0;">DOCX</div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-weight:700;font-size:.9375rem;color:var(--clr-text);margin-bottom:4px;">Guía de Árboles AVL — INF272</div>
+                <div style="display:flex;gap:14px;font-size:.78rem;color:var(--clr-text-muted);flex-wrap:wrap;">
+                  <span>📚 INF272 · Estructuras de Datos</span>
+                  <span>📅 2025-1</span>
+                  <span>📁 DOCX · 0.9 MB</span>
+                  <span>⏱ Recibido hace 14 horas</span>
+                </div>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;">
+                  <span class="badge badge-gray">java</span>
+                  <span class="badge badge-gray">AVL</span>
+                  <span class="badge badge-gray">árboles</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:8px;padding-top:10px;border-top:1px solid var(--clr-border);">
+              <span style="font-size:.8rem;color:var(--clr-text-muted);">Enviado por: <strong>Ana Gutiérrez</strong></span>
+            </div>
+          </div>
+          <div class="eval-body" style="padding:12px 20px;">
+            <p style="font-size:.875rem;color:var(--clr-text-muted);line-height:1.6;margin-bottom:10px;"><em>"Guía de implementación de árboles AVL en Java con rotaciones simples y dobles y 12 ejercicios resueltos."</em></p>
+            <button class="btn btn-secondary btn-sm" onclick="togglePreview('preview2')">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Ver vista previa
+            </button>
+            <div id="preview2" style="display:none;margin-top:10px;">
+              <div class="preview-frame">
+                <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="color:#15803d;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <div style="font-size:.8125rem;font-weight:500;">Guia_ArbolesAVL_INF272.docx</div>
+                <div style="font-size:.75rem;">0.9 MB</div>
+                <button class="btn btn-primary btn-sm" onclick="alert('Abriendo archivo para revisión…')">
+                  <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Abrir archivo
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="eval-footer">
+            <button class="btn btn-success btn-sm" onclick="openDecision('card2','decision2','aprobar')">✅ Aprobar</button>
+            <button class="btn btn-danger btn-sm" onclick="openDecision('card2','decision2','rechazar')">❌ Rechazar</button>
+            <div style="margin-left:auto;font-size:.75rem;color:var(--clr-text-subtle);">Fecha límite de revisión: 17 Jun 2026</div>
+          </div>
+          <div class="decision-panel" id="decision2">
+            <div style="font-size:.875rem;font-weight:600;margin-bottom:12px;" id="decision2-title">Motivo del rechazo</div>
+            <div class="form-group">
+              <textarea class="form-control" rows="3" maxlength="500" id="obs2" placeholder="Escribe tus observaciones…" oninput="document.getElementById('cc2').textContent=this.value.length+' / 500'"></textarea>
+              <div style="display:flex;justify-content:flex-end;margin-top:4px;"><span class="char-counter" id="cc2">0 / 500</span></div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;">
+              <button class="btn btn-secondary btn-sm" onclick="closeDecision('decision2')">Cancelar</button>
+              <button class="btn btn-sm" id="confirm2" onclick="confirmDecision('card2','decision2',2)">Confirmar</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;padding:16px;font-size:.8125rem;color:var(--clr-text-subtle);">+ 3 materiales más…</div>
+      </div>
+
+      <!-- Sidebar derecho -->
+      <div>
+        <div class="card mb-16">
+          <div class="card-body" style="padding:18px;">
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin-bottom:12px;">¿Qué debo revisar?</div>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:.8rem;color:var(--clr-text-muted);">
+              <div style="display:flex;gap:8px;">✅<span>El material es relevante para el curso indicado</span></div>
+              <div style="display:flex;gap:8px;">✅<span>El contenido es original y no tiene errores graves</span></div>
+              <div style="display:flex;gap:8px;">✅<span>No contiene información personal de terceros</span></div>
+              <div style="display:flex;gap:8px;">❌<span>Rechazar si el contenido no corresponde al curso</span></div>
+              <div style="display:flex;gap:8px;">❌<span>Rechazar si hay plagio o contenido inapropiado</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-16">
+          <div class="card-body" style="padding:18px;">
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin-bottom:12px;">Mis números de hoy</div>
+            <div style="display:flex;flex-direction:column;gap:8px;font-size:.8rem;color:var(--clr-text-muted);">
+              <div style="display:flex;justify-content:space-between;"><span>Aprobados hoy:</span><span class="badge badge-success">8</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Rechazados hoy:</span><span class="badge badge-danger">2</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Total histórico:</span><span class="badge badge-gray">247</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Puntos ganados hoy:</span><span style="font-weight:700;color:var(--clr-primary);">+160 pts</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body" style="padding:18px;">
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin-bottom:10px;">Puntos por revisar</div>
+            <div style="font-size:.8rem;color:var(--clr-text-muted);display:flex;flex-direction:column;gap:5px;">
+              <div style="display:flex;justify-content:space-between;"><span>Aprobación</span><span class="badge badge-success">+20 pts</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Rechazo con observaciones</span><span class="badge badge-warning">+10 pts</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+const pendingActions = {};
+
+function togglePreview(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? '' : 'none';
+}
+
+function openDecision(cardId, panelId, action) {
+  pendingActions[panelId] = action;
+  const panel = document.getElementById(panelId);
+  panel.classList.add('open');
+  const title = document.getElementById(panelId + '-title');
+  const confirmBtn = document.getElementById(panelId.replace('decision', 'confirm'));
+  if (action === 'aprobar') {
+    title.textContent = '¿Deseas aprobar este material?';
+    const obs = panel.querySelector('textarea');
+    obs.placeholder = 'Puedes dejar un comentario opcional para el estudiante…';
+    obs.required = false;
+    if (confirmBtn) { confirmBtn.className = 'btn btn-success btn-sm'; confirmBtn.textContent = 'Confirmar aprobación'; }
+  } else {
+    title.textContent = 'Motivo del rechazo';
+    const obs = panel.querySelector('textarea');
+    obs.placeholder = 'Escribe tus observaciones para que el estudiante sepa cómo mejorar su material…';
+    obs.required = true;
+    if (confirmBtn) { confirmBtn.className = 'btn btn-danger btn-sm'; confirmBtn.textContent = 'Confirmar rechazo'; }
+  }
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function closeDecision(panelId) {
+  document.getElementById(panelId).classList.remove('open');
+}
+
+function confirmDecision(cardId, panelId, idx) {
+  const action = pendingActions[panelId];
+  const obs = document.getElementById('obs' + idx).value.trim();
+  if (action === 'rechazar' && obs.length < 10) {
+    document.getElementById('err' + idx || '').textContent = 'Escribe un motivo con al menos 10 caracteres.';
+    alert('Por favor indica el motivo del rechazo para que el estudiante pueda mejorar.');
+    return;
+  }
+  const card = document.getElementById(cardId);
+  card.style.opacity = '.5';
+  card.style.pointerEvents = 'none';
+  closeDecision(panelId);
+  if (action === 'aprobar') {
+    alert('✅ Material aprobado.\n\nEl estudiante recibirá una notificación y sus puntos correspondientes.');
+  } else {
+    alert('❌ Material rechazado.\n\nEl estudiante recibirá tu observación por notificación.');
+  }
+}
+
+function filterByType(val) {}
+</script>
+</body>
+</html>

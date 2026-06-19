@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConectaPUCP — Prototipo de Pantallas</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    body { background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif; }
+    .launcher { background:white;border-radius:24px;padding:40px;max-width:760px;width:100%;box-shadow:0 30px 60px rgba(0,0,0,.3); }
+    .launcher-header { text-align:center;margin-bottom:32px; }
+    .launcher-logo { display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px; }
+    .launcher-logo .logo-icon { width:48px;height:48px;background:#2563eb;border-radius:12px;display:flex;align-items:center;justify-content:center; }
+    .launcher-title { font-size:1.625rem;font-weight:800;color:#1e293b; }
+    .launcher-title span { color:#2563eb; }
+    .launcher-sub { font-size:.9rem;color:#64748b;margin-top:4px; }
+    .section-label { font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;margin-bottom:10px;padding-left:2px; }
+    .role-section { margin-bottom:24px; }
+    .role-header { display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;margin-bottom:8px; }
+    .role-icon { width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0; }
+    .role-name { font-size:.9375rem;font-weight:700;color:#1e293b; }
+    .role-desc { font-size:.78rem;color:#64748b; }
+    .screen-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:8px; }
+    .screen-link { display:flex;align-items:center;gap:8px;padding:9px 12px;border:1.5px solid #e2e8f0;border-radius:8px;text-decoration:none;color:#334155;font-size:.8125rem;font-weight:500;transition:.15s;background:white; }
+    .screen-link:hover { border-color:#2563eb;background:#eff6ff;color:#1d4ed8;text-decoration:none; }
+    .screen-link .icon { font-size:.875rem;flex-shrink:0; }
+    .screen-link .label { flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .screen-link .rf { font-size:.65rem;background:#f1f5f9;padding:2px 5px;border-radius:4px;color:#64748b;flex-shrink:0; }
+    .divider { height:1px;background:#e2e8f0;margin:20px 0; }
+    .footer-note { text-align:center;font-size:.78rem;color:#94a3b8;margin-top:20px; }
+  </style>
+</head>
+<body>
+<div class="launcher">
+  <div class="launcher-header">
+    <div class="launcher-logo">
+      <div class="logo-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="12" r="3"/><circle cx="18" cy="8" r="2"/><line x1="11.8" y1="11" x2="16.4" y2="9.2"/></svg></div>
+    </div>
+    <div class="launcher-title">Conecta<span>PUCP</span></div>
+    <div class="launcher-sub">Prototipo HTML/CSS/JS — INF50 · Diseño de Software · Grupo 24<br>Abrir en navegador · Sin dependencias · Pure HTML5+CSS3+JS</div>
+  </div>
+
+  <!-- Estudiante -->
+  <div class="role-section">
+    <div class="role-header" style="background:#eff6ff;">
+      <div class="role-icon" style="background:#dbeafe;">🎓</div>
+      <div><div class="role-name">Estudiante</div><div class="role-desc">Vista principal para usuarios estudiantes registrados vía CAS PUCP</div></div>
+    </div>
+    <div class="screen-grid">
+      <a href="login.html" class="screen-link"><span class="icon">🔑</span><span class="label">Login / SSO CAS</span><span class="rf">RF01</span></a>
+      <a href="estudiante/dashboard.html" class="screen-link"><span class="icon">🏠</span><span class="label">Dashboard</span><span class="rf">RF07</span></a>
+      <a href="estudiante/repositorio.html" class="screen-link"><span class="icon">📚</span><span class="label">Repositorio</span><span class="rf">RF03</span></a>
+      <a href="estudiante/material-detalle.html" class="screen-link"><span class="icon">📄</span><span class="label">Detalle Material</span><span class="rf">RF20</span></a>
+      <a href="estudiante/subida-material.html" class="screen-link"><span class="icon">📤</span><span class="label">Subir Material</span><span class="rf">RF17</span></a>
+      <a href="estudiante/foros.html" class="screen-link"><span class="icon">💬</span><span class="label">Foros</span><span class="rf">RF11</span></a>
+      <a href="estudiante/foro-detalle.html" class="screen-link"><span class="icon">🧵</span><span class="label">Hilo de Foro</span><span class="rf">RF12</span></a>
+      <a href="estudiante/crear-publicacion.html" class="screen-link"><span class="icon">✏️</span><span class="label">Nueva Publicación</span><span class="rf">RF11</span></a>
+      <a href="estudiante/ranking.html" class="screen-link"><span class="icon">🏆</span><span class="label">Ranking</span><span class="rf">RF08</span></a>
+      <a href="estudiante/notificaciones.html" class="screen-link"><span class="icon">🔔</span><span class="label">Notificaciones</span><span class="rf">RF14</span></a>
+      <a href="estudiante/perfil.html" class="screen-link"><span class="icon">👤</span><span class="label">Mi Perfil</span><span class="rf">RF15</span></a>
+      <a href="estudiante/postulacion-evaluador.html" class="screen-link"><span class="icon">📋</span><span class="label">Postular Evaluador</span><span class="rf">RF09</span></a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Evaluador -->
+  <div class="role-section">
+    <div class="role-header" style="background:#f0fdf4;">
+      <div class="role-icon" style="background:#dcfce7;">✅</div>
+      <div><div class="role-name">Evaluador</div><div class="role-desc">Vista extendida para evaluadores aprobados — acceso a cola de validación</div></div>
+    </div>
+    <div class="screen-grid">
+      <a href="evaluador/panel.html" class="screen-link"><span class="icon">🗂️</span><span class="label">Cola de Validación</span><span class="rf">RF19</span></a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Admin -->
+  <div class="role-section">
+    <div class="role-header" style="background:#fff5f5;">
+      <div class="role-icon" style="background:#fee2e2;">⚙️</div>
+      <div><div class="role-name">Administrador</div><div class="role-desc">Panel de control — gestión de roles, moderación y auditoría</div></div>
+    </div>
+    <div class="screen-grid">
+      <a href="admin/dashboard.html" class="screen-link"><span class="icon">📊</span><span class="label">Dashboard Admin</span><span class="rf">RC14</span></a>
+      <a href="admin/solicitudes.html" class="screen-link"><span class="icon">📋</span><span class="label">Solicitudes Evaluador</span><span class="rf">RF09</span></a>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    ConectaPUCP — Arquitectura Space-Based (SBA) · Hazelcast + Kafka + PostgreSQL<br>
+    CAS PUCP (SSO) · WCAG 2.1 AA · INF50 Grupo 24 · 2025
+  </div>
+</div>
+</body>
+</html>

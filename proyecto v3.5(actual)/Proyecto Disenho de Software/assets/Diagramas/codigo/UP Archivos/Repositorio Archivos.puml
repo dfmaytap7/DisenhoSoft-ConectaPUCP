@@ -1,0 +1,53 @@
+@startuml
+title Vista de Código - Repositorio de Archivos\nProxy + Adapter Object Storage
+skinparam classAttributeIconSize 0
+left to right direction
+interface "IFileRepository" as iface  {
+  +guardarMetadata(archivo): void
+  +findById(id): Archivo
+  +addSocialLink(fileId, ref): void
+}
+class "FileAccessProxy" as proxy <<Proxy>> {
+  -repoReal: HazelcastFileRepository
+  -policy: AccessPolicyService
+  --
+  +guardarMetadata(archivo): void
+  +findById(id): Archivo
+  +addSocialLink(fileId, ref): void
+}
+class "HazelcastFileRepository" as real  {
+  -gridClient: IGridClient
+  --
+  +guardarMetadata(archivo): void
+  +findById(id): Archivo
+  +addSocialLink(fileId, ref): void
+}
+class "ObjectStorageAdapter" as storage <<Adapter>> {
+  +putObject(stream, metadata): ObjectStorageResult
+  +signedUrl(objectKey): String
+}
+class "Archivo" as archivo  {
+  -id: GUID
+  -objectKey: String
+  -curso: String
+  -ciclo: String
+  -checksum: String
+  -socialRefs: List<SocialReference>
+  --
+  +agregarReferenciaSocial(ref): void
+}
+class "SocialReference" as ref  {
+  -idPublicacion: String
+  -tipoUso: String
+  -fechaVinculo: DateTime
+}
+proxy ..|> iface
+real ..|> iface
+proxy --> real : controla acceso
+real --> archivo : gestiona
+real --> storage : usa para URL/binario
+archivo *-- ref : dependent mapping
+note right of iface
+El binario pesado vive en Object Storage. Hazelcast/BD guardan metadata, objectKey y referencias sociales.
+end note
+@enduml

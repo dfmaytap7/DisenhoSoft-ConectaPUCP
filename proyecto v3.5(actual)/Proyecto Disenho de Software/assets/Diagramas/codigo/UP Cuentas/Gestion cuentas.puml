@@ -1,0 +1,52 @@
+@startuml
+title Vista de Código - Gestión de Cuentas\nPatrón Facade
+skinparam classAttributeIconSize 0
+left to right direction
+class "CuentasController" as ctrl  {
+  -facade: GestionCuentasFacade
+  --
+  +actualizarPerfil(dto): UsuarioDTO
+  +suspenderCuenta(id): void
+  +activarCuenta(id): void
+}
+class "GestionCuentasFacade" as facade <<Facade>> {
+  -usuarioService: UsuarioService
+  -rolesService: GestorRolesService
+  -auditoria: AuditService
+  --
+  +obtenerPerfil(id): UsuarioDTO
+  +actualizarPerfil(dto): UsuarioDTO
+  +cambiarEstadoCuenta(id, estado): void
+}
+class "UsuarioService" as usuario  {
+  +buscarUsuario(id): Usuario
+  +actualizarContacto(dto): Usuario
+}
+class "GestorRolesService" as roles  {
+  +obtenerRoles(id): List<Rol>
+  +validarPermiso(id, permiso): boolean
+}
+class "AuditService" as audit  {
+  +registrar(evento): void
+}
+class "UsuarioDTO" as dto <<DTO>> {
+  +idUsuario: String
+  +correo: String
+  +roles: List<String>
+  +estado: String
+}
+class "Usuario" as entity  {
+  -id: GUID
+  -correo: String
+  -estado: EstadoCuenta
+  --
+  +activar(): void
+  +suspender(): void
+}
+ctrl --> facade : usa
+facade --> usuario : coordina
+facade --> roles : coordina
+facade --> audit : registra
+usuario --> entity : gestiona
+usuario ..> dto : retorna
+@enduml

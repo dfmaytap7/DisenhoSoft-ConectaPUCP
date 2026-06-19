@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Claude" version="24.0.0">
+  <diagram name="Vista de Código - Data Reader" id="diag-Vista-de-Código-Data-Reader-Read-through">
+    <mxGraphModel dx="3000" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2100" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- MapLoader interface (Hazelcast API) -->
+        <mxCell id="maploader" value="MapLoader" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" vertex="1" parent="1">
+          <mxGeometry x="60" y="230" width="260" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="maploader_stereo" value="&lt;&lt;Hazelcast MapLoader&gt;&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontStyle=2;" vertex="1" parent="maploader">
+          <mxGeometry y="26" width="260" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="maploader_methods" value="+load(key): V&lt;br&gt;+loadAll(keys): Map&lt;K,V&gt;&lt;br&gt;+loadAllKeys(): Iterable&lt;K&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="maploader">
+          <mxGeometry y="46" width="260" height="54" as="geometry"/>
+        </mxCell>
+
+        <!-- DataReader -->
+        <mxCell id="reader" value="DataReader" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="430" y="200" width="260" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="reader_attrs" value="-registry: MapperRegistry&lt;br&gt;-gridWriter: GridReloadPort" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="reader">
+          <mxGeometry y="26" width="260" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="reader_methods" value="+load(key): Object&lt;br&gt;+loadAll(keys): Map&lt;String,Object&gt;&lt;br&gt;+loadAllKeys(): Iterable&lt;String&gt;&lt;br&gt;+preload(domain): void&lt;br&gt;+cargarArchivado(criteria): List&lt;Object&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="reader">
+          <mxGeometry y="62" width="260" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- MapperRegistry -->
+        <mxCell id="registry" value="MapperRegistry" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="810" y="80" width="260" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="registry_methods" value="+resolverMapper(domain): IDataMapper" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="registry">
+          <mxGeometry y="26" width="260" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- IDataMapper interface -->
+        <mxCell id="mapper" value="IDataMapper" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="80" width="260" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="mapper_stereo" value="&lt;&lt;interface&gt;&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontStyle=2;" vertex="1" parent="mapper">
+          <mxGeometry y="26" width="260" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="mapper_methods" value="+findById(id): Snapshot&lt;br&gt;+findByCriteria(criteria): List&lt;Snapshot&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="mapper">
+          <mxGeometry y="46" width="260" height="54" as="geometry"/>
+        </mxCell>
+
+        <!-- GridReloadPort interface -->
+        <mxCell id="reload" value="GridReloadPort" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" vertex="1" parent="1">
+          <mxGeometry x="810" y="450" width="260" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="reload_stereo" value="&lt;&lt;interface&gt;&gt;" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;fontStyle=2;" vertex="1" parent="reload">
+          <mxGeometry y="26" width="260" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="reload_methods" value="+put(key, entity): void&lt;br&gt;+putAll(entries): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="reload">
+          <mxGeometry y="46" width="260" height="54" as="geometry"/>
+        </mxCell>
+
+        <!-- SignedUrlService -->
+        <mxCell id="url" value="SignedUrlService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="450" width="260" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="url_methods" value="+generarUrl(objectKey): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="url">
+          <mxGeometry y="26" width="260" height="26" as="geometry"/>
+        </mxCell>
+
+        <!-- Note: MapLoader activation -->
+        <mxCell id="note_maploader" value="Hazelcast llama load(key) automáticamente&#10;cuando IMap.get(key) devuelve null.&#10;La UP no detecta el miss; es transparente." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="90" width="260" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- DataReader implements MapLoader (dashed, hollow triangle toward interface) -->
+        <mxCell id="e_impl" value="" edge="1" parent="1" source="reader" target="maploader" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=0;strokeColor=#333333;dashed=1;dashPattern=8 8;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_impl_label" value="implements" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e_impl">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- DataReader → MapperRegistry -->
+        <mxCell id="e_reg" value="" edge="1" parent="1" source="reader" target="registry" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_reg_label" value="elige mapper" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e_reg">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- MapperRegistry → IDataMapper (dashed, resuelve) -->
+        <mxCell id="e_map" value="" edge="1" parent="1" source="registry" target="mapper" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;dashed=1;dashPattern=8 8;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_map_label" value="resuelve" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e_map">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- DataReader → GridReloadPort (preload proactivo) -->
+        <mxCell id="e_reload" value="" edge="1" parent="1" source="reader" target="reload" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;dashed=1;dashPattern=8 8;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_reload_label" value="preload proactivo" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e_reload">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- DataReader → SignedUrlService -->
+        <mxCell id="e_url" value="" edge="1" parent="1" source="reader" target="url" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_url_label" value="URL firmada" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e_url">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

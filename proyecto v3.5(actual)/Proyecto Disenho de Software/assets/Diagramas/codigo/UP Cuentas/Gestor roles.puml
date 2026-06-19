@@ -1,0 +1,39 @@
+@startuml
+title Vista de Código - Gestor de Roles\nStrategy + RBAC
+skinparam classAttributeIconSize 0
+left to right direction
+class "GestorRolesService" as svc  {
+  -estrategias: Map<TipoCambioRol, IEstrategiaCambioRol>
+  -audit: AuditService
+  --
+  +asignarRol(cmd): void
+  +revocarRol(cmd): void
+  +validarPermiso(usuario, permiso): boolean
+}
+interface "IEstrategiaCambioRol" as strategy  {
+  +ejecutar(cmd): ResultadoCambioRol
+}
+class "EstrategiaAprobarEvaluador" as ev <<Strategy>> {
+  +ejecutar(cmd): ResultadoCambioRol
+}
+class "EstrategiaSuspenderUsuario" as susp <<Strategy>> {
+  +ejecutar(cmd): ResultadoCambioRol
+}
+class "EstrategiaActivarUsuario" as act <<Strategy>> {
+  +ejecutar(cmd): ResultadoCambioRol
+}
+class "Rol" as rol  {
+  -id: GUID
+  -nombre: String
+  -permisos: Set<Permiso>
+}
+class "Permiso" as perm  {
+  -codigo: String
+  -descripcion: String
+}
+svc ..> strategy : selecciona
+ev ..|> strategy
+susp ..|> strategy
+act ..|> strategy
+rol o-- perm : contiene
+@enduml

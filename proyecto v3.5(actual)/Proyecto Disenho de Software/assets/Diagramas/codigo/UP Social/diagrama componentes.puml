@@ -1,0 +1,21 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+LAYOUT_TOP_DOWN()
+title UP Social - Componentes
+System_Ext(web, "Aplicación Web", "Foros, comentarios, eventos.")
+System_Ext(noti, "UP Notificaciones", "Correos por actividad social.")
+System_Ext(arch, "UP Archivos", "Verifica vínculo de archivos con foros.")
+System_Boundary(sistema, "ConectaPUCP") {
+  Container(ctrl, "ForoController", "Controller", "Punto de entrada social.")
+  Container(pub, "Publicaciones y Foros", "Observer + DTO", "Hilos, eventos, comentarios y reacciones.")
+  Container(gam, "Gamificación", "Strategy / Rules Engine", "Puntos, niveles y ranking.")
+  Container(grid, "Cliente Grilla de Datos", "Hazelcast Adapter", "Publicaciones, likes, ranking y estado activo.")
+}
+Rel(web, ctrl, "HTTPS")
+Rel(ctrl, pub, "crear/moderar/comentar")
+Rel_D(pub, gam, "evento gamificación")
+Rel(pub, grid, "foros y reacciones")
+Rel(gam, grid, "puntos y ranking")
+Rel_D(pub, noti, "evento de actividad")
+Rel(pub, arch, "validar vínculo archivo")
+@enduml

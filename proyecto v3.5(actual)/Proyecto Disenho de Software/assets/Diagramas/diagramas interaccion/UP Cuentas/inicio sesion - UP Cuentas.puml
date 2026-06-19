@@ -1,0 +1,62 @@
+@startuml
+title Diagrama de Interacción - Inicio de sesión (UP Cuentas)
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+actor "Usuario\nPUCP" as u
+participant "Aplicación\nWeb" as web
+participant "Controlador\nCuentas" as ctrl
+participant "AuthService\nAdapter CAS" as auth
+participant "CAS\nPUCP" as cas
+participant "Gestión\nCuentas" as gest
+participant "Grilla\nDatos" as grid
+participant "Data\nReader" as reader
+
+u -> web: selecciona iniciar sesión
+activate web
+web -> ctrl: POST /login(ticket)
+activate ctrl
+ctrl -> auth: autenticar(ticket)
+activate auth
+auth -> cas: validarTicket(ticket)
+activate cas
+cas --> auth: resultadoValidación
+deactivate cas
+
+alt [ticket válido]
+  auth -> gest: iniciarSesion(identidad)
+  activate gest
+  gest -> grid: buscarCuenta(correo)
+  activate grid
+  opt [cache miss]
+    grid -> reader: recargarCuenta(correo)
+    activate reader
+    reader --> grid: cuenta + roles
+    deactivate reader
+  end
+  grid --> gest: cuenta + roles
+  deactivate grid
+  gest -> grid: guardarSesion(token, roles)
+  activate grid
+  grid --> gest: sesión registrada
+  deactivate grid
+  gest --> auth: LoginResponseDTO
+  deactivate gest
+  auth --> ctrl: LoginResponseDTO
+  ctrl --> web: token local
+  web --> u: ingresa al sistema
+else [ticket inválido o expirado]
+  auth --> ctrl: error autenticación
+  ctrl --> web: Sesión inválida
+  web --> u: muestra mensaje de reintento
+end
+
+deactivate auth
+deactivate ctrl
+deactivate web
+note right of reader
+El cache miss se resuelve vía Data Reader,
+no por acceso directo de la UP a PostgreSQL.
+end note
+@enduml

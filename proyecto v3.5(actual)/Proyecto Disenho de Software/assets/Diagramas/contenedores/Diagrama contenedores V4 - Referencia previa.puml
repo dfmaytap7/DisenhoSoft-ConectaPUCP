@@ -1,0 +1,45 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+LAYOUT_TOP_DOWN()
+title ConectaPUCP - Vista de Contenedores V4\nReferencia previa
+Person(usuario, "Usuario PUCP", "Estudiantes, evaluadores y administradores.")
+System_Ext(cas, "Sistema CAS PUCP", "Valida identidad institucional.")
+System_Ext(gmail, "Correo Institucional", "Bandeja del usuario PUCP.")
+System_Boundary(sistema, "ConectaPUCP") {
+  Container(web, "Aplicación Web", "Frontend JS", "Interfaz para estudiantes, evaluadores y administradores.")
+  Container(gateway, "API Gateway", "Nginx / Kong", "Entrada única HTTPS y ruteo a UPs.")
+  Container(cuentas, "Servicio de Cuentas UP", "Node.js", "Autenticación, roles, sesiones y auditoría.")
+  Container(archivos, "Servicio de Archivos UP", "Node.js", "Carga, validación, metadata y descarga.")
+  Container(social, "Servicio Social UP", "Node.js", "Foros, publicaciones, likes y gamificación.")
+  Container(notificaciones, "Servicio de Notificaciones UP", "Node.js", "Preferencias, trazabilidad y correos.")
+  ContainerDb(hazelcast, "Grilla de Datos / Space", "Hazelcast", "Estado compartido de lectura/escritura para las UPs.")
+  ContainerQueue(kafka, "Grilla de Mensajería / Data Pump", "Kafka / RabbitMQ", "Eventos de persistencia y reintentos.")
+  ContainerDb(postgres, "Base de Datos", "PostgreSQL", "Usuarios, roles, auditoría, publicaciones, gamificación y metadata.")
+  ContainerDb(elastic, "Motor de Búsqueda", "Elasticsearch", "Índices por palabra clave, curso, ciclo y filtros.")
+  ContainerDb(s3, "Object Storage", "MinIO / S3", "Binarios pesados y URLs firmadas.")
+  Container(postfix, "Servidor de Correos", "Postfix SMTP", "Despacho de correos.")
+  Container(persist, "Servicio de Persistencia", "Node.js / Java", "Versión previa que no separa Data Reader y Data Writer.")
+}
+Rel(usuario, web, "HTTPS")
+Rel(web, gateway, "JSON/HTTPS")
+Rel(gateway, cuentas, "/api/cuentas")
+Rel(gateway, archivos, "/api/archivos")
+Rel(gateway, social, "/api/social")
+Rel(gateway, notificaciones, "/api/notificaciones")
+Rel(cuentas, cas, "SSO CAS")
+Rel(notificaciones, postfix, "SMTP")
+Rel(postfix, gmail, "SMTP")
+Rel(archivos, s3, "Binarios / URLs firmadas")
+Rel(cuentas, hazelcast, "sesiones, roles y tokens")
+Rel(archivos, hazelcast, "metadata y objectKey")
+Rel(social, hazelcast, "foros, likes y rankings")
+Rel(notificaciones, hazelcast, "preferencias y trazabilidad")
+Rel_D(hazelcast, kafka, "eventos de cambios")
+Rel_D(kafka, persist, "eventos encolados")
+Rel(persist, postgres, "sincroniza datos")
+Rel_D(persist, elastic, "actualiza índices")
+Rel(persist, s3, "referencias objectKey")
+note right of web
+Mantener como versión histórica. Para coherencia final usar V4.1 porque separa Data Reader y Data Writer.
+end note
+@enduml

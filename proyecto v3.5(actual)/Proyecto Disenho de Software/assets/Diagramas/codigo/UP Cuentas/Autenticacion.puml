@@ -1,0 +1,48 @@
+@startuml
+title Vista de Código - Autenticación de Cuentas\nPatrón Adapter + DIP
+skinparam classAttributeIconSize 0
+left to right direction
+class "AuthController" as ctrl  {
+  -authService: IAuthService
+  --
+  +login(ticket, service): LoginResponseDTO
+  +logout(token): void
+}
+interface "IAuthService" as iauth  {
+  +autenticar(ticket, service): UsuarioIdentidad
+  +cerrarSesion(token): void
+}
+class "AuthService" as auth  {
+  -sso: ISSOService
+  -tokenService: TokenService
+  -grid: IGridClient
+  --
+  +autenticar(ticket, service): UsuarioIdentidad
+  +emitirToken(usuario): String
+}
+interface "ISSOService" as isso  {
+  +validarTicket(ticket, service): CASIdentity
+}
+class "CASClient" as cas <<Adapter>> {
+  -casEndpoint: URL
+  --
+  +validarTicket(ticket, service): CASIdentity
+}
+class "TokenService" as token  {
+  +generarToken(usuario, roles): String
+  +verificar(token): Claims
+}
+interface "IGridClient" as grid  {
+  +guardarSesion(token, sesion): void
+  +invalidarSesion(token): void
+}
+ctrl ..> iauth : depende de
+auth ..|> iauth
+auth ..> isso
+cas ..|> isso
+auth --> token : usa
+auth ..> grid
+note right of ctrl
+Adapter separa CAS de la lógica local. El servicio depende de ISSOService, no de CASClient concreto.
+end note
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+title Vista de Código - Gestión de Archivos\nFacade + DTO
+skinparam classAttributeIconSize 0
+left to right direction
+class "ControladorDeArchivos" as ctrl  {
+  +subirArchivo(req): Response
+  +descargarArchivo(id): Response
+  +vincularAForo(dto): Response
+}
+class "ArchivoManagerFacade" as facade <<Facade>> {
+  -validador: IMaterialValidator
+  -repo: IFileRepository
+  -storage: IObjectStoragePort
+  -assembler: ArchivoDTOAssembler
+  --
+  +procesarSubida(dto, stream): ArchivoDTO
+  +obtenerArchivo(id): ArchivoDTO
+  +vincularConPublicacion(id, ref): void
+}
+interface "IMaterialValidator" as val  {
+  +validate(metadata): ValidationResponseDTO
+}
+interface "IFileRepository" as repo  {
+  +guardarMetadata(archivo): void
+  +findById(id): Archivo
+}
+interface "IObjectStoragePort" as storage  {
+  +guardarBinario(stream, metadata): ObjectStorageResult
+  +generarUrlDescarga(objectKey): String
+}
+class "ArchivoDTO" as dto <<DTO>> {
+  +idArchivo: String
+  +nombre: String
+  +curso: String
+  +ciclo: String
+  +urlDescarga: String
+}
+ctrl --> facade : delegación
+facade ..> val
+facade ..> repo
+facade ..> storage
+facade ..> dto : retorna
+@enduml

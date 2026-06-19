@@ -1,0 +1,167 @@
+@startuml
+title Diagrama de Clases - Data Reader (Servicio de Persistencia)
+skinparam classAttributeIconSize 0
+skinparam style strictuml
+
+    top to bottom direction
+
+    class IDataReader {
+        <<interface>>
+        +handle(request: CacheReadRequest): void
+        +preload(request: CachePreloadRequest): void
+    }
+
+    class DataReader {
+        -registry: ReadHandlerRegistry
+        -gridClient: IDataGridClient
+        -auditLogger: IReadAuditLogger
+        +handle(request: CacheReadRequest): void
+        +preload(request: CachePreloadRequest): void
+        -reloadCache(snapshot: DomainSnapshot): void
+    }
+
+    class HazelcastCacheMissAdapter {
+        <<Adapter>>
+        -dataReader: IDataReader
+        +onCacheMiss(mapName: String, key: String, entityType: String): void
+        +onPreloadRequired(mapName: String, entityType: String): void
+    }
+
+    class ReadHandlerRegistry {
+        -handlers: Map<String, IReadHandler>
+        +register(entityType: String, handler: IReadHandler): void
+        +getHandler(entityType: String): IReadHandler
+    }
+
+    class IReadHandler {
+        <<interface>>
+        +read(request: CacheReadRequest): DomainSnapshot
+        +readMany(request: CachePreloadRequest): List<DomainSnapshot>
+    }
+
+    class ArchivoReadHandler {
+        -archivoMapper: IArchivoMapper
+        -signedUrlService: ISignedUrlService
+        +read(request: CacheReadRequest): DomainSnapshot
+        +readMany(request: CachePreloadRequest): List<DomainSnapshot>
+    }
+
+    class PublicacionReadHandler {
+        -publicacionMapper: IPublicacionMapper
+        +read(request: CacheReadRequest): DomainSnapshot
+        +readMany(request: CachePreloadRequest): List<DomainSnapshot>
+    }
+
+    class UsuarioReadHandler {
+        -usuarioMapper: IUsuarioMapper
+        +read(request: CacheReadRequest): DomainSnapshot
+        +readMany(request: CachePreloadRequest): List<DomainSnapshot>
+    }
+
+    class IDataGridClient {
+        <<interface>>
+        +put(mapName: String, key: String, value: Object, ttlSeconds: int): void
+        +putAll(mapName: String, values: List<DomainSnapshot>): void
+    }
+
+    class HazelcastGridClient {
+        <<Adapter>>
+        -clusterName: String
+        +put(mapName: String, key: String, value: Object, ttlSeconds: int): void
+        +putAll(mapName: String, values: List<DomainSnapshot>): void
+    }
+
+    class IReadAuditLogger {
+        <<interface>>
+        +logCacheMiss(request: CacheReadRequest): void
+        +logReload(snapshot: DomainSnapshot): void
+        +logReadError(request: CacheReadRequest, reason: String): void
+    }
+
+    class ReadAuditLogger {
+        +logCacheMiss(request: CacheReadRequest): void
+        +logReload(snapshot: DomainSnapshot): void
+        +logReadError(request: CacheReadRequest, reason: String): void
+    }
+
+    class CacheReadRequest {
+        <<DTO>>
+        +requestId: String
+        +mapName: String
+        +key: String
+        +entityType: String
+        +requestedAt: Date
+    }
+
+    class CachePreloadRequest {
+        <<DTO>>
+        +requestId: String
+        +mapName: String
+        +entityType: String
+        +criteria: Object
+        +requestedAt: Date
+    }
+
+    class DomainSnapshot {
+        <<DTO>>
+        +mapName: String
+        +key: String
+        +entityType: String
+        +value: Object
+        +version: long
+        +ttlSeconds: int
+    }
+
+    class ISignedUrlService {
+        <<interface>>
+        +generarUrl(objectKey: String, ttlSeconds: int): String
+    }
+
+    class S3SignedUrlAdapter {
+        <<Adapter>>
+        -bucketName: String
+        -region: String
+        +generarUrl(objectKey: String, ttlSeconds: int): String
+    }
+
+    class IArchivoMapper {
+        <<interface>>
+        +findById(idArchivo: String): ArchivoSnapshot
+        +findByCursoCiclo(cursoId: String, cicloId: String): List<ArchivoSnapshot>
+    }
+
+    class IPublicacionMapper {
+        <<interface>>
+        +findById(idPublicacion: String): PublicacionSnapshot
+        +findArchivadas(criteria: Object): List<PublicacionSnapshot>
+    }
+
+    class IUsuarioMapper {
+        <<interface>>
+        +findById(idUsuario: String): UsuarioSnapshot
+        +findRolesByUsuario(idUsuario: String): List<String>
+    }
+
+    DataReader ..|> IDataReader
+    HazelcastCacheMissAdapter --> IDataReader
+
+    DataReader --> ReadHandlerRegistry
+    DataReader --> IDataGridClient
+    DataReader --> IReadAuditLogger
+    DataReader ..> IReadHandler : usa via registry
+
+    ReadHandlerRegistry --> IReadHandler
+
+    IReadHandler <|.. ArchivoReadHandler
+    IReadHandler <|.. PublicacionReadHandler
+    IReadHandler <|.. UsuarioReadHandler
+
+    ArchivoReadHandler --> IArchivoMapper
+    ArchivoReadHandler --> ISignedUrlService
+    PublicacionReadHandler --> IPublicacionMapper
+    UsuarioReadHandler --> IUsuarioMapper
+
+    ISignedUrlService <|.. S3SignedUrlAdapter
+    IDataGridClient <|.. HazelcastGridClient
+    IReadAuditLogger <|.. ReadAuditLogger
+@enduml

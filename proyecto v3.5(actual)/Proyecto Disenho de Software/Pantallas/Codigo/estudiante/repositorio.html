@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repositorio — ConectaPUCP</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .repo-layout { display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:start; }
+    .materials-grid { display:grid;grid-template-columns:1fr 1fr;gap:14px; }
+    .search-bar-hero { display:flex;gap:10px;margin-bottom:20px; }
+    .search-bar-hero input { flex:1;height:46px;border-radius:var(--r-md);border:1.5px solid var(--clr-border);padding:0 16px 0 44px;font-size:.9375rem;background:white;font-family:inherit;color:var(--clr-text); }
+    .search-bar-hero input:focus { outline:none;border-color:var(--clr-primary);box-shadow:0 0 0 3px var(--clr-primary-light); }
+    .search-bar-hero .search-wrap { position:relative;flex:1; }
+    .search-bar-hero .search-ico { position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--clr-text-subtle); }
+    .type-icon-pdf { background:#fee2e2;color:#dc2626; }
+    .type-icon-doc { background:#dbeafe;color:#2563eb; }
+    .type-icon-img { background:#d1fae5;color:#059669; }
+    .type-icon-ppt { background:#ffedd5;color:#ea580c; }
+    .type-icon-xls { background:#dcfce7;color:#16a34a; }
+    .sort-bar { display:flex;align-items:center;gap:10px;margin-bottom:16px; }
+    .sort-bar .count { font-size:.875rem;color:var(--clr-text-muted); }
+    .pagination { display:flex;align-items:center;gap:4px;margin-top:24px;justify-content:center; }
+    .page-btn { width:36px;height:36px;border-radius:var(--r-sm);border:1.5px solid var(--clr-border);background:white;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.875rem;color:var(--clr-text-muted);transition:all .15s; }
+    .page-btn:hover,.page-btn.active { background:var(--clr-primary);border-color:var(--clr-primary);color:white; }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="topbar-logo" href="dashboard.html"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="12" r="3"/><circle cx="18" cy="8" r="2"/><line x1="11.8" y1="11" x2="16.4" y2="9.2"/></svg></div><span class="logo-text">Conecta<span>PUCP</span></span></a>
+    <div class="topbar-search"><svg class="search-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="search" placeholder="Buscar materiales, foros, cursos…"></div>
+    <div class="topbar-actions"><a href="notificaciones.html" class="icon-btn"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="badge-count">3</span></a>
+    <div class="user-menu"><div class="avatar avatar-blue">DF</div><div class="user-menu-info"><div class="user-name">Darling Fox</div><div class="user-role">Estudiante</div></div><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DF</div><div><div class="user-name">Darling Fox</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar" style="background:var(--rank-cachimbo);">⭐ CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
+    <span class="sidebar-section-label">Principal</span>
+    <a href="dashboard.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
+    <a href="repositorio.html" class="nav-item active"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Repositorio</a>
+    <a href="foros.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Foros</a>
+    <a href="#" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Grupos de Estudio</a>
+    <span class="sidebar-section-label">Yo</span>
+    <a href="ranking.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="18 20 18 10"/><polyline points="12 20 12 4"/><polyline points="6 20 6 14"/></svg>Ranking</a>
+    <a href="notificaciones.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Notificaciones<span class="nav-badge">3</span></a>
+    <a href="perfil.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Mi Perfil</a>
+    <div class="sidebar-divider"></div>
+    <a href="postulacion-evaluador.html" class="sidebar-btn-cta"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Postular a Evaluador</a>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <div class="breadcrumb"><a href="dashboard.html">Inicio</a><span class="sep">›</span><span>Repositorio</span></div>
+      <div class="page-header-row">
+        <div><h1 class="page-title">Repositorio Académico</h1><p class="page-subtitle">Explora y descarga materiales validados por la comunidad PUCP</p></div>
+        <a href="subida-material.html" class="btn btn-primary"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Subir material</a>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active">Todos</button>
+      <button class="tab-btn">Mis materiales</button>
+      <button class="tab-btn">Favoritos</button>
+      <button class="tab-btn">Mis descargas</button>
+    </div>
+
+    <div class="repo-layout">
+      <!-- Filters -->
+      <div class="filter-panel">
+        <h3>Filtros</h3>
+        <div class="filter-section">
+          <h4>Tipo</h4>
+          <label class="checkbox-label"><input type="checkbox" checked>Examen<span class="count">312</span></label>
+          <label class="checkbox-label"><input type="checkbox" checked>Apunte<span class="count">847</span></label>
+          <label class="checkbox-label"><input type="checkbox">Guía<span class="count">234</span></label>
+          <label class="checkbox-label"><input type="checkbox">Práctica<span class="count">189</span></label>
+          <label class="checkbox-label"><input type="checkbox">Resumen<span class="count">156</span></label>
+        </div>
+        <div class="filter-section">
+          <h4>Estado</h4>
+          <label class="checkbox-label"><input type="checkbox" checked>Validado<span class="count">1842</span></label>
+          <label class="checkbox-label"><input type="checkbox">Pendiente<span class="count">156</span></label>
+        </div>
+        <div class="filter-section">
+          <h4>Ciclo</h4>
+          <label class="checkbox-label"><input type="checkbox" checked>2025-1<span class="count">421</span></label>
+          <label class="checkbox-label"><input type="checkbox">2024-2<span class="count">634</span></label>
+          <label class="checkbox-label"><input type="checkbox">2024-1<span class="count">589</span></label>
+          <label class="checkbox-label"><input type="checkbox">2023-2<span class="count">412</span></label>
+        </div>
+        <div class="filter-section" style="margin-bottom:0;">
+          <h4>Formato</h4>
+          <label class="checkbox-label"><input type="checkbox" checked>PDF<span class="count">1234</span></label>
+          <label class="checkbox-label"><input type="checkbox">DOCX<span class="count">456</span></label>
+          <label class="checkbox-label"><input type="checkbox">PPTX<span class="count">234</span></label>
+          <label class="checkbox-label"><input type="checkbox">PNG/JPG<span class="count">89</span></label>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div>
+        <!-- Search hero -->
+        <div class="search-bar-hero">
+          <div class="search-wrap">
+            <svg class="search-ico" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="search" placeholder="Buscar por título, curso, tema, autor…" value="cálculo">
+          </div>
+          <div class="select-wrapper" style="width:160px;">
+            <select class="form-control" style="height:46px;">
+              <option>Más reciente</option>
+              <option>Más popular</option>
+              <option>Más descargado</option>
+              <option>Mejor valorado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="sort-bar">
+          <span class="count">Mostrando <strong>24</strong> de <strong>312</strong> resultados para "cálculo"</span>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;">
+            <span class="badge badge-gray">Examen ×</span>
+            <span class="badge badge-gray">Apunte ×</span>
+            <span class="badge badge-gray">Validado ×</span>
+          </div>
+        </div>
+
+        <div class="materials-grid">
+          <!-- Card 1 -->
+          <a href="material-detalle.html" class="material-card">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div class="mc-type-icon type-icon-pdf">PDF</div>
+              <div style="flex:1;min-width:0;">
+                <div class="mc-title">Examen Parcial Cálculo 3 — 2025-1</div>
+                <div class="mc-meta"><span>MAT258</span><span>Ciclo 6</span><span>Examen</span></div>
+              </div>
+              <span class="badge badge-success" style="flex-shrink:0;">Validado</span>
+            </div>
+            <div class="mc-tags"><span class="badge badge-gray">derivadas</span><span class="badge badge-gray">parciales</span></div>
+            <div class="mc-footer">
+              <div style="font-size:.75rem;color:var(--clr-text-subtle);">Carlos R. · hace 3 días</div>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
+                <span>❤️ 48</span><span>⬇️ 124</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2 -->
+          <a href="material-detalle.html" class="material-card">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div class="mc-type-icon type-icon-doc">DOC</div>
+              <div style="flex:1;min-width:0;">
+                <div class="mc-title">Guía completa de Derivadas Parciales</div>
+                <div class="mc-meta"><span>MAT258</span><span>Ciclo 6</span><span>Guía</span></div>
+              </div>
+              <span class="badge badge-success" style="flex-shrink:0;">Validado</span>
+            </div>
+            <div class="mc-tags"><span class="badge badge-gray">derivadas</span><span class="badge badge-gray">cálculo multivariable</span></div>
+            <div class="mc-footer">
+              <div style="font-size:.75rem;color:var(--clr-text-subtle);">Ana P. · hace 1 semana</div>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
+                <span>❤️ 92</span><span>⬇️ 287</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 3 -->
+          <a href="material-detalle.html" class="material-card">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div class="mc-type-icon type-icon-pdf">PDF</div>
+              <div style="flex:1;min-width:0;">
+                <div class="mc-title">Examen Final Cálculo 2 — 2024-2</div>
+                <div class="mc-meta"><span>MAT157</span><span>Ciclo 5</span><span>Examen</span></div>
+              </div>
+              <span class="badge badge-success" style="flex-shrink:0;">Validado</span>
+            </div>
+            <div class="mc-tags"><span class="badge badge-gray">integrales</span><span class="badge badge-gray">final</span></div>
+            <div class="mc-footer">
+              <div style="font-size:.75rem;color:var(--clr-text-subtle);">Luis M. · hace 2 semanas</div>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
+                <span>❤️ 76</span><span>⬇️ 203</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 4 -->
+          <a href="material-detalle.html" class="material-card">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div class="mc-type-icon type-icon-img">IMG</div>
+              <div style="flex:1;min-width:0;">
+                <div class="mc-title">Mapa conceptual: Regla de la cadena</div>
+                <div class="mc-meta"><span>MAT258</span><span>Ciclo 6</span><span>Resumen</span></div>
+              </div>
+              <span class="badge badge-warning" style="flex-shrink:0;">Pendiente</span>
+            </div>
+            <div class="mc-tags"><span class="badge badge-gray">regla de la cadena</span></div>
+            <div class="mc-footer">
+              <div style="font-size:.75rem;color:var(--clr-text-subtle);">Darling F. · hace 2 días</div>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
+                <span>❤️ 12</span><span>⬇️ 18</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 5 -->
+          <a href="material-detalle.html" class="material-card">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div class="mc-type-icon type-icon-pdf">PDF</div>
+              <div style="flex:1;min-width:0;">
+                <div class="mc-title">Resumen ejecutivo Cálculo Vectorial</div>
+                <div class="mc-meta"><span>MAT258</span><span>Ciclo 6</span><span>Resumen</span></div>
+              </div>
+              <span class="badge badge-success" style="flex-shrink:0;">Validado</span>
+            </div>
+            <div class="mc-tags"><span class="badge badge-gray">vectorial</span><span class="badge badge-gray">gradiente</span><span class="badge badge-gray">curl</span></div>
+            <div class="mc-footer">
+              <div style="font-size:.75rem;color:var(--clr-text-subtle);">Mónica T. · hace 4 días</div>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
+                <span>❤️ 54</span><span>⬇️ 167</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 6 -->
+          <a href="material-detalle.html" class="material-card">
+            <div style="display:flex;gap:12px;align-items:flex-start;">
+              <div class="mc-type-icon type-icon-doc">DOC</div>
+              <div style="flex:1;min-width:0;">
+                <div class="mc-title">Apuntes de clase Cálculo 3 — Semana 1-8</div>
+                <div class="mc-meta"><span>MAT258</span><span>Ciclo 6</span><span>Apunte</span></div>
+              </div>
+              <span class="badge badge-success" style="flex-shrink:0;">Validado</span>
+            </div>
+            <div class="mc-tags"><span class="badge badge-gray">límites</span><span class="badge badge-gray">continuidad</span></div>
+            <div class="mc-footer">
+              <div style="font-size:.75rem;color:var(--clr-text-subtle);">Jorge B. · hace 1 semana</div>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
+                <span>❤️ 38</span><span>⬇️ 145</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="page-btn">‹</button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <span style="padding:0 8px;color:var(--clr-text-subtle);font-size:.875rem;">…</span>
+          <button class="page-btn">13</button>
+          <button class="page-btn">›</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

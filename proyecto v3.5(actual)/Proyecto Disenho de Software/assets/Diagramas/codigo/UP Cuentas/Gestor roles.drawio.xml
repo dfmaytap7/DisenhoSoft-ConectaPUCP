@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="ChatGPT" version="24.0.0">
+  <diagram name="Vista de Código - Gestor de Ro" id="diag-Vista-de-Código-Gestor-de-Roles-Strategy">
+    <mxGraphModel dx="3000" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2100" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="svc" value="GestorRolesService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="260" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="svc_attrs" value="-estrategias: Map&amp;lt;TipoCambioRol, IEstrategiaCambioRol&amp;gt;&lt;br&gt;-audit: AuditService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="svc">
+          <mxGeometry y="26" width="250" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="svc_methods" value="+asignarRol(cmd): void&lt;br&gt;+revocarRol(cmd): void&lt;br&gt;+validarPermiso(usuario, permiso): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="svc">
+          <mxGeometry y="62" width="250" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="strategy" value="IEstrategiaCambioRol" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" vertex="1" parent="1">
+          <mxGeometry x="430" y="260" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="strategy_methods" value="+ejecutar(cmd): ResultadoCambioRol" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="strategy">
+          <mxGeometry y="26" width="250" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="ev" value="&amp;lt;&amp;lt;Strategy&amp;gt;&amp;gt;&lt;br&gt;EstrategiaAprobarEvaluador" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="800" y="80" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="ev_methods" value="+ejecutar(cmd): ResultadoCambioRol" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ev">
+          <mxGeometry y="26" width="250" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="susp" value="&amp;lt;&amp;lt;Strategy&amp;gt;&amp;gt;&lt;br&gt;EstrategiaSuspenderUsuario" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="800" y="260" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="susp_methods" value="+ejecutar(cmd): ResultadoCambioRol" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="susp">
+          <mxGeometry y="26" width="250" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="act" value="&amp;lt;&amp;lt;Strategy&amp;gt;&amp;gt;&lt;br&gt;EstrategiaActivarUsuario" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="800" y="440" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="act_methods" value="+ejecutar(cmd): ResultadoCambioRol" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="act">
+          <mxGeometry y="26" width="250" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="rol" value="Rol" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="200" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="rol_attrs" value="-id: GUID&lt;br&gt;-nombre: String&lt;br&gt;-permisos: Set&amp;lt;Permiso&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="rol">
+          <mxGeometry y="26" width="250" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="perm" value="Permiso" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="420" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="perm_attrs" value="-codigo: String&lt;br&gt;-descripcion: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="perm">
+          <mxGeometry y="26" width="250" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1" value="" edge="1" parent="1" source="svc" target="strategy" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;dashed=1;dashPattern=8 8;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1_label" value="selecciona" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="r1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2" value="" edge="1" parent="1" source="ev" target="strategy" style="endArrow=block;endFill=0;dashed=1;html=1;rounded=0;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3" value="" edge="1" parent="1" source="susp" target="strategy" style="endArrow=block;endFill=0;dashed=1;html=1;rounded=0;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4" value="" edge="1" parent="1" source="act" target="strategy" style="endArrow=block;endFill=0;dashed=1;html=1;rounded=0;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r5" value="" edge="1" parent="1" source="rol" target="perm" style="endArrow=diamondThin;endFill=0;html=1;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r5_label" value="contiene" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="r5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

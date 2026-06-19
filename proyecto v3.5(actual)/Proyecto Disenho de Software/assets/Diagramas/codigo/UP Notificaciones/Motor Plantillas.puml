@@ -1,0 +1,28 @@
+@startuml
+title Vista de Código - Motor de Plantillas\nTemplate Method
+skinparam classAttributeIconSize 0
+left to right direction
+class "PlantillaCorreo" as tpl <<abstract Template Method>> {
+  +renderizar(datos): String
+  -cargarBase(): String
+  -inyectarDatos(datos): String
+  -agregarFooter(): String
+}
+class "PlantillaEvaluadorPendiente" as eval  {
+  -inyectarDatos(datos): String
+}
+class "PlantillaResultadoPostulacion" as resultado  {
+  -inyectarDatos(datos): String
+}
+class "PlantillaEventoCalendario" as evento  {
+  -inyectarDatos(datos): String
+}
+class "TemplateEngine" as engine  {
+  +resolver(tipo): PlantillaCorreo
+  +render(tipo, datos): String
+}
+eval ..|> tpl
+resultado ..|> tpl
+evento ..|> tpl
+engine --> tpl : usa
+@enduml

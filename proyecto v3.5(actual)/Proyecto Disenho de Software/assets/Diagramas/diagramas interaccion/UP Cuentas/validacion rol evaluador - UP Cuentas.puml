@@ -1,0 +1,58 @@
+@startuml
+title Diagrama de Interacción - Validación de rol evaluador (UP Cuentas)
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+actor "Administrador" as adm
+participant "Aplicación\nWeb" as web
+participant "Controlador\nCuentas" as ctrl
+participant "Gestor\nRoles" as roles
+participant "Auditoría\nCuentas" as audit
+participant "Grilla\nDatos" as grid
+participant "Grilla\nMensajería" as kafka
+participant "Data\nWriter" as writer
+
+adm -> web: revisa evidencia
+activate web
+web -> ctrl: PUT /roles/evaluador
+activate ctrl
+ctrl -> roles: validarSolicitudEvaluador(idUsuario)
+activate roles
+
+alt [evidencia válida]
+  roles -> grid: actualizarRoles(id, Evaluador)
+  activate grid
+  grid ->> kafka: evento ROL_ACTUALIZADO
+  grid --> roles: rol actualizado en Space
+  deactivate grid
+  roles -> audit: registrarCambioPrivilegio
+  activate audit
+  audit -> grid: guardarEventoAuditoria
+  activate grid
+  grid ->> kafka: evento AUDITORIA_ROL
+  grid --> audit: auditoría registrada
+  deactivate grid
+  audit --> roles: registro confirmado
+  deactivate audit
+  kafka -> writer: persistir cambio y auditoría
+  activate writer
+  writer --> kafka: ACK
+  deactivate writer
+  roles --> ctrl: Solicitud aprobada
+  ctrl --> web: resultado operación
+  web --> adm: muestra aprobación
+else [evidencia inválida o vencida]
+  roles -> audit: registrarRechazo/expiración
+  activate audit
+  audit --> roles: registro confirmado
+  deactivate audit
+  roles --> ctrl: Solicitud rechazada o anulada
+  ctrl --> web: resultado operación
+  web --> adm: muestra rechazo/anulación
+end
+
+deactivate roles
+deactivate ctrl
+deactivate web
+@enduml

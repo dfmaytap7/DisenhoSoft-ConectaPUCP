@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="ChatGPT" version="24.0.0">
+  <diagram name="UP Cuentas - Componentes" id="diag-UP-Cuentas-Componentes">
+    <mxGraphModel dx="2600" dy="1700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1300" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="web" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Aplicación Web&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[Frontend]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Solicitudes de cuentas.&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#1061B0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0D5091;metaEdit=1;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="300" width="220" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="ctrl" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Controlador de Cuentas&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[Page Controller]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Entrada HTTP y validación inicial.&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#3D85C6;metaEdit=1;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="300" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="auth" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Autenticación de Cuentas&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[Adapter CAS]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Traduce ticket CAS a identidad local.&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#3D85C6;metaEdit=1;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="700" y="120" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="gest" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Gestión de Cuentas&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[Facade]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Orquesta CRUD, sesión y estado de cuenta.&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#3D85C6;metaEdit=1;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="700" y="300" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Gestor de Roles&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[RBAC / Strategy]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Permisos, jerarquías y solicitud evaluador.&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#3D85C6;metaEdit=1;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="700" y="480" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="aud" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Auditoría de Cuentas&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[Observer / Audit Logger]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Registra cambios sensibles.&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#3D85C6;metaEdit=1;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="300" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="grid" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Cliente Grilla de Datos&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[Adapter Hazelcast]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;Sesiones, tokens, roles y auditoría.&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#3D85C6;metaEdit=1;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="500" width="240" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="cas" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Sistema CAS&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[Externo]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;SSO PUCP.&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#999999;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#666666;metaEdit=1;resizable=0;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="120" width="240" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" value="" edge="1" parent="1" source="web" target="ctrl" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1_label" value="HTTPS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e1">
+          <mxGeometry relative="1" x="0" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="" edge="1" parent="1" source="ctrl" target="auth" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2_label" value="login CAS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e2">
+          <mxGeometry relative="1" x="0" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" value="" edge="1" parent="1" source="auth" target="cas" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3_label" value="validar ticket" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e3">
+          <mxGeometry relative="1" x="0" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" value="" edge="1" parent="1" source="ctrl" target="gest" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4_label" value="orquesta" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e4">
+          <mxGeometry relative="1" x="0" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" value="" edge="1" parent="1" source="gest" target="roles" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5_label" value="consulta permisos" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e5">
+          <mxGeometry relative="1" x="0" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" value="" edge="1" parent="1" source="gest" target="aud" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;dashed=1;endArrow=open;endFill=0;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6_label" value="registra acción" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e6">
+          <mxGeometry relative="1" x="0" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" value="" edge="1" parent="1" source="gest" target="grid" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7_label" value="sesión/perfil" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e7">
+          <mxGeometry relative="1" x="0" as="geometry"/>
+        </mxCell>
+        <mxCell id="e8" value="" edge="1" parent="1" source="roles" target="grid" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e8_label" value="roles/permisos" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e8">
+          <mxGeometry relative="1" x="0" as="geometry"/>
+        </mxCell>
+        <mxCell id="e9" value="" edge="1" parent="1" source="aud" target="grid" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e9_label" value="log inalterable" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="e9">
+          <mxGeometry relative="1" x="0" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

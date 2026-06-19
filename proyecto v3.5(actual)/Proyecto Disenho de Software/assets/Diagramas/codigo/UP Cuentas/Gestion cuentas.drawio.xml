@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="ChatGPT" version="24.0.0">
+  <diagram name="Vista de Código - Gestión de C" id="diag-Vista-de-Código-Gestión-de-Cuentas-Patró">
+    <mxGraphModel dx="3000" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2100" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="ctrl" value="CuentasController" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="260" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="ctrl_attrs" value="-facade: GestionCuentasFacade" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ctrl">
+          <mxGeometry y="26" width="250" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="ctrl_methods" value="+actualizarPerfil(dto): UsuarioDTO&lt;br&gt;+suspenderCuenta(id): void&lt;br&gt;+activarCuenta(id): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="ctrl">
+          <mxGeometry y="52" width="250" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="facade" value="&amp;lt;&amp;lt;Facade&amp;gt;&amp;gt;&lt;br&gt;GestionCuentasFacade" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="420" y="260" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="facade_attrs" value="-usuarioService: UsuarioService&lt;br&gt;-rolesService: GestorRolesService&lt;br&gt;-auditoria: AuditService" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="facade">
+          <mxGeometry y="26" width="250" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="facade_methods" value="+obtenerPerfil(id): UsuarioDTO&lt;br&gt;+actualizarPerfil(dto): UsuarioDTO&lt;br&gt;+cambiarEstadoCuenta(id, estado): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="facade">
+          <mxGeometry y="80" width="250" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="usuario" value="UsuarioService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="800" y="120" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="usuario_methods" value="+buscarUsuario(id): Usuario&lt;br&gt;+actualizarContacto(dto): Usuario" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="usuario">
+          <mxGeometry y="26" width="250" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles" value="GestorRolesService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="800" y="300" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="roles_methods" value="+obtenerRoles(id): List&amp;lt;Rol&amp;gt;&lt;br&gt;+validarPermiso(id, permiso): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="roles">
+          <mxGeometry y="26" width="250" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="audit" value="AuditService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="800" y="480" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="audit_methods" value="+registrar(evento): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="audit">
+          <mxGeometry y="26" width="250" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="dto" value="&amp;lt;&amp;lt;DTO&amp;gt;&amp;gt;&lt;br&gt;UsuarioDTO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="260" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="dto_attrs" value="+idUsuario: String&lt;br&gt;+correo: String&lt;br&gt;+roles: List&amp;lt;String&amp;gt;&lt;br&gt;+estado: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="dto">
+          <mxGeometry y="26" width="250" height="72" as="geometry"/>
+        </mxCell>
+        <mxCell id="entity" value="Usuario" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="480" width="250" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="entity_attrs" value="-id: GUID&lt;br&gt;-correo: String&lt;br&gt;-estado: EstadoCuenta" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="entity">
+          <mxGeometry y="26" width="250" height="54" as="geometry"/>
+        </mxCell>
+        <mxCell id="entity_methods" value="+activar(): void&lt;br&gt;+suspender(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="entity">
+          <mxGeometry y="80" width="250" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1" value="" edge="1" parent="1" source="ctrl" target="facade" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1_label" value="usa" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="r1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2" value="" edge="1" parent="1" source="facade" target="usuario" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2_label" value="coordina" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="r2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3" value="" edge="1" parent="1" source="facade" target="roles" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3_label" value="coordina" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="r3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4" value="" edge="1" parent="1" source="facade" target="audit" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4_label" value="registra" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="r4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r5" value="" edge="1" parent="1" source="usuario" target="entity" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r5_label" value="gestiona" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="r5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r6" value="" edge="1" parent="1" source="usuario" target="dto" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;strokeColor=#333333;dashed=1;dashPattern=8 8;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="r6_label" value="retorna" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;labelBackgroundColor=#ffffff;" vertex="1" connectable="0" parent="r6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,33 @@
+@startuml
+title Vista de Código - Validación de Material\nChain of Responsibility
+skinparam classAttributeIconSize 0
+left to right direction
+class "MaterialValidator" as client  {
+  -cadena: IValidationHandler
+  --
+  +validate(metadata): ValidationResponseDTO
+}
+interface "IValidationHandler" as handler  {
+  +setNext(handler): IValidationHandler
+  +handle(metadata): ValidationResult
+}
+class "SizeValidationHandler" as size <<Chain Handler>> {
+  +handle(metadata): ValidationResult
+}
+class "ExtensionValidationHandler" as ext <<Chain Handler>> {
+  +handle(metadata): ValidationResult
+}
+class "MimeSignatureValidationHandler" as mime <<Chain Handler>> {
+  +handle(metadata): ValidationResult
+}
+class "ValidationResponseDTO" as dto <<DTO>> {
+  +valido: boolean
+  +mensaje: String
+  +errores: List<String>
+}
+client --> handler : usa cadena
+size ..|> handler
+ext ..|> handler
+mime ..|> handler
+client ..> dto
+@enduml

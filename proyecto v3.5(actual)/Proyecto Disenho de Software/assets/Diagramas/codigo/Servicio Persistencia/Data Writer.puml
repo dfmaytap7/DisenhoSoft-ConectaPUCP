@@ -1,0 +1,251 @@
+@startuml
+title Data Writer
+skinparam classAttributeIconSize 0
+skinparam style strictuml
+
+
+    left to right direction
+
+  ' ── Infrastructure::Adapters::Inbound ─────────────────────────────
+    class KafkaEventAdapter {
+        <<Adapter>>
+        -dataWriter: IDataWriter
+        -brokerClient: IMessageBrokerClient
+        -deserializer: IEventDeserializer
+        +start(): void
+        +stop(): void
+        -onMessage(message: RawMessage): void
+    }
+
+    class IMessageBrokerClient {
+        <<interface>>
+        +subscribe(topic: String): void
+        +ack(messageId: String): void
+        +reject(messageId: String): void
+    }
+
+    class KafkaBrokerClient {
+        <<Adapter>>
+        -bootstrapServers: String
+        -consumerGroup: String
+        +subscribe(topic: String): void
+        +ack(messageId: String): void
+        +reject(messageId: String): void
+    }
+
+    class IEventDeserializer {
+        <<interface>>
+        +deserialize(message: RawMessage): PersistenceEvent
+    }
+
+    class JsonEventDeserializer {
+        +deserialize(message: RawMessage): PersistenceEvent
+    }
+
+  ' ── Core::BusinessLogic::Application ──────────────────────────────
+    class IDataWriter {
+        <<interface>>
+        +handle(event: PersistenceEvent): void
+    }
+
+    class DataWriter {
+        -registry: WriteHandlerRegistry
+        -transactionManager: ITransactionManager
+        -auditLogger: IWriteAuditLogger
+        -failurePublisher: IFailurePublisher
+        +handle(event: PersistenceEvent): void
+        -process(event: PersistenceEvent): void
+        -confirm(event: PersistenceEvent): void
+        -reject(event: PersistenceEvent, reason: String): void
+    }
+
+    class WriteHandlerRegistry {
+        -handlers: Map<String, IWriteHandler>
+        +register(eventType: String, handler: IWriteHandler): void
+        +getHandler(eventType: String): IWriteHandler
+    }
+
+    class IWriteHandler {
+        <<interface>>
+        +write(event: PersistenceEvent): void
+    }
+
+  ' ── Core::BusinessLogic::Strategies ───────────────────────────────
+    class ArchivoValidadoWriteHandler {
+        <<Strategy>>
+        -archivoMapper: IArchivoMapper
+        -searchIndexer: ISearchIndexer
+        +write(event: PersistenceEvent): void
+    }
+
+    class PublicacionCreadaWriteHandler {
+        <<Strategy>>
+        -publicacionMapper: IPublicacionMapper
+        -searchIndexer: ISearchIndexer
+        +write(event: PersistenceEvent): void
+    }
+
+    class RolActualizadoWriteHandler {
+        <<Strategy>>
+        -usuarioMapper: IUsuarioMapper
+        -solicitudMapper: ISolicitudEvaluadorMapper
+        -privilegioAuditMapper: IPrivilegioAuditMapper
+        +write(event: PersistenceEvent): void
+    }
+
+    class PuntajeAsignadoWriteHandler {
+        <<Strategy>>
+        -gamificacionMapper: IGamificacionMapper
+        +write(event: PersistenceEvent): void
+    }
+
+  ' ── Infrastructure::Adapters::Outbound ────────────────────────────
+    class ISearchIndexer {
+        <<interface>>
+        +indexarArchivo(event: PersistenceEvent): void
+        +indexarPublicacion(event: PersistenceEvent): void
+    }
+
+    class ElasticsearchIndexer {
+        <<Adapter>>
+        -baseUrl: String
+        +indexarArchivo(event: PersistenceEvent): void
+        +indexarPublicacion(event: PersistenceEvent): void
+    }
+
+    class ITransactionManager {
+        <<interface>>
+        +begin(): void
+        +commit(): void
+        +rollback(): void
+    }
+
+    class SqlTransactionManager {
+        +begin(): void
+        +commit(): void
+        +rollback(): void
+    }
+
+    class IWriteAuditLogger {
+        <<interface>>
+        +logEventReceived(event: PersistenceEvent): void
+        +logEventPersisted(event: PersistenceEvent): void
+        +logEventError(event: PersistenceEvent, reason: String): void
+    }
+
+    class WriteAuditLogger {
+        +logEventReceived(event: PersistenceEvent): void
+        +logEventPersisted(event: PersistenceEvent): void
+        +logEventError(event: PersistenceEvent, reason: String): void
+    }
+
+    class IFailurePublisher {
+        <<interface>>
+        +publishFailedEvent(event: PersistenceEvent, reason: String): void
+    }
+
+    class DeadLetterPublisher {
+        -brokerClient: IMessageBrokerClient
+        +publishFailedEvent(event: PersistenceEvent, reason: String): void
+    }
+
+  ' ── Infrastructure::Mappers::Persistence ──────────────────────────
+    class IArchivoMapper {
+        <<interface>>
+        +save(snapshot: ArchivoSnapshot): void
+        +updateEstado(idArchivo: String, estado: String): void
+    }
+
+    class IPublicacionMapper {
+        <<interface>>
+        +save(snapshot: PublicacionSnapshot): void
+        +updateEstado(idPublicacion: String, estado: String): void
+        +vincularArchivo(idPublicacion: String, idArchivo: String): void
+    }
+
+    class IUsuarioMapper {
+        <<interface>>
+        +updateRol(idUsuario: String, idRol: String): void
+        +updateEstadoCuenta(idUsuario: String, estado: String): void
+    }
+
+    class ISolicitudEvaluadorMapper {
+        <<interface>>
+        +updateEstado(idSolicitud: String, estado: String): void
+    }
+
+    class IPrivilegioAuditMapper {
+        <<interface>>
+        +append(snapshot: PrivilegioAuditSnapshot): void
+    }
+
+    class IGamificacionMapper {
+        <<interface>>
+        +save(snapshot: PuntajeSnapshot): void
+        +actualizarRanking(idUsuario: String): void
+    }
+
+  ' ── Core::Shared::DTOs ────────────────────────────────────────────
+    class RawMessage {
+        <<DTO>>
+        +messageId: String
+        +topic: String
+        +body: String
+        +timestamp: Date
+    }
+
+    class PersistenceEvent {
+        <<DTO>>
+        +eventId: String
+        +eventType: String
+        +aggregateId: String
+        +actorId: String
+        +occurredAt: Date
+        +payload: Object
+    }
+
+  ' ── Relaciones ────────────────────────────────────────────────────
+    DataWriter ..|> IDataWriter
+
+    KafkaEventAdapter --> IDataWriter
+    KafkaEventAdapter --> IMessageBrokerClient
+    KafkaEventAdapter --> IEventDeserializer
+    KafkaEventAdapter ..> RawMessage
+
+    IMessageBrokerClient <|.. KafkaBrokerClient
+    IEventDeserializer <|.. JsonEventDeserializer
+
+    DataWriter --> WriteHandlerRegistry
+    DataWriter --> ITransactionManager
+    DataWriter --> IWriteAuditLogger
+    DataWriter --> IFailurePublisher
+    DataWriter ..> PersistenceEvent
+    DataWriter ..> IWriteHandler : usa via registry
+
+    WriteHandlerRegistry --> IWriteHandler
+
+    IWriteHandler <|.. ArchivoValidadoWriteHandler
+    IWriteHandler <|.. PublicacionCreadaWriteHandler
+    IWriteHandler <|.. RolActualizadoWriteHandler
+    IWriteHandler <|.. PuntajeAsignadoWriteHandler
+
+    ArchivoValidadoWriteHandler --> IArchivoMapper
+    ArchivoValidadoWriteHandler --> ISearchIndexer
+
+    PublicacionCreadaWriteHandler --> IPublicacionMapper
+    PublicacionCreadaWriteHandler --> ISearchIndexer
+
+    RolActualizadoWriteHandler --> IUsuarioMapper
+    RolActualizadoWriteHandler --> ISolicitudEvaluadorMapper
+    RolActualizadoWriteHandler --> IPrivilegioAuditMapper
+
+    PuntajeAsignadoWriteHandler --> IGamificacionMapper
+
+    ISearchIndexer <|.. ElasticsearchIndexer
+    ITransactionManager <|.. SqlTransactionManager
+    IWriteAuditLogger <|.. WriteAuditLogger
+    IFailurePublisher <|.. DeadLetterPublisher
+
+    DeadLetterPublisher --> IMessageBrokerClient
+
+@enduml

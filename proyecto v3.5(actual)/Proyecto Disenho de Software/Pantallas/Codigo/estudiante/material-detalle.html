@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examen Parcial Cálculo 3 — ConectaPUCP</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .detail-layout { display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start; }
+    .comment { padding:16px 0;border-bottom:1px solid var(--clr-border); }
+    .comment:last-child { border-bottom:none; }
+    .comment-header { display:flex;align-items:center;gap:10px;margin-bottom:8px; }
+    .comment-body { font-size:.9rem;color:var(--clr-text);line-height:1.6; }
+    .comment-actions { display:flex;gap:10px;margin-top:8px; }
+    .preview-box { background:var(--clr-bg);border:1.5px dashed var(--clr-border-mid);border-radius:var(--r-lg);height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:var(--clr-text-subtle);margin-bottom:20px; }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="topbar-logo" href="dashboard.html"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="12" r="3"/><circle cx="18" cy="8" r="2"/><line x1="11.8" y1="11" x2="16.4" y2="9.2"/></svg></div><span class="logo-text">Conecta<span>PUCP</span></span></a>
+    <div class="topbar-search"><svg class="search-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="search" placeholder="Buscar materiales, foros, cursos…"></div>
+    <div class="topbar-actions"><a href="notificaciones.html" class="icon-btn"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="badge-count">3</span></a>
+    <div class="user-menu"><div class="avatar avatar-blue">DF</div><div class="user-menu-info"><div class="user-name">Darling Fox</div><div class="user-role">Estudiante</div></div><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DF</div><div><div class="user-name">Darling Fox</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar" style="background:var(--rank-cachimbo);">⭐ CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
+    <span class="sidebar-section-label">Principal</span>
+    <a href="dashboard.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
+    <a href="repositorio.html" class="nav-item active"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Repositorio</a>
+    <a href="foros.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Foros</a>
+    <a href="#" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Grupos de Estudio</a>
+    <span class="sidebar-section-label">Yo</span>
+    <a href="ranking.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="18 20 18 10"/><polyline points="12 20 12 4"/><polyline points="6 20 6 14"/></svg>Ranking</a>
+    <a href="notificaciones.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Notificaciones<span class="nav-badge">3</span></a>
+    <a href="perfil.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Mi Perfil</a>
+    <div class="sidebar-divider"></div>
+    <a href="postulacion-evaluador.html" class="sidebar-btn-cta"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Postular a Evaluador</a>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <div class="breadcrumb"><a href="dashboard.html">Inicio</a><span class="sep">›</span><a href="repositorio.html">Repositorio</a><span class="sep">›</span><span>Material</span></div>
+    </div>
+
+    <div class="detail-layout">
+      <!-- Main -->
+      <div>
+        <!-- Header card -->
+        <div class="card mb-24">
+          <div class="card-body" style="padding:24px;">
+            <div style="display:flex;align-items:flex-start;gap:16px;">
+              <div style="width:56px;height:56px;background:#fee2e2;color:#dc2626;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;flex-shrink:0;">PDF</div>
+              <div style="flex:1;min-width:0;">
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
+                  <h1 style="font-size:1.25rem;font-weight:800;color:var(--clr-text);">Examen Parcial Cálculo 3 — 2025-1</h1>
+                  <span class="badge badge-success">✅ Validado</span>
+                </div>
+                <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:.8125rem;color:var(--clr-text-muted);">
+                  <span>📚 MAT258 — Cálculo 3</span>
+                  <span>📅 Ciclo 2025-1</span>
+                  <span>📁 PDF · 2.4 MB</span>
+                  <span>👁️ 324 vistas</span>
+                  <span>⬇️ 124 descargas</span>
+                </div>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
+                  <span class="badge badge-gray">derivadas</span>
+                  <span class="badge badge-gray">parciales</span>
+                  <span class="badge badge-gray">cadena</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
+              <button class="btn btn-primary btn-lg" onclick="downloadFile()">
+                <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Descargar archivo
+              </button>
+              <button class="btn btn-secondary" onclick="toggleFav(this)">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                Guardar en favoritos
+              </button>
+              <button class="btn btn-secondary" onclick="shareLink()">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                Compartir enlace
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="card mb-24">
+          <div class="card-header"><h2>Vista previa</h2></div>
+          <div class="card-body">
+            <div class="preview-box">
+              <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="color:#dc2626;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <div style="font-weight:600;color:var(--clr-text-muted);">Examen_Parcial_Calculo3_2025-1.pdf</div>
+              <div style="font-size:.8rem;">2.4 MB · 8 páginas</div>
+              <button class="btn btn-primary btn-sm" onclick="downloadFile()">
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Descargar para ver
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Votación -->
+        <div class="card mb-24">
+          <div class="card-body" style="padding:16px 24px;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="font-size:.875rem;color:var(--clr-text-muted);">¿Te fue útil este material?</span>
+              <button class="vote-btn" onclick="vote(this,'like')">👍 <span>48</span></button>
+              <button class="vote-btn" onclick="vote(this,'dislike')">👎 <span>3</span></button>
+              <div style="margin-left:auto;font-size:.8rem;color:var(--clr-text-subtle);">94% aprobación (51 votos)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="card mb-24">
+          <div class="card-header"><h2>Descripción</h2></div>
+          <div class="card-body">
+            <p style="font-size:.9375rem;color:var(--clr-text);line-height:1.7;">Examen parcial del curso Cálculo 3 (MAT258) tomado en el ciclo 2025-1. Incluye 5 preguntas sobre derivadas parciales, regla de la cadena y optimización con restricciones usando multiplicadores de Lagrange. El examen es de 2 horas y requiere calculadora científica.</p>
+          </div>
+        </div>
+
+        <!-- Comments -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Comentarios</h2>
+            <span class="badge badge-gray" style="margin-left:auto;">12 comentarios</span>
+          </div>
+          <div class="card-body" style="padding-bottom:0;">
+            <!-- Comment form -->
+            <div style="display:flex;gap:12px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--clr-border);">
+              <div class="avatar avatar-blue" style="flex-shrink:0;margin-top:2px;">DF</div>
+              <div style="flex:1;">
+                <textarea class="form-control" rows="2" placeholder="Escribe un comentario útil para tus compañeros…" id="commentBox" maxlength="500" oninput="document.getElementById('ccComment').textContent = this.value.length + ' / 500'"></textarea>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+                  <div class="char-counter" id="ccComment">0 / 500</div>
+                  <button class="btn btn-primary btn-sm">Comentar</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Existing comments -->
+            <div class="comment">
+              <div class="comment-header"><div class="avatar avatar-green avatar-sm">MR</div><div><div style="font-size:.875rem;font-weight:600;">María R.</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">Evaluador · hace 2 días</div></div><span class="badge badge-primary" style="margin-left:auto;">Evaluador</span></div>
+              <div class="comment-body">Excelente material, muy representativo del estilo del parcial. Las preguntas 3 y 5 son particularmente buenas para practicar optimización con Lagrange.</div>
+              <div class="comment-actions"><button class="vote-btn btn-sm">👍 8</button><button class="vote-btn btn-sm">👎 0</button><button class="btn btn-ghost btn-sm">Responder</button></div>
+            </div>
+            <div class="comment">
+              <div class="comment-header"><div class="avatar avatar-purple avatar-sm">JB</div><div><div style="font-size:.875rem;font-weight:600;">Jorge B.</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">hace 1 semana</div></div></div>
+              <div class="comment-body">¿Alguien tiene las respuestas de la pregunta 4? El enunciado es claro pero me confundo con la restricción del círculo.</div>
+              <div class="comment-actions"><button class="vote-btn btn-sm">👍 3</button><button class="vote-btn btn-sm">👎 0</button><button class="btn btn-ghost btn-sm">Responder</button></div>
+            </div>
+            <div class="comment">
+              <div class="comment-header"><div class="avatar avatar-teal avatar-sm">LP</div><div><div style="font-size:.875rem;font-weight:600;">Lucía P.</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">hace 1 semana</div></div></div>
+              <div class="comment-body">Gracias por compartir. Este examen es muy parecido al de este ciclo, fue de gran ayuda para estudiar. ¡Mereces los puntos! 🙌</div>
+              <div class="comment-actions"><button class="vote-btn btn-sm">👍 15</button><button class="vote-btn btn-sm">👎 0</button><button class="btn btn-ghost btn-sm">Responder</button></div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-ghost btn-sm" style="width:100%;color:var(--clr-primary);">Ver todos los comentarios (12) →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right sidebar -->
+      <div>
+        <!-- Uploader info -->
+        <div class="card mb-16">
+          <div class="card-body" style="padding:18px;">
+            <div style="font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin-bottom:12px;">Subido por</div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="avatar avatar-orange" style="width:40px;height:40px;font-size:.875rem;">CR</div>
+              <div>
+                <div style="font-weight:600;font-size:.9rem;">Carlos Reyes</div>
+                <span class="rank-badge rank-REGULAR" style="font-size:.7rem;padding:2px 7px;">🌟 REGULAR</span>
+              </div>
+            </div>
+            <div style="margin-top:12px;font-size:.8rem;color:var(--clr-text-muted);display:flex;flex-direction:column;gap:4px;">
+              <div>📤 23 materiales subidos</div>
+              <div>✅ 18 validados</div>
+              <div>⭐ 1,840 puntos</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Validation info -->
+        <div class="card mb-16">
+          <div class="card-body" style="padding:18px;">
+            <div style="font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin-bottom:12px;">Información de validación</div>
+            <div style="font-size:.8rem;color:var(--clr-text-muted);display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;"><span>Estado:</span><span class="badge badge-success">✅ Validado</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Validado por:</span><span style="font-weight:500;">Prof. Ana Valverde</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Fecha validación:</span><span>12 Jun 2025</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Subido el:</span><span>10 Jun 2025</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related -->
+        <div class="card">
+          <div class="card-header" style="padding:14px 18px;"><h2 style="font-size:.875rem;">Materiales relacionados</h2></div>
+          <div class="card-body" style="padding:12px 18px;display:flex;flex-direction:column;gap:10px;">
+            <a href="material-detalle.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
+              <div style="width:32px;height:32px;background:#fee2e2;color:#dc2626;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;flex-shrink:0;">PDF</div>
+              <div><div style="font-size:.8125rem;font-weight:500;color:var(--clr-text);">Examen Final Cálculo 3 2024-2</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">MAT258 · 312 descargas</div></div>
+            </a>
+            <a href="material-detalle.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
+              <div style="width:32px;height:32px;background:#dbeafe;color:#2563eb;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;flex-shrink:0;">DOC</div>
+              <div><div style="font-size:.8125rem;font-weight:500;color:var(--clr-text);">Guía de Derivadas Parciales</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">MAT258 · 287 descargas</div></div>
+            </a>
+            <a href="material-detalle.html" style="display:flex;gap:10px;text-decoration:none;color:inherit;">
+              <div style="width:32px;height:32px;background:#fee2e2;color:#dc2626;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;flex-shrink:0;">PDF</div>
+              <div><div style="font-size:.8125rem;font-weight:500;color:var(--clr-text);">Resumen Cálculo Vectorial</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">MAT258 · 167 descargas</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+function downloadFile() {
+  const btn = event.target.closest('.btn');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V12m0 0l-4 4m4-4l4 4"/></svg> Descargando…';
+  btn.disabled = true;
+  setTimeout(() => { btn.innerHTML = '✅ Descargado'; setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 2000); }, 1500);
+}
+function toggleFav(btn) {
+  const isFav = btn.dataset.fav === 'true';
+  btn.dataset.fav = isFav ? 'false' : 'true';
+  btn.innerHTML = isFav ? '<svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Guardar en favoritos' : '❤️ En favoritos';
+}
+function shareLink() {
+  alert('🔗 Enlace generado y copiado al portapapeles.\n\nEl destinatario deberá iniciar sesión con su cuenta PUCP para acceder al contenido.\n\nhttps://conectapucp.pucp.edu.pe/material/abc123');
+}
+function vote(btn, type) {
+  btn.classList.toggle(type === 'like' ? 'active-like' : 'active-dislike');
+}
+</script>
+</body>
+</html>

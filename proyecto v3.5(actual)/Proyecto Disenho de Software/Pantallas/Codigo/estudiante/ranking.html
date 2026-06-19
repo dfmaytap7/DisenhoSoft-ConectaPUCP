@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranking — ConectaPUCP</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .rank-layout { display:grid;grid-template-columns:1fr 280px;gap:24px;align-items:start; }
+    .podium { display:flex;align-items:flex-end;justify-content:center;gap:12px;padding:20px 0 0;margin-bottom:24px; }
+    .podium-place { text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px; }
+    .podium-avatar { border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;border:3px solid; }
+    .podium-1 .podium-avatar { width:72px;height:72px;font-size:1.25rem;background:#fef3c7;border-color:#f59e0b;color:#92400e; }
+    .podium-2 .podium-avatar { width:56px;height:56px;font-size:1rem;background:#f1f5f9;border-color:#94a3b8;color:#475569; }
+    .podium-3 .podium-avatar { width:48px;height:48px;font-size:.875rem;background:#fef3c7;border-color:#d97706;color:#92400e; }
+    .podium-bar { border-radius:var(--r-sm) var(--r-sm) 0 0; }
+    .podium-1 .podium-bar { height:80px;background:linear-gradient(180deg,#fbbf24,#f59e0b);width:80px; }
+    .podium-2 .podium-bar { height:56px;background:linear-gradient(180deg,#94a3b8,#64748b);width:66px; }
+    .podium-3 .podium-bar { height:40px;background:linear-gradient(180deg,#d97706,#b45309);width:56px; }
+    .podium-medal { font-size:1.5rem; }
+    .podium-name { font-size:.8rem;font-weight:700;color:var(--clr-text); }
+    .podium-pts { font-size:.75rem;color:var(--clr-text-muted); }
+    .leaderboard-table { width:100%;border-collapse:collapse; }
+    .leaderboard-table th { text-align:left;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);padding:8px 12px;border-bottom:2px solid var(--clr-border); }
+    .leaderboard-row { display:grid;grid-template-columns:48px 1fr 120px 100px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--clr-border);transition:.15s; }
+    .leaderboard-row:hover { background:var(--clr-bg-subtle); }
+    .leaderboard-row.is-me { background:#eff6ff;border-left:3px solid var(--clr-primary); }
+    .position-num { font-size:1rem;font-weight:800;color:var(--clr-text-muted);text-align:center; }
+    .rank-tier { display:flex;flex-direction:column;gap:2px; }
+    .rank-tier-bar { height:6px;border-radius:3px; }
+    .rank-section { padding:20px 0 8px;font-size:.8125rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);border-bottom:1px solid var(--clr-border);margin-bottom:4px; }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="topbar-logo" href="dashboard.html"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="12" r="3"/><circle cx="18" cy="8" r="2"/><line x1="11.8" y1="11" x2="16.4" y2="9.2"/></svg></div><span class="logo-text">Conecta<span>PUCP</span></span></a>
+    <div class="topbar-search"><svg class="search-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="search" placeholder="Buscar materiales, foros, cursos…"></div>
+    <div class="topbar-actions"><a href="notificaciones.html" class="icon-btn"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="badge-count">3</span></a>
+    <div class="user-menu"><div class="avatar avatar-blue">DF</div><div class="user-menu-info"><div class="user-name">Darling Fox</div><div class="user-role">Estudiante</div></div><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DF</div><div><div class="user-name">Darling Fox</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar" style="background:var(--rank-cachimbo);">⭐ CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
+    <span class="sidebar-section-label">Principal</span>
+    <a href="dashboard.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
+    <a href="repositorio.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Repositorio</a>
+    <a href="foros.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Foros</a>
+    <a href="#" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Grupos de Estudio</a>
+    <span class="sidebar-section-label">Yo</span>
+    <a href="ranking.html" class="nav-item active"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="18 20 18 10"/><polyline points="12 20 12 4"/><polyline points="6 20 6 14"/></svg>Ranking</a>
+    <a href="notificaciones.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Notificaciones<span class="nav-badge">3</span></a>
+    <a href="perfil.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Mi Perfil</a>
+    <div class="sidebar-divider"></div>
+    <a href="postulacion-evaluador.html" class="sidebar-btn-cta"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Postular a Evaluador</a>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Ranking de la comunidad</h1>
+        <p class="page-subtitle">Acumula puntos contribuyendo con materiales, respondiendo en foros y participando</p>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <select class="form-control" id="scopeFilter" onchange="updateScope(this.value)" style="width:160px;padding:7px 30px 7px 10px;font-size:.8125rem;">
+          <option value="global">🌐 Global</option>
+          <option value="carrera">🎓 Mi Carrera</option>
+          <option value="ciclo">📅 Este Ciclo</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="rank-layout">
+      <!-- Podio + tabla -->
+      <div>
+        <!-- Podium -->
+        <div class="card mb-20">
+          <div class="card-body" style="padding:24px;">
+            <div style="text-align:center;font-size:.8125rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin-bottom:12px;">Top 3 — Ciclo 2025-1</div>
+            <div class="podium">
+              <div class="podium-place podium-2">
+                <div class="podium-medal">🥈</div>
+                <div class="podium-avatar">CR</div>
+                <div class="podium-name">Carlos R.</div>
+                <div class="podium-pts">5,840 pts</div>
+                <div style="display:flex;justify-content:center;"><div class="podium-bar"></div></div>
+                <div style="text-align:center;padding:8px 0;background:#64748b;border-radius:0 0 var(--r-sm) var(--r-sm);width:66px;color:white;font-weight:700;">#2</div>
+              </div>
+              <div class="podium-place podium-1">
+                <div class="podium-medal">🥇</div>
+                <div class="podium-avatar">MR</div>
+                <div class="podium-name">María R.</div>
+                <div class="podium-pts">8,120 pts</div>
+                <div style="display:flex;justify-content:center;"><div class="podium-bar" style="height:80px;background:linear-gradient(180deg,#fbbf24,#f59e0b);width:80px;border-radius:var(--r-sm) var(--r-sm) 0 0;"></div></div>
+                <div style="text-align:center;padding:8px 0;background:#f59e0b;border-radius:0 0 var(--r-sm) var(--r-sm);width:80px;color:white;font-weight:800;">#1</div>
+              </div>
+              <div class="podium-place podium-3">
+                <div class="podium-medal">🥉</div>
+                <div class="podium-avatar">JB</div>
+                <div class="podium-name">Jorge B.</div>
+                <div class="podium-pts">4,210 pts</div>
+                <div style="display:flex;justify-content:center;"><div class="podium-bar" style="height:40px;background:linear-gradient(180deg,#d97706,#b45309);width:56px;border-radius:var(--r-sm) var(--r-sm) 0 0;"></div></div>
+                <div style="text-align:center;padding:8px 0;background:#b45309;border-radius:0 0 var(--r-sm) var(--r-sm);width:56px;color:white;font-weight:700;">#3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="card">
+          <div class="card-body" style="padding:0;">
+            <div style="padding:16px 20px 0;border-bottom:1px solid var(--clr-border);display:grid;grid-template-columns:48px 1fr 120px 100px;gap:0;">
+              <div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);text-align:center;">#</div>
+              <div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);padding:0 12px;">Usuario</div>
+              <div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);">Rango</div>
+              <div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);text-align:right;">Puntos</div>
+            </div>
+
+            <!-- ELITE -->
+            <div style="padding:10px 20px 0 20px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#ef4444;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--clr-border);padding-bottom:4px;">🔥 ELITE</div>
+            <div class="leaderboard-row"><span class="position-num">1</span><div style="display:flex;align-items:center;gap:10px;padding:0 12px;"><div class="avatar avatar-green" style="width:32px;height:32px;font-size:.75rem;">MR</div><div><div style="font-size:.875rem;font-weight:600;">María Rodríguez</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">Evaluador · Ciencias e Ingeniería</div></div></div><span class="rank-badge rank-ELITE" style="font-size:.68rem;padding:3px 7px;">🔥 ELITE</span><span style="font-weight:800;color:var(--clr-text);text-align:right;">8,120</span></div>
+
+            <!-- SENIOR -->
+            <div style="padding:10px 20px 0 20px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#dc2626;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--clr-border);padding-bottom:4px;">⚡ SENIOR</div>
+            <div class="leaderboard-row"><span class="position-num">2</span><div style="display:flex;align-items:center;gap:10px;padding:0 12px;"><div class="avatar avatar-orange" style="width:32px;height:32px;font-size:.75rem;">CR</div><div><div style="font-size:.875rem;font-weight:600;">Carlos Reyes</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">Estudiante · Ingeniería Informática</div></div></div><span class="rank-badge rank-SENIOR" style="font-size:.68rem;padding:3px 7px;">⚡ SENIOR</span><span style="font-weight:800;color:var(--clr-text);text-align:right;">5,840</span></div>
+            <div class="leaderboard-row"><span class="position-num">3</span><div style="display:flex;align-items:center;gap:10px;padding:0 12px;"><div class="avatar avatar-purple" style="width:32px;height:32px;font-size:.75rem;">JB</div><div><div style="font-size:.875rem;font-weight:600;">Jorge Barreto</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">Estudiante · Matemáticas</div></div></div><span class="rank-badge rank-SENIOR" style="font-size:.68rem;padding:3px 7px;">⚡ SENIOR</span><span style="font-weight:800;color:var(--clr-text);text-align:right;">4,210</span></div>
+
+            <!-- AVANZADO -->
+            <div style="padding:10px 20px 0 20px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#7c3aed;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--clr-border);padding-bottom:4px;">💜 AVANZADO</div>
+            <div class="leaderboard-row"><span class="position-num">4</span><div style="display:flex;align-items:center;gap:10px;padding:0 12px;"><div class="avatar" style="width:32px;height:32px;font-size:.75rem;background:#ede9fe;color:#7c3aed;">LP</div><div><div style="font-size:.875rem;font-weight:600;">Lucía Pizarro</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">Estudiante · Física</div></div></div><span class="rank-badge rank-AVANZADO" style="font-size:.68rem;padding:3px 7px;">💜 AVANZADO</span><span style="font-weight:800;color:var(--clr-text);text-align:right;">3,520</span></div>
+            <div class="leaderboard-row"><span class="position-num">5</span><div style="display:flex;align-items:center;gap:10px;padding:0 12px;"><div class="avatar" style="width:32px;height:32px;font-size:.75rem;background:#ede9fe;color:#7c3aed;">AG</div><div><div style="font-size:.875rem;font-weight:600;">Ana Gutiérrez</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">Estudiante · Ingeniería Civil</div></div></div><span class="rank-badge rank-AVANZADO" style="font-size:.68rem;padding:3px 7px;">💜 AVANZADO</span><span style="font-weight:800;color:var(--clr-text);text-align:right;">3,180</span></div>
+
+            <!-- EXPERTO -->
+            <div style="padding:10px 20px 0 20px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#d97706;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--clr-border);padding-bottom:4px;">🌙 EXPERTO</div>
+            <div class="leaderboard-row"><span class="position-num">6</span><div style="display:flex;align-items:center;gap:10px;padding:0 12px;"><div class="avatar" style="width:32px;height:32px;font-size:.75rem;background:#fef3c7;color:#b45309;">PS</div><div><div style="font-size:.875rem;font-weight:600;">Pedro Santos</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">Evaluador · Física</div></div></div><span class="rank-badge rank-EXPERTO" style="font-size:.68rem;padding:3px 7px;">🌙 EXPERTO</span><span style="font-weight:800;color:var(--clr-text);text-align:right;">2,890</span></div>
+            <div class="leaderboard-row"><span class="position-num">7</span><div style="display:flex;align-items:center;gap:10px;padding:0 12px;"><div class="avatar" style="width:32px;height:32px;font-size:.75rem;background:#fef3c7;color:#b45309;">RM</div><div><div style="font-size:.875rem;font-weight:600;">Rosa Mendez</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">Estudiante · Economía</div></div></div><span class="rank-badge rank-EXPERTO" style="font-size:.68rem;padding:3px 7px;">🌙 EXPERTO</span><span style="font-weight:800;color:var(--clr-text);text-align:right;">2,410</span></div>
+
+            <!-- TÚ (CACHIMBO) -->
+            <div style="padding:10px 20px 0 20px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#64748b;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--clr-border);padding-bottom:4px;">… más estudiantes …</div>
+            <div class="leaderboard-row is-me"><span class="position-num" style="color:var(--clr-primary);">47</span><div style="display:flex;align-items:center;gap:10px;padding:0 12px;"><div class="avatar avatar-blue" style="width:32px;height:32px;font-size:.75rem;">DF</div><div><div style="font-size:.875rem;font-weight:600;">Darling Fox <span style="font-size:.72rem;color:var(--clr-primary);font-weight:700;">(Tú)</span></div><div style="font-size:.72rem;color:var(--clr-text-subtle);">Estudiante · Ingeniería Informática</div></div></div><span class="rank-badge rank-CACHIMBO" style="font-size:.68rem;padding:3px 7px;">⭐ CACHIMBO</span><span style="font-weight:800;color:var(--clr-primary);text-align:right;">1,240</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: rewards + tiers -->
+      <div>
+        <div class="card mb-16" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:white;border:none;">
+          <div class="card-body" style="padding:18px;">
+            <div style="font-weight:700;margin-bottom:12px;">Tu posición</div>
+            <div style="font-size:2.5rem;font-weight:900;line-height:1;">#47</div>
+            <div style="font-size:.8125rem;opacity:.9;margin-top:4px;">de 853 estudiantes</div>
+            <div style="margin-top:12px;font-size:.8rem;opacity:.8;">Necesitas +760 puntos para subir de rango a <strong>🌟 REGULAR</strong></div>
+          </div>
+        </div>
+
+        <div class="card mb-16">
+          <div class="card-body" style="padding:18px;">
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin-bottom:12px;">¿Cómo ganar puntos?</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;"><span>📤 Subir material</span><span class="badge badge-success">+20 pts</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;"><span>✅ Material validado</span><span class="badge badge-success">+80 pts</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;"><span>💬 Publicar en foro</span><span class="badge badge-primary">+15 pts</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;"><span>↩️ Responder en foro</span><span class="badge badge-primary">+10 pts</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;"><span>👍 Voto recibido</span><span class="badge badge-primary">+5 pts</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:.8rem;"><span>⭐ Respuesta aceptada</span><span class="badge badge-warning">+25 pts</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body" style="padding:18px;">
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin-bottom:12px;">Rangos y requisitos</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:center;gap:8px;"><span class="rank-badge rank-CACHIMBO" style="width:84px;justify-content:center;font-size:.7rem;">⭐ CACHIMBO</span><span style="font-size:.78rem;color:var(--clr-text-muted);">0 – 1,999 pts</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><span class="rank-badge rank-REGULAR" style="width:84px;justify-content:center;font-size:.7rem;">🌟 REGULAR</span><span style="font-size:.78rem;color:var(--clr-text-muted);">2,000 – 2,999 pts</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><span class="rank-badge rank-EXPERTO" style="width:84px;justify-content:center;font-size:.7rem;">🌙 EXPERTO</span><span style="font-size:.78rem;color:var(--clr-text-muted);">3,000 – 3,999 pts</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><span class="rank-badge rank-AVANZADO" style="width:84px;justify-content:center;font-size:.7rem;">💜 AVANZADO</span><span style="font-size:.78rem;color:var(--clr-text-muted);">4,000 – 5,999 pts</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><span class="rank-badge rank-SENIOR" style="width:84px;justify-content:center;font-size:.7rem;">⚡ SENIOR</span><span style="font-size:.78rem;color:var(--clr-text-muted);">6,000 – 7,999 pts</span></div>
+              <div style="display:flex;align-items:center;gap:8px;"><span class="rank-badge rank-ELITE" style="width:84px;justify-content:center;font-size:.7rem;">🔥 ELITE</span><span style="font-size:.78rem;color:var(--clr-text-muted);">8,000+ pts</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+function updateScope(val) {
+  const label = {global:'🌐 Global', carrera:'🎓 Mi Carrera — Ing. Informática', ciclo:'📅 Ciclo 2025-1'};
+  document.querySelector('.page-subtitle').textContent = 'Clasificación ' + (label[val]||'') + ' · Acumula puntos contribuyendo a la comunidad';
+}
+</script>
+</body>
+</html>

@@ -4,8 +4,7 @@ title Vista de Código - Componente Mappers / Repositorios\nData Mapper + Gatewa
 skinparam classAttributeIconSize 0
 left to right direction
 
-package "Servicio de Persistencia Read/Write" {
-
+package "Infrastructure::Adapters::Outbound" {
     interface IDatabaseGateway {
         +execute(sql: String, params: Object): void
         +queryOne(sql: String, params: Object): DbRecord
@@ -18,7 +17,9 @@ package "Servicio de Persistencia Read/Write" {
         +queryOne(sql: String, params: Object): DbRecord
         +queryList(sql: String, params: Object): List
     }
+}
 
+package "Infrastructure::Mappers::Persistence" {
     abstract class BasePersistenceMapper {
         #db: IDatabaseGateway
     }
@@ -30,38 +31,6 @@ package "Servicio de Persistencia Read/Write" {
         +updateEstado(idArchivo: String, estado: String): void
     }
 
-    interface IPublicacionMapper {
-        +save(snapshot: PublicacionSnapshot): void
-        +findById(idPublicacion: String): PublicacionSnapshot
-        +findArchivadas(criterio: Object): List
-        +vincularArchivo(idPublicacion: String, idArchivo: String): void
-    }
-
-    interface IUsuarioMapper {
-        +save(snapshot: UsuarioSnapshot): void
-        +findById(idUsuario: String): UsuarioSnapshot
-        +updateRol(idUsuario: String, idRol: String): void
-        +updateEstadoCuenta(idUsuario: String, estado: String): void
-    }
-
-    interface ISolicitudEvaluadorMapper {
-        +save(snapshot: SolicitudEvaluadorSnapshot): void
-        +findById(idSolicitud: String): SolicitudEvaluadorSnapshot
-        +findPendientesVigentes(fecha: Date): List
-        +updateEstado(idSolicitud: String, estado: String): void
-    }
-
-    interface IPrivilegioAuditMapper {
-        +append(snapshot: PrivilegioAuditSnapshot): void
-        +findByUsuario(idUsuario: String): List
-    }
-
-    interface IGamificacionMapper {
-        +save(snapshot: PuntajeSnapshot): void
-        +findByUsuario(idUsuario: String): PuntajeSnapshot
-        +actualizarRanking(idUsuario: String): void
-    }
-
     class ArchivoMapper <<Data Mapper>> {
         +save(snapshot: ArchivoSnapshot): void
         +findById(idArchivo: String): ArchivoSnapshot
@@ -69,6 +38,13 @@ package "Servicio de Persistencia Read/Write" {
         +updateEstado(idArchivo: String, estado: String): void
         +toRecord(snapshot: ArchivoSnapshot): ArchivoRecord
         +toSnapshot(record: ArchivoRecord): ArchivoSnapshot
+    }
+
+    interface IPublicacionMapper {
+        +save(snapshot: PublicacionSnapshot): void
+        +findById(idPublicacion: String): PublicacionSnapshot
+        +findArchivadas(criterio: Object): List
+        +vincularArchivo(idPublicacion: String, idArchivo: String): void
     }
 
     class PublicacionMapper <<Data Mapper>> {
@@ -80,6 +56,13 @@ package "Servicio de Persistencia Read/Write" {
         +toSnapshot(record: PublicacionRecord): PublicacionSnapshot
     }
 
+    interface IUsuarioMapper {
+        +save(snapshot: UsuarioSnapshot): void
+        +findById(idUsuario: String): UsuarioSnapshot
+        +updateRol(idUsuario: String, idRol: String): void
+        +updateEstadoCuenta(idUsuario: String, estado: String): void
+    }
+
     class UsuarioMapper <<Data Mapper>> {
         +save(snapshot: UsuarioSnapshot): void
         +findById(idUsuario: String): UsuarioSnapshot
@@ -87,6 +70,13 @@ package "Servicio de Persistencia Read/Write" {
         +updateEstadoCuenta(idUsuario: String, estado: String): void
         +toRecord(snapshot: UsuarioSnapshot): UsuarioRecord
         +toSnapshot(record: UsuarioRecord): UsuarioSnapshot
+    }
+
+    interface ISolicitudEvaluadorMapper {
+        +save(snapshot: SolicitudEvaluadorSnapshot): void
+        +findById(idSolicitud: String): SolicitudEvaluadorSnapshot
+        +findPendientesVigentes(fecha: Date): List
+        +updateEstado(idSolicitud: String, estado: String): void
     }
 
     class SolicitudEvaluadorMapper <<Data Mapper>> {
@@ -98,10 +88,21 @@ package "Servicio de Persistencia Read/Write" {
         +toSnapshot(record: SolicitudEvaluadorRecord): SolicitudEvaluadorSnapshot
     }
 
+    interface IPrivilegioAuditMapper {
+        +append(snapshot: PrivilegioAuditSnapshot): void
+        +findByUsuario(idUsuario: String): List
+    }
+
     class PrivilegioAuditMapper <<Data Mapper>> {
         +append(snapshot: PrivilegioAuditSnapshot): void
         +findByUsuario(idUsuario: String): List
         +toRecord(snapshot: PrivilegioAuditSnapshot): PrivilegioAuditRecord
+    }
+
+    interface IGamificacionMapper {
+        +save(snapshot: PuntajeSnapshot): void
+        +findByUsuario(idUsuario: String): PuntajeSnapshot
+        +actualizarRanking(idUsuario: String): void
     }
 
     class GamificacionMapper <<Data Mapper>> {
@@ -111,14 +112,9 @@ package "Servicio de Persistencia Read/Write" {
         +toRecord(snapshot: PuntajeSnapshot): PuntajeRecord
         +toSnapshot(record: PuntajeRecord): PuntajeSnapshot
     }
-
-    class DbRecord <<DTO>> {
-        +fields: Object
-    }
 }
 
-package "Snapshots / DTOs de Persistencia" {
-
+package "Core::Shared::DTOs" {
     class ArchivoSnapshot <<DTO>> {
         +idArchivo: String
         +nombre: String
@@ -194,7 +190,10 @@ package "Snapshots / DTOs de Persistencia" {
     }
 }
 
-package "Registros PostgreSQL" {
+package "Infrastructure::Database::Records" {
+    class DbRecord <<DTO>> {
+        +fields: Object
+    }
 
     class ArchivoRecord <<Table Row>> {
         +id_archivo: String
@@ -274,10 +273,11 @@ package "Registros PostgreSQL" {
     }
 }
 
+' Relaciones Gateway
 IDatabaseGateway <|.. PostgreSqlGateway
-
 BasePersistenceMapper --> IDatabaseGateway
 
+' Herencia de Mappers base
 BasePersistenceMapper <|-- ArchivoMapper
 BasePersistenceMapper <|-- PublicacionMapper
 BasePersistenceMapper <|-- UsuarioMapper
@@ -285,6 +285,7 @@ BasePersistenceMapper <|-- SolicitudEvaluadorMapper
 BasePersistenceMapper <|-- PrivilegioAuditMapper
 BasePersistenceMapper <|-- GamificacionMapper
 
+' Implementación de Interfaces de Mappers
 IArchivoMapper <|.. ArchivoMapper
 IPublicacionMapper <|.. PublicacionMapper
 IUsuarioMapper <|.. UsuarioMapper
@@ -292,6 +293,7 @@ ISolicitudEvaluadorMapper <|.. SolicitudEvaluadorMapper
 IPrivilegioAuditMapper <|.. PrivilegioAuditMapper
 IGamificacionMapper <|.. GamificacionMapper
 
+' Dependencias a Snapshots y Records
 ArchivoMapper ..> ArchivoSnapshot
 ArchivoMapper ..> ArchivoRecord
 ArchivoMapper ..> MetadataArchivoRecord
@@ -313,6 +315,7 @@ PrivilegioAuditMapper ..> PrivilegioAuditRecord
 GamificacionMapper ..> PuntajeSnapshot
 GamificacionMapper ..> PuntajeRecord
 
+' Composiciones y Asociaciones en DTOs/Snapshots
 ArchivoSnapshot *-- MetadataArchivoSnapshot : contiene
 SolicitudEvaluadorSnapshot *-- EvidenciaPostulacionSnapshot : contiene
 PublicacionSnapshot --> UsuarioSnapshot : autorId
@@ -321,29 +324,30 @@ PuntajeSnapshot --> UsuarioSnapshot : usuarioId
 PrivilegioAuditSnapshot --> UsuarioSnapshot : usuarioAfectadoId
 PrivilegioAuditSnapshot --> SolicitudEvaluadorSnapshot : solicitudId
 
+' Notas Arquitectónicas
 note right of ArchivoMapper
-Data Mapper:
-convierte snapshots persistibles
-en registros SQL y viceversa.
+  Data Mapper:
+  convierte snapshots persistibles
+  en registros SQL y viceversa.
 end note
 
 note right of PrivilegioAuditMapper
-RC14:
-mapper append-only.
-Solo expone append(),
-no update ni delete.
+  RC14:
+  mapper append-only.
+  Solo expone append(),
+  no update ni delete.
 end note
 
 note right of SolicitudEvaluadorRecord
-RF09:
-la solicitud tiene fecha_expiracion
-para anular postulaciones vencidas.
+  RF09:
+  la solicitud tiene fecha_expiracion
+  para anular postulaciones vencidas.
 end note
 
 note bottom of EvidenciaPostulacionSnapshot
-Dependent Mapping:
-la evidencia depende de la solicitud
-y se persiste junto al proceso RF09.
+  Dependent Mapping:
+  la evidencia depende de la solicitud
+  y se persiste junto al proceso RF09.
 end note
 
 @enduml

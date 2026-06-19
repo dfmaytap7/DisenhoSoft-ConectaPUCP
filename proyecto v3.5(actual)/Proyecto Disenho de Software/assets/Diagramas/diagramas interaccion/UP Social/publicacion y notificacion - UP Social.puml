@@ -1,0 +1,40 @@
+@startuml
+title Diagrama de Interacción - Crear publicación y notificar (UP Social)
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+actor "Estudiante /\nEvaluador" as u
+participant "Aplicación\nWeb" as web
+participant "ForoController" as ctrl
+participant "Publicacion\nService" as pub
+participant "Grilla\nDatos" as grid
+participant "Gamificación" as gam
+participant "UP\nNotificaciones" as noti
+
+u -> web: crea publicación
+activate web
+web -> ctrl: POST /social/publicaciones
+activate ctrl
+ctrl -> pub: crearPublicacion(dto)
+activate pub
+pub -> grid: guardar publicación
+activate grid
+grid --> pub: publicación registrada
+deactivate grid
+
+opt [publicación aprobada o visible]
+  pub ->> gam: evento PUBLICACION_CREADA
+  pub ->> noti: evento NUEVA_ACTIVIDAD
+end
+
+pub --> ctrl: PublicacionDTO
+ctrl --> web: respuesta 201
+web --> u: muestra publicación creada
+deactivate pub
+deactivate ctrl
+deactivate web
+note right of pub
+Observer desacopla foro, gamificación y notificaciones.
+end note
+@enduml

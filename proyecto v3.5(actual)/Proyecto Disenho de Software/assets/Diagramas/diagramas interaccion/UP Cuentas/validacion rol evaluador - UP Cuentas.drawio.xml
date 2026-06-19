@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Página-1" id="7fDyQeBqS48lZ3ftSgki">
+    <mxGraphModel dx="1685" dy="1715" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;" value="Diagrama de Interacción - Validación de rol evaluador (UP Cuentas)" vertex="1">
+          <mxGeometry height="30" width="900" x="330.0006955295137" y="100.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=12;" value="Administrador" vertex="1">
+          <mxGeometry height="80" width="40" x="360.0006955295137" y="130.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="4" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#b85450;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380.0006955295137" y="200.0018744574653" as="sourcePoint" />
+            <mxPoint x="380.0006955295137" y="1690.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=12;align=center;verticalAlign=middle;spacing=2;" value="Aplicación&#xa;Web" vertex="1">
+          <mxGeometry height="48" width="130" x="490.0006955295137" y="155.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="6" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#b85450;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="555.0006955295137" y="200.0018744574653" as="sourcePoint" />
+            <mxPoint x="555.0006955295137" y="1690.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=12;align=center;verticalAlign=middle;spacing=2;" value="Controlador&#xa;Cuentas" vertex="1">
+          <mxGeometry height="48" width="130" x="665.0006955295137" y="155.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="8" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#b85450;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730.0006955295137" y="200.0018744574653" as="sourcePoint" />
+            <mxPoint x="730.0006955295137" y="1690.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=12;align=center;verticalAlign=middle;spacing=2;" value="Gestor&#xa;Roles" vertex="1">
+          <mxGeometry height="48" width="130" x="900.0006955295137" y="155.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="10" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#b85450;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="965.0006955295137" y="200.0018744574653" as="sourcePoint" />
+            <mxPoint x="965.0006955295137" y="1690.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=12;align=center;verticalAlign=middle;spacing=2;" value="Auditoría&#xa;Cuentas" vertex="1">
+          <mxGeometry height="48" width="130" x="1075.0006955295137" y="155.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="12" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#b85450;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1140.0006955295137" y="200.0018744574653" as="sourcePoint" />
+            <mxPoint x="1140.0006955295137" y="1690.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=12;align=center;verticalAlign=middle;spacing=2;" value="Grilla&#xa;Datos" vertex="1">
+          <mxGeometry height="48" width="130" x="1250.0006955295137" y="155.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="14" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#b85450;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1315.0006955295137" y="200.0018744574653" as="sourcePoint" />
+            <mxPoint x="1315.0006955295137" y="1690.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=12;align=center;verticalAlign=middle;spacing=2;" value="Grilla&#xa;Mensajería" vertex="1">
+          <mxGeometry height="48" width="130" x="1425.0006955295137" y="155.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="16" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#b85450;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1490.0006955295137" y="200.0018744574653" as="sourcePoint" />
+            <mxPoint x="1490.0006955295137" y="1690.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=12;align=center;verticalAlign=middle;spacing=2;" value="Data&#xa;Writer" vertex="1">
+          <mxGeometry height="48" width="130" x="1600.0006955295137" y="155.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="18" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#b85450;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1665.0006955295137" y="200.0018744574653" as="sourcePoint" />
+            <mxPoint x="1665.0006955295137" y="1690.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="19" edge="1" parent="1" style="endArrow=blockThin;endFill=1;endSize=12;html=1;rounded=0;strokeColor=#000000;fontSize=12;" value="revisa evidencia">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380.0006955295137" y="245.0018744574653" as="sourcePoint" />
+            <mxPoint x="555.0006955295137" y="245.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="1127" width="12" x="549.0006955295137" y="245.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="21" edge="1" parent="1" style="endArrow=blockThin;endFill=1;endSize=12;html=1;rounded=0;strokeColor=#000000;fontSize=12;" value="PUT /roles/evaluador">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="558.0006955295137" y="300.0018744574653" as="sourcePoint" />
+            <mxPoint x="730.0006955295137" y="300.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="1072" width="12" x="724.0006955295137" y="300.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="23" edge="1" parent="1" style="endArrow=blockThin;endFill=1;endSize=12;html=1;rounded=0;strokeColor=#000000;fontSize=12;entryX=0.185;entryY=0.014;entryDx=0;entryDy=0;entryPerimeter=0;" target="24" value="validarSolicitudEvaluador(idUsuario)">
+          <mxGeometry relative="1" x="0.0116" y="-15" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="733.0006955295137" y="355.0018744574653" as="sourcePoint" />
+            <mxPoint x="905.0006955295137" y="355.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="1092" width="12" x="959" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="1" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=1;" value="alt" vertex="1">
+          <mxGeometry height="1085" width="1395" x="300" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=12;fontStyle=1;" value="[evidencia válida]" vertex="1">
+          <mxGeometry height="24" width="210" x="290.0006955295137" y="420.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="27" edge="1" parent="1" style="endArrow=blockThin;endFill=1;endSize=12;html=1;rounded=0;strokeColor=#000000;fontSize=12;" value="actualizarRoles(id, Evaluador)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="968.0006955295137" y="415.0018744574653" as="sourcePoint" />
+            <mxPoint x="1315.0006955295137" y="415.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="28" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="120" width="12" x="1309.0006955295137" y="415.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="30" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#666666;fontSize=12;" value="rol actualizado en Space">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1318.0006955295137" y="470.0018744574653" as="sourcePoint" />
+            <mxPoint x="968.0006955295137" y="470.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="29" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;strokeColor=#000000;fontSize=12;" value="publish(ROL_ACTUALIZADO)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="968.0006955295137" y="525.0018744574653" as="sourcePoint" />
+            <mxPoint x="1490.0006955295137" y="525.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" edge="1" parent="1" style="endArrow=blockThin;endFill=1;endSize=12;html=1;rounded=0;strokeColor=#000000;fontSize=12;" value="registrarCambioPrivilegio">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="968.0006955295137" y="580.0018744574653" as="sourcePoint" />
+            <mxPoint x="1140.0006955295137" y="580.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="230" width="12" x="1134.0006955295137" y="580.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" style="endArrow=blockThin;endFill=1;endSize=12;html=1;rounded=0;strokeColor=#000000;fontSize=12;" value="guardarEventoAuditoria">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1143.0006955295137" y="635.0018744574653" as="sourcePoint" />
+            <mxPoint x="1315.0006955295137" y="635.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="120" width="12" x="1309.0006955295137" y="635.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="36" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#666666;fontSize=12;" value="auditoría registrada">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1318.0006955295137" y="690.0018744574653" as="sourcePoint" />
+            <mxPoint x="1143.0006955295137" y="690.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="35" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;strokeColor=#000000;fontSize=12;" value="publish(AUDITORIA_ROL)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1143.0006955295137" y="745.0018744574653" as="sourcePoint" />
+            <mxPoint x="1490.0006955295137" y="745.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#666666;fontSize=12;" value="registro confirmado">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1143.0006955295137" y="800.0018744574653" as="sourcePoint" />
+            <mxPoint x="968.0006955295137" y="800.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="38" edge="1" parent="1" style="endArrow=blockThin;endFill=1;endSize=12;html=1;rounded=0;strokeColor=#000000;fontSize=12;" value="persistir cambio y auditoría">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1490.0006955295137" y="855.0018744574653" as="sourcePoint" />
+            <mxPoint x="1665.0006955295137" y="855.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="39" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="65" width="12" x="1659.0006955295137" y="855.0018744574653" as="geometry" />
+        </mxCell>
+        <mxCell id="40" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#666666;fontSize=12;" value="ACK">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1668.0006955295137" y="910.0018744574653" as="sourcePoint" />
+            <mxPoint x="1490.0006955295137" y="910.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41" edge="1" parent="1" source="24" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#666666;fontSize=12;exitX=-0.193;exitY=0.604;exitDx=0;exitDy=0;exitPerimeter=0;" value="Solicitud aprobada">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="908.0006955295137" y="965.0018744574653" as="sourcePoint" />
+            <mxPoint x="733.0006955295137" y="965.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="42" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#666666;fontSize=12;" value="resultado operación">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="733.0006955295137" y="1020.0018744574653" as="sourcePoint" />
+            <mxPoint x="558.0006955295137" y="1020.0018744574653" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="43" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#666666;fontSize=12;" value="muestra aprobación">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="558.0006955295137" y="1075.0018744574654" as="sourcePoint" />
+            <mxPoint x="380.0006955295137" y="1075.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="44" edge="1" parent="1" source="25" style="endArrow=none;dashed=1;html=1;rounded=0;dashPattern=8 8;strokeColor=#9673a6;exitX=0.007;exitY=0.717;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="835.0006955295137" y="1120.0018744574654" as="sourcePoint" />
+            <mxPoint x="1695.0006955295137" y="1120.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="45" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=12;fontStyle=1;" value="[evidencia inválida o vencida]" vertex="1">
+          <mxGeometry height="24" width="220" x="300.0006955295137" y="1130.0018744574654" as="geometry" />
+        </mxCell>
+        <mxCell id="46" edge="1" parent="1" style="endArrow=blockThin;endFill=1;endSize=12;html=1;rounded=0;strokeColor=#000000;fontSize=12;" value="registrarRechazo/expiración">
+          <mxGeometry relative="1" x="-0.0465" y="-18" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="968.0006955295137" y="1142.0018744574654" as="sourcePoint" />
+            <mxPoint x="1140.0006955295137" y="1142.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="47" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="110" width="12" x="1134.0006955295137" y="1142.0018744574654" as="geometry" />
+        </mxCell>
+        <mxCell id="52" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;strokeColor=#000000;fontSize=12;" value="publish(AUDITORIA_ROL)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1143.0006955295137" y="1197.0018744574654" as="sourcePoint" />
+            <mxPoint x="1490.0006955295137" y="1197.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="48" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#666666;fontSize=12;" value="registro confirmado">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1143.0006955295137" y="1252.0018744574654" as="sourcePoint" />
+            <mxPoint x="968.0006955295137" y="1252.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="49" edge="1" parent="1" source="24" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#666666;fontSize=12;exitX=-0.029;exitY=0.886;exitDx=0;exitDy=0;exitPerimeter=0;" value="Solicitud rechazada o anulada">
+          <mxGeometry relative="1" x="0.0057" y="18" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="908.0006955295137" y="1307.0018744574654" as="sourcePoint" />
+            <mxPoint x="733.0006955295137" y="1307.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="50" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#666666;fontSize=12;" value="resultado operación">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="733.0006955295137" y="1362.0018744574654" as="sourcePoint" />
+            <mxPoint x="558.0006955295137" y="1362.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="51" edge="1" parent="1" style="endArrow=open;endFill=0;endSize=12;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#666666;fontSize=12;" value="muestra rechazo/anulación">
+          <mxGeometry relative="1" x="-0.0112" y="8" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="558.0006955295137" y="1417.0018744574654" as="sourcePoint" />
+            <mxPoint x="380.0006955295137" y="1417.0018744574654" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="53" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#d6b656;fillColor=#fff2cc;align=left;verticalAlign=middle;rounded=1;arcSize=5;fontSize=11;spacingLeft=6;" value="&lt;b&gt;flujo asíncrono (RF26)&lt;/b&gt; — NotificacionConsumer (UP Notificaciones) consume el evento de Kafka&lt;br&gt;y envía correo al postulante con la decisión (aprobación o rechazo)." vertex="1">
+          <mxGeometry height="50" width="700" x="490.0006955295137" y="1490.0018744574654" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

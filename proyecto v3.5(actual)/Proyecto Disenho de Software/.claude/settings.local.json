@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(textutil -convert txt -stdout \"/Users/darlingmaytapalacios/Library/Mobile Documents/com~apple~CloudDocs/Documents/1. Projects/Curso - Diseño de Software/Proyecto Disenho de Software/ Laboratorio 05 - grupo 24.docx\")"
+    ]
+  }
+}

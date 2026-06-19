@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nueva publicación — ConectaPUCP</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .create-layout { display:grid;grid-template-columns:1fr 280px;gap:24px;align-items:start; }
+    .preview-bubble { background:var(--clr-bg-subtle);border:1.5px solid var(--clr-border);border-radius:var(--r-lg);padding:16px;margin-top:14px; }
+    .tip-item { display:flex;gap:8px;font-size:.8125rem;color:var(--clr-text-muted);margin-bottom:8px;align-items:flex-start; }
+    .tip-num { flex-shrink:0;width:18px;height:18px;background:var(--clr-primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;margin-top:1px; }
+    .course-trigger { display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border:1.5px solid var(--clr-border);border-radius:var(--r-md);cursor:pointer;background:white;font-family:inherit;font-size:.9rem;color:var(--clr-text-muted);width:100%;transition:border-color .15s,box-shadow .15s; }
+    .course-trigger.has-value { color:var(--clr-text); }
+    .course-trigger:hover { border-color:var(--clr-primary); }
+    .course-trigger:focus { outline:none;border-color:var(--clr-primary);box-shadow:0 0 0 3px var(--clr-primary-light); }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="topbar-logo" href="dashboard.html"><div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="12" r="3"/><circle cx="18" cy="8" r="2"/><line x1="11.8" y1="11" x2="16.4" y2="9.2"/></svg></div><span class="logo-text">Conecta<span>PUCP</span></span></a>
+    <div class="topbar-search"><svg class="search-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="search" placeholder="Buscar materiales, foros, cursos…"></div>
+    <div class="topbar-actions"><a href="notificaciones.html" class="icon-btn"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="badge-count">3</span></a>
+    <div class="user-menu"><div class="avatar avatar-blue">DF</div><div class="user-menu-info"><div class="user-name">Darling Fox</div><div class="user-role">Estudiante</div></div><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></div></div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DF</div><div><div class="user-name">Darling Fox</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar" style="background:var(--rank-cachimbo);">⭐ CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
+    <span class="sidebar-section-label">Principal</span>
+    <a href="dashboard.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
+    <a href="repositorio.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Repositorio</a>
+    <a href="foros.html" class="nav-item active"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Foros</a>
+    <a href="#" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Grupos de Estudio</a>
+    <span class="sidebar-section-label">Yo</span>
+    <a href="ranking.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="18 20 18 10"/><polyline points="12 20 12 4"/><polyline points="6 20 6 14"/></svg>Ranking</a>
+    <a href="notificaciones.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Notificaciones<span class="nav-badge">3</span></a>
+    <a href="perfil.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Mi Perfil</a>
+    <div class="sidebar-divider"></div>
+    <a href="postulacion-evaluador.html" class="sidebar-btn-cta"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Postular a Evaluador</a>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <div>
+        <div class="breadcrumb"><a href="dashboard.html">Inicio</a><span class="sep">›</span><a href="foros.html">Foros</a><span class="sep">›</span><span>Nueva publicación</span></div>
+        <h1 class="page-title">Nueva publicación</h1>
+        <p class="page-subtitle">Comparte una pregunta o discusión con tus compañeros</p>
+      </div>
+    </div>
+
+    <div class="create-layout">
+      <div>
+        <div class="card">
+          <div class="card-body" style="padding:28px;display:flex;flex-direction:column;gap:20px;">
+
+            <!-- Título -->
+            <div class="form-group">
+              <label class="form-label required" for="titleInput">Título</label>
+              <input type="text" class="form-control" id="titleInput" maxlength="150" placeholder="Ej: ¿Cómo resuelvo esta integral por partes?" oninput="updateCharCount('ccTitle',this.value.length,150);checkSubmit()">
+              <div style="display:flex;justify-content:space-between;margin-top:4px;"><div class="field-error" id="errTitle"></div><div class="char-counter" id="ccTitle">0 / 150</div></div>
+            </div>
+
+            <!-- Curso -->
+            <div class="form-group">
+              <label class="form-label required">Curso</label>
+              <button type="button" class="course-trigger" id="courseTrigger" onclick="openCourseModal()">
+                <span id="courseTriggerText">Seleccionar curso…</span>
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              </button>
+              <div class="field-error" id="errCurso" style="margin-top:4px;"></div>
+            </div>
+
+            <!-- Tipo -->
+            <div class="form-group">
+              <label class="form-label required" for="tipoSelect">Tipo de publicación</label>
+              <select class="form-control" id="tipoSelect" onchange="checkSubmit()">
+                <option value="">Selecciona el tipo…</option>
+                <option value="pregunta">❓ Pregunta</option>
+                <option value="discusion">💬 Discusión</option>
+                <option value="recurso">📎 Compartir recurso</option>
+                <option value="anuncio">📢 Anuncio del curso</option>
+              </select>
+            </div>
+
+            <!-- Etiquetas -->
+            <div class="form-group">
+              <label class="form-label" for="tagInput">Etiquetas <span class="form-label-sub">(máx. 5, Enter para añadir)</span></label>
+              <div class="tag-input-container" id="tagContainer" onclick="document.getElementById('tagInput').focus()">
+                <input type="text" class="tag-input-inner" id="tagInput" placeholder="Ej: derivadas, parcial, ejercicios…" maxlength="30">
+              </div>
+              <div style="font-size:.78rem;color:var(--clr-text-subtle);margin-top:4px;"><span id="tagCount">0</span>/5 etiquetas</div>
+            </div>
+
+            <!-- Contenido -->
+            <div class="form-group">
+              <label class="form-label required" for="contentInput">Descripción</label>
+              <textarea class="form-control" id="contentInput" rows="7" maxlength="5000"
+                placeholder="Explica tu pregunta o tema con detalle. Cuéntanos el contexto, qué ya intentaste y dónde te atascas exactamente."
+                oninput="updateCharCount('ccContent',this.value.length,5000);checkSubmit()"></textarea>
+              <div style="display:flex;justify-content:space-between;margin-top:4px;"><div class="field-error" id="errContent"></div><div class="char-counter" id="ccContent">0 / 5000</div></div>
+            </div>
+
+            <!-- Vista previa -->
+            <div id="previewSection" style="display:none;">
+              <div style="font-size:.8125rem;font-weight:600;color:var(--clr-text-muted);margin-bottom:8px;">Vista previa</div>
+              <div class="preview-bubble">
+                <div style="font-weight:700;font-size:.9375rem;color:var(--clr-text);margin-bottom:6px;" id="previewTitle"></div>
+                <div id="previewBadge" style="margin-bottom:6px;"></div>
+                <div style="font-size:.875rem;color:var(--clr-text);line-height:1.7;white-space:pre-wrap;" id="previewContent"></div>
+              </div>
+            </div>
+
+            <!-- Acciones -->
+            <div style="display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--clr-border);padding-top:16px;">
+              <button class="btn btn-secondary" onclick="togglePreview()">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Vista previa
+              </button>
+              <button class="btn btn-secondary" onclick="window.history.back()">Cancelar</button>
+              <button class="btn btn-primary" id="submitBtn" disabled onclick="submitPost()">
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Publicar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar derecho -->
+      <div>
+        <div class="card mb-16" style="background:linear-gradient(135deg,#1e40af,#2563eb);color:white;border:none;">
+          <div class="card-body" style="padding:18px;">
+            <div style="font-weight:700;margin-bottom:4px;">+15 puntos</div>
+            <div style="font-size:.8125rem;opacity:.9;">por publicar una nueva pregunta o discusión en el foro.</div>
+          </div>
+        </div>
+        <div class="card mb-16">
+          <div class="card-body" style="padding:18px;">
+            <div style="font-size:.8125rem;font-weight:700;margin-bottom:12px;">💡 Consejos</div>
+            <div class="tip-item"><div class="tip-num">1</div><span>Sé específico: incluye el número de ejercicio o la sección del libro.</span></div>
+            <div class="tip-item"><div class="tip-num">2</div><span>Muestra lo que intentaste, aunque no hayas llegado al resultado.</span></div>
+            <div class="tip-item"><div class="tip-num">3</div><span>Usa etiquetas del tema para que tus compañeros la encuentren fácil.</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body" style="padding:18px;">
+            <div style="font-size:.8125rem;font-weight:700;margin-bottom:10px;">⚖️ Normas del foro</div>
+            <div style="font-size:.8rem;color:var(--clr-text-muted);display:flex;flex-direction:column;gap:5px;">
+              <div>✅ Preguntas académicas del curso</div>
+              <div>✅ Discusiones y recursos útiles</div>
+              <div>❌ Contenido irrelevante o spam</div>
+              <div>❌ Lenguaje ofensivo o inapropiado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Modal de cursos -->
+<div class="modal-overlay" id="courseModal" onclick="if(event.target===this)closeCourseModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Seleccionar curso</h3>
+      <button class="modal-close" onclick="closeCourseModal()"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-search">
+      <div class="modal-search-wrap">
+        <svg class="modal-search-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="search" id="courseSearch" placeholder="Buscar por código o nombre de curso…" oninput="filterCourses(this.value)">
+      </div>
+    </div>
+    <div class="modal-body" id="courseList"></div>
+    <div class="modal-footer">
+      <div style="font-size:.8rem;color:var(--clr-text-muted);" id="courseCount">Selecciona un curso</div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-secondary btn-sm" onclick="closeCourseModal()">Cancelar</button>
+        <button class="btn btn-primary btn-sm" id="courseConfirm" onclick="confirmCourse()" disabled>Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const COURSES = [
+  { fac:'Ciencias e Ingeniería', items:[
+    {code:'MAT157', name:'Álgebra Lineal'},
+    {code:'MAT258', name:'Cálculo 3'},
+    {code:'MAT301', name:'Ecuaciones Diferenciales'},
+    {code:'EST120', name:'Estadística para Ingeniería'},
+    {code:'FIS112', name:'Física 2'},
+    {code:'FIS201', name:'Física 3'},
+    {code:'INF224', name:'Ingeniería de Software'},
+    {code:'INF250', name:'Algoritmos y Complejidad'},
+    {code:'INF272', name:'Estructuras de Datos'},
+    {code:'INF50',  name:'Diseño de Software'},
+  ]},
+  { fac:'Gestión y Alta Dirección', items:[
+    {code:'ECO101', name:'Microeconomía'},
+    {code:'ECO202', name:'Macroeconomía'},
+    {code:'ADM110', name:'Administración General'},
+    {code:'FIN201', name:'Finanzas Corporativas'},
+  ]},
+  { fac:'Letras y Ciencias Humanas', items:[
+    {code:'COM101', name:'Comunicación Escrita'},
+    {code:'FIL200', name:'Filosofía Contemporánea'},
+    {code:'SOC120', name:'Sociología General'},
+  ]},
+];
+
+let selectedCourse = null;
+let tempCourse = null;
+let showPreview = false;
+const tags = [];
+const TIPO_MAP = { pregunta:'❓ Pregunta', discusion:'💬 Discusión', recurso:'📎 Recurso', anuncio:'📢 Anuncio' };
+
+function renderCourseList(filter='') {
+  const q = filter.toLowerCase();
+  const list = document.getElementById('courseList');
+  list.innerHTML = '';
+  let total = 0;
+  COURSES.forEach(fac => {
+    const items = fac.items.filter(c => !q || c.code.toLowerCase().includes(q) || c.name.toLowerCase().includes(q));
+    if (!items.length) return;
+    total += items.length;
+    const label = document.createElement('div');
+    label.className = 'modal-section-label';
+    label.textContent = fac.fac;
+    list.appendChild(label);
+    items.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'modal-course-item' + (tempCourse && tempCourse.code === c.code ? ' selected' : '');
+      btn.innerHTML = `<span class="modal-course-code">${c.code}</span><span class="modal-course-name">${c.name}</span><svg class="modal-check" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+      btn.onclick = () => selectCourse(c, btn);
+      list.appendChild(btn);
+    });
+  });
+  document.getElementById('courseCount').textContent = total === 0 ? 'Sin resultados' : total + ' cursos disponibles';
+}
+
+function selectCourse(c, btn) {
+  document.querySelectorAll('.modal-course-item').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  tempCourse = c;
+  document.getElementById('courseConfirm').disabled = false;
+  document.getElementById('courseCount').textContent = 'Seleccionado: ' + c.code + ' — ' + c.name;
+}
+
+function openCourseModal() {
+  tempCourse = selectedCourse;
+  document.getElementById('courseModal').classList.add('open');
+  document.getElementById('courseSearch').value = '';
+  renderCourseList();
+  setTimeout(() => document.getElementById('courseSearch').focus(), 100);
+}
+
+function closeCourseModal() {
+  document.getElementById('courseModal').classList.remove('open');
+}
+
+function filterCourses(val) { renderCourseList(val); }
+
+function confirmCourse() {
+  if (!tempCourse) return;
+  selectedCourse = tempCourse;
+  const trigger = document.getElementById('courseTrigger');
+  const text = document.getElementById('courseTriggerText');
+  text.textContent = selectedCourse.code + ' — ' + selectedCourse.name;
+  trigger.classList.add('has-value');
+  document.getElementById('errCurso').textContent = '';
+  closeCourseModal();
+  checkSubmit();
+}
+
+function updateCharCount(id, len, max) {
+  const el = document.getElementById(id);
+  el.textContent = len + ' / ' + max;
+  el.className = 'char-counter' + (len/max >= 1 ? ' danger' : len/max >= .9 ? ' warn' : '');
+}
+
+function checkSubmit() {
+  const title = document.getElementById('titleInput').value.trim();
+  const tipo = document.getElementById('tipoSelect').value;
+  const content = document.getElementById('contentInput').value.trim();
+  document.getElementById('submitBtn').disabled = !(title.length >= 5 && selectedCourse && tipo && content.length >= 20);
+}
+
+function togglePreview() {
+  showPreview = !showPreview;
+  document.getElementById('previewSection').style.display = showPreview ? '' : 'none';
+  if (showPreview) {
+    document.getElementById('previewTitle').textContent = document.getElementById('titleInput').value || 'Título…';
+    document.getElementById('previewContent').textContent = document.getElementById('contentInput').value || '';
+    const tipo = document.getElementById('tipoSelect').value;
+    document.getElementById('previewBadge').innerHTML = tipo ? `<span class="badge badge-primary">${TIPO_MAP[tipo] || tipo}</span>` : '';
+  }
+}
+
+function submitPost() {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Publicando…';
+  setTimeout(() => {
+    alert('✅ ¡Publicación creada!\n\n+15 puntos añadidos a tu cuenta.');
+    window.location.href = 'foros.html';
+  }, 1000);
+}
+
+// Tag input
+document.getElementById('tagInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ',') {
+    e.preventDefault();
+    const val = e.target.value.trim().replace(',', '');
+    if (!val || tags.length >= 5 || tags.includes(val)) return;
+    tags.push(val);
+    const chip = document.createElement('span');
+    chip.className = 'tag-chip';
+    chip.innerHTML = val + `<button type="button" onclick="removeTag(this,'${val}')">×</button>`;
+    document.getElementById('tagContainer').insertBefore(chip, e.target);
+    e.target.value = '';
+    document.getElementById('tagCount').textContent = tags.length;
+  }
+});
+function removeTag(btn, val) {
+  const i = tags.indexOf(val);
+  if (i > -1) tags.splice(i, 1);
+  btn.parentElement.remove();
+  document.getElementById('tagCount').textContent = tags.length;
+}
+</script>
+</body>
+</html>
