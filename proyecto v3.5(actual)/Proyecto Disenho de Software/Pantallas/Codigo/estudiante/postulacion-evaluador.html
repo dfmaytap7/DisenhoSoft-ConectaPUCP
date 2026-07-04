@@ -11,13 +11,13 @@
     .step { flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;position:relative; }
     .step::after { content:'';position:absolute;top:16px;left:50%;width:100%;height:2px;background:var(--clr-border); }
     .step:last-child::after { display:none; }
-    .step-circle { width:32px;height:32px;border-radius:50%;border:2px solid var(--clr-border);background:white;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:var(--clr-text-muted);z-index:1;position:relative; }
+    .step-circle { width:32px;height:32px;border-radius:50%;border:2px solid var(--clr-border);background:white;display:flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;color:var(--clr-text-muted);z-index:1;position:relative; }
     .step.done .step-circle { background:var(--clr-success);border-color:var(--clr-success);color:white; }
     .step.active .step-circle { background:var(--clr-primary);border-color:var(--clr-primary);color:white; }
-    .step-label { font-size:.72rem;color:var(--clr-text-muted);text-align:center;font-weight:500; }
+    .step-label { font-size:.75rem;color:var(--clr-text-muted);text-align:center;font-weight:500; }
     .step.active .step-label { color:var(--clr-primary);font-weight:600; }
     .step.done .step-label { color:var(--clr-success); }
-    .course-trigger { display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border:1.5px solid var(--clr-border);border-radius:var(--r-md);cursor:pointer;background:white;font-family:inherit;font-size:.9rem;color:var(--clr-text-muted);width:100%;transition:border-color .15s,box-shadow .15s; }
+    .course-trigger { display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border:1.5px solid var(--clr-border);border-radius:var(--r-md);cursor:pointer;background:white;font-family:inherit;font-size:.875rem;color:var(--clr-text-muted);width:100%;transition:border-color .15s,box-shadow .15s; }
     .course-trigger.has-value { color:var(--clr-text); }
     .course-trigger:hover { border-color:var(--clr-primary); }
     .selected-courses-list { display:flex;flex-wrap:wrap;gap:6px;margin-top:8px; }
@@ -33,7 +33,7 @@
   </header>
 
   <aside class="sidebar">
-    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DR</div><div><div class="user-name">Diego Ramírez</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar" style="background:var(--rank-cachimbo);">⭐ CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
+    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DR</div><div><div class="user-name">Diego Ramírez</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar" style="background:var(--rank-cachimbo);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
     <span class="sidebar-section-label">Principal</span>
     <a href="dashboard.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
     <a href="repositorio.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Repositorio</a>
@@ -70,7 +70,7 @@
 
         <!-- Tus datos -->
         <div class="card card-padding mb-24">
-          <div class="section-title" style="margin-bottom:14px;">👤 Tus datos</div>
+          <div class="section-title" style="margin-bottom:14px;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Tus datos</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label">Nombre completo</label>
@@ -93,7 +93,7 @@
 
         <!-- Cursos -->
         <div class="card card-padding mb-24">
-          <div class="section-title" style="margin-bottom:6px;">📚 Cursos en los que puedes evaluar</div>
+          <div class="section-title" style="margin-bottom:6px;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Cursos en los que puedes evaluar</div>
           <div style="font-size:.8125rem;color:var(--clr-text-muted);margin-bottom:14px;">Selecciona los cursos donde te sientes seguro/a revisando el contenido enviado por compañeros.</div>
           <button type="button" class="course-trigger" id="courseTrigger" onclick="openCourseModal()">
             <span id="courseTriggerText">Buscar y añadir cursos…</span>
@@ -105,7 +105,7 @@
 
         <!-- Experiencia -->
         <div class="card card-padding mb-24">
-          <div class="section-title" style="margin-bottom:14px;">🎓 Tu experiencia</div>
+          <div class="section-title" style="margin-bottom:14px;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg> Tu experiencia</div>
           <div class="form-group">
             <label class="form-label required" for="experiencia">¿Qué experiencia tienes en estos cursos?</label>
             <textarea id="experiencia" class="form-control" rows="4" maxlength="500"
@@ -123,7 +123,7 @@
 
         <!-- Evidencia -->
         <div class="card card-padding mb-24">
-          <div class="section-title" style="margin-bottom:6px;">📎 Documentos de respaldo</div>
+          <div class="section-title" style="margin-bottom:6px;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21.44 11.05 12.25 20.24a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg> Documentos de respaldo</div>
           <div style="font-size:.8125rem;color:var(--clr-text-muted);margin-bottom:14px;">Adjunta constancias, certificados o capturas que respalden tu experiencia. Formatos aceptados: PDF, JPG, PNG (máx. 10 MB c/u).</div>
           <div class="drop-zone" id="dropEv" onclick="document.getElementById('evInput').click()">
             <input type="file" id="evInput" accept=".pdf,.jpg,.jpeg,.png" multiple>
@@ -150,30 +150,30 @@
       <!-- Sidebar info -->
       <div>
         <div class="card card-padding mb-16">
-          <div style="font-size:.875rem;font-weight:700;margin-bottom:12px;">⏳ ¿Qué pasa después?</div>
+          <div style="font-size:.875rem;font-weight:700;margin-bottom:12px;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ¿Qué pasa después?</div>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;gap:10px;align-items:flex-start;font-size:.8rem;">
-              <div style="width:20px;height:20px;background:var(--clr-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.65rem;font-weight:700;flex-shrink:0;">1</div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:.8125rem;">
+              <div style="width:20px;height:20px;background:var(--clr-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.6875rem;font-weight:700;flex-shrink:0;">1</div>
               <div><strong>Envías tu postulación</strong><br><span style="color:var(--clr-text-muted);">Queda pendiente de revisión</span></div>
             </div>
-            <div style="display:flex;gap:10px;align-items:flex-start;font-size:.8rem;">
-              <div style="width:20px;height:20px;background:var(--clr-warning);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.65rem;font-weight:700;flex-shrink:0;">2</div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:.8125rem;">
+              <div style="width:20px;height:20px;background:var(--clr-warning);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.6875rem;font-weight:700;flex-shrink:0;">2</div>
               <div><strong>El administrador la revisa</strong><br><span style="color:var(--clr-text-muted);">En un plazo de 7 días hábiles</span></div>
             </div>
-            <div style="display:flex;gap:10px;align-items:flex-start;font-size:.8rem;">
-              <div style="width:20px;height:20px;background:var(--clr-success);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.65rem;font-weight:700;flex-shrink:0;">3</div>
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:.8125rem;">
+              <div style="width:20px;height:20px;background:var(--clr-success);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:.6875rem;font-weight:700;flex-shrink:0;">3</div>
               <div><strong>Recibes la respuesta</strong><br><span style="color:var(--clr-text-muted);">Por notificación y correo institucional</span></div>
             </div>
           </div>
         </div>
 
         <div class="card card-padding">
-          <div style="font-size:.875rem;font-weight:700;margin-bottom:12px;">🏆 Beneficios del rol</div>
-          <div style="font-size:.8rem;color:var(--clr-text-muted);line-height:1.8;">
-            <div>✅ Puedes revisar y aprobar materiales</div>
-            <div>⭐ Ganas puntos extra por cada revisión</div>
-            <div>🚀 Acceso anticipado a materiales recientes</div>
-            <div>🎖️ Insignia de Evaluador en tu perfil</div>
+          <div style="font-size:.875rem;font-weight:700;margin-bottom:12px;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-warning);vertical-align:-3px"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 5H4a3 3 0 0 0 3 5"/><path d="M17 5h3a3 3 0 0 1-3 5"/></svg> Beneficios del rol</div>
+          <div style="font-size:.8125rem;color:var(--clr-text-muted);line-height:1.8;">
+            <div><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Puedes revisar y aprobar materiales</div>
+            <div><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Ganas puntos extra por cada revisión</div>
+            <div><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> Acceso anticipado a materiales recientes</div>
+            <div><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="color:var(--clr-warning);vertical-align:-3px"><circle cx="12" cy="8" r="7"/><polygon points="12 12.5 15.5 21 12 18.5 8.5 21 12 12.5"/></svg> Insignia de Evaluador en tu perfil</div>
           </div>
         </div>
       </div>
@@ -198,7 +198,7 @@
     <div id="tempSelectedArea" style="padding:8px 16px;min-height:36px;display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--clr-border);"></div>
     <div class="modal-body" id="courseList"></div>
     <div class="modal-footer">
-      <div style="font-size:.8rem;color:var(--clr-text-muted);" id="courseCount">Elige uno o más cursos</div>
+      <div style="font-size:.8125rem;color:var(--clr-text-muted);" id="courseCount">Elige uno o más cursos</div>
       <div style="display:flex;gap:8px;">
         <button class="btn btn-secondary btn-sm" onclick="closeCourseModal()">Cancelar</button>
         <button class="btn btn-primary btn-sm" id="courseConfirm" onclick="confirmCourses()">Confirmar selección</button>
@@ -366,7 +366,7 @@ function checkPostulForm() {
 }
 
 function submitPostul() {
-  alert('✅ Postulación enviada.\n\nTe avisaremos por notificación con el resultado en los próximos días.');
+  alert('Postulación enviada.\n\nTe avisaremos por notificación con el resultado en los próximos días.');
   window.location.href = 'dashboard.html';
 }
 </script>

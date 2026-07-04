@@ -14,7 +14,7 @@
     .sol-expand { display:none;padding:16px 20px;border-top:1px solid var(--clr-border);background:#fafafa; }
     .sol-expand.open { display:block; }
     .info-item { display:flex;flex-direction:column;gap:2px; }
-    .info-label { font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--clr-text-subtle); }
+    .info-label { font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--clr-text-subtle); }
     .info-value { font-size:.875rem;color:var(--clr-text);font-weight:500; }
     .criteria-check { display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--clr-border);align-items:flex-start; }
     .criteria-check:last-child { border-bottom:none; }
@@ -34,7 +34,7 @@
   </header>
 
   <aside class="sidebar">
-    <div class="sidebar-user-card" style="background:rgba(220,38,38,.1);border-color:rgba(220,38,38,.2);"><div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;"><div class="avatar" style="width:40px;height:40px;font-size:.875rem;background:#dc2626;color:white;">AD</div><div><div class="user-name">Admin PUCP</div><div class="user-code">ADMIN · DGSTI</div></div></div><span class="badge badge-danger" style="font-size:.7rem;">⚙️ ADMINISTRADOR</span></div>
+    <div class="sidebar-user-card" style="background:rgba(220,38,38,.1);border-color:rgba(220,38,38,.2);"><div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;"><div class="avatar" style="width:40px;height:40px;font-size:.875rem;background:#dc2626;color:white;">AD</div><div><div class="user-name">Admin PUCP</div><div class="user-code">ADMIN · DGSTI</div></div></div><span class="badge badge-danger" style="font-size:.6875rem;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> ADMINISTRADOR</span></div>
     <span class="sidebar-section-label">Administración</span>
     <a href="dashboard.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
     <a href="solicitudes.html" class="nav-item active"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Solicitudes Evaluador<span class="nav-badge">4</span></a>
@@ -79,40 +79,40 @@
     <!-- Solicitud 1 -->
     <div class="solicitud-card" data-status="PENDIENTE" data-name="Carlos Reyes Vidal">
       <div class="sol-header">
-        <div class="avatar avatar-orange" style="width:44px;height:44px;font-size:.9rem;">CR</div>
+        <div class="avatar avatar-orange" style="width:44px;height:44px;font-size:.875rem;">CR</div>
         <div style="flex:1;min-width:0;">
           <div style="font-weight:700;font-size:.9375rem;">Carlos Reyes Vidal</div>
-          <div style="font-size:.78rem;color:var(--clr-text-muted);">Cód. 20200312 · Ingeniería Informática · Ciclo 8</div>
+          <div style="font-size:.75rem;color:var(--clr-text-muted);">Cód. 20200312 · Ingeniería Informática · Ciclo 8</div>
         </div>
         <div style="text-align:right;">
           <span class="badge badge-warning">PENDIENTE</span>
-          <div style="margin-top:4px;"><span class="days-badge" style="background:#fef3c7;color:#b45309;">⏱ hace 3 días hábiles · vence en 4 días</span></div>
+          <div style="margin-top:4px;"><span class="days-badge" style="background:#fef3c7;color:#b45309;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> hace 3 días hábiles · vence en 4 días</span></div>
         </div>
       </div>
       <div class="sol-body">
         <div class="info-item"><div class="info-label">Cursos que domina</div><div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:2px;"><span class="badge badge-gray">MAT258</span><span class="badge badge-gray">INF272</span><span class="badge badge-gray">INF250</span></div></div>
-        <div class="info-item"><div class="info-label">Rango actual</div><div style="margin-top:2px;"><span class="rank-badge rank-SENIOR" style="font-size:.72rem;">⚡ SENIOR · 5,840 pts</span></div></div>
-        <div class="info-item"><div class="info-label">Experiencia declarada</div><div class="info-value" style="font-size:.8rem;">Monitor del curso INF272 durante 2025-1. He resuelto más de 200 consultas de compañeros sobre estructuras de datos y algoritmos. Ayudo con tutorías los miércoles.</div></div>
-        <div class="info-item"><div class="info-label">Motivación</div><div class="info-value" style="font-size:.8rem;">Quiero contribuir más a la comunidad y asegurarme de que el repositorio tenga materiales de calidad para mi carrera. Entiendo los criterios de evaluación.</div></div>
+        <div class="info-item"><div class="info-label">Rango actual</div><div style="margin-top:2px;"><span class="rank-badge rank-SENIOR" style="font-size:.75rem;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> SENIOR · 6,840 pts</span></div></div>
+        <div class="info-item"><div class="info-label">Experiencia declarada</div><div class="info-value" style="font-size:.8125rem;">Monitor del curso INF272 durante 2025-1. He resuelto más de 200 consultas de compañeros sobre estructuras de datos y algoritmos. Ayudo con tutorías los miércoles.</div></div>
+        <div class="info-item"><div class="info-label">Motivación</div><div class="info-value" style="font-size:.8125rem;">Quiero contribuir más a la comunidad y asegurarme de que el repositorio tenga materiales de calidad para mi carrera. Entiendo los criterios de evaluación.</div></div>
       </div>
       <div class="sol-footer">
-        <button class="btn btn-secondary btn-sm" onclick="toggleExpand('exp1')">📋 Ver evidencia adjunta</button>
-        <button class="btn btn-success btn-sm" onclick="openDecisionModal('Carlos Reyes Vidal','aprobar',1)">✅ Aprobar</button>
-        <button class="btn btn-danger btn-sm" onclick="openDecisionModal('Carlos Reyes Vidal','rechazar',1)">❌ Rechazar</button>
+        <button class="btn btn-secondary btn-sm" onclick="toggleExpand('exp1')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Ver evidencia adjunta</button>
+        <button class="btn btn-success btn-sm" onclick="openDecisionModal('Carlos Reyes Vidal','aprobar',1)"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Aprobar</button>
+        <button class="btn btn-danger btn-sm" onclick="openDecisionModal('Carlos Reyes Vidal','rechazar',1)"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Rechazar</button>
         <div style="margin-left:auto;font-size:.75rem;color:var(--clr-text-subtle);">Postulado: 11 Jun 2026</div>
       </div>
       <div class="sol-expand" id="exp1">
         <div style="font-size:.8125rem;font-weight:600;margin-bottom:10px;">Evidencia adjunta (1 archivo)</div>
         <div style="display:flex;gap:10px;align-items:center;padding:10px;background:white;border:1px solid var(--clr-border);border-radius:var(--r-md);width:fit-content;">
-          <div style="width:36px;height:36px;background:#fee2e2;color:#dc2626;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;">PDF</div>
-          <div><div style="font-size:.8125rem;font-weight:600;">constancia_monitor_inf272_2025-1.pdf</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">324 KB</div></div>
-          <button class="btn btn-secondary btn-sm">⬇ Descargar</button>
+          <div style="width:36px;height:36px;background:#fee2e2;color:#dc2626;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.6875rem;font-weight:800;">PDF</div>
+          <div><div style="font-size:.8125rem;font-weight:600;">constancia_monitor_inf272_2025-1.pdf</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">324 KB</div></div>
+          <button class="btn btn-secondary btn-sm"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Descargar</button>
         </div>
         <div style="margin-top:12px;">
-          <div class="criteria-check"><span style="color:var(--clr-success);">✅</span><div style="font-size:.8rem;"><strong>Criterio 1:</strong> El solicitante tiene un rango mínimo de REGULAR (tiene SENIOR ✓)</div></div>
-          <div class="criteria-check"><span style="color:var(--clr-success);">✅</span><div style="font-size:.8rem;"><strong>Criterio 2:</strong> Ha indicado al menos 2 cursos que domina (tiene 3 ✓)</div></div>
-          <div class="criteria-check"><span style="color:var(--clr-success);">✅</span><div style="font-size:.8rem;"><strong>Criterio 3:</strong> Ha proporcionado una descripción de su experiencia ✓</div></div>
-          <div class="criteria-check"><span style="color:var(--clr-success);">✅</span><div style="font-size:.8rem;"><strong>Criterio 4:</strong> Ha adjuntado evidencia de apoyo (1 archivo ✓)</div></div>
+          <div class="criteria-check"><span style="color:var(--clr-success);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div style="font-size:.8125rem;"><strong>Criterio 1:</strong> El solicitante tiene un rango mínimo de REGULAR (tiene SENIOR ✓)</div></div>
+          <div class="criteria-check"><span style="color:var(--clr-success);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div style="font-size:.8125rem;"><strong>Criterio 2:</strong> Ha indicado al menos 2 cursos que domina (tiene 3 ✓)</div></div>
+          <div class="criteria-check"><span style="color:var(--clr-success);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div style="font-size:.8125rem;"><strong>Criterio 3:</strong> Ha proporcionado una descripción de su experiencia ✓</div></div>
+          <div class="criteria-check"><span style="color:var(--clr-success);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div style="font-size:.8125rem;"><strong>Criterio 4:</strong> Ha adjuntado evidencia de apoyo (1 archivo ✓)</div></div>
         </div>
       </div>
     </div>
@@ -120,40 +120,40 @@
     <!-- Solicitud 2 -->
     <div class="solicitud-card" data-status="PENDIENTE" data-name="Lucía Pizarro Torres">
       <div class="sol-header">
-        <div class="avatar avatar-purple" style="width:44px;height:44px;font-size:.9rem;">LP</div>
+        <div class="avatar avatar-purple" style="width:44px;height:44px;font-size:.875rem;">LP</div>
         <div style="flex:1;min-width:0;">
           <div style="font-weight:700;font-size:.9375rem;">Lucía Pizarro Torres</div>
-          <div style="font-size:.78rem;color:var(--clr-text-muted);">Cód. 20210456 · Física · Ciclo 7</div>
+          <div style="font-size:.75rem;color:var(--clr-text-muted);">Cód. 20210456 · Física · Ciclo 7</div>
         </div>
         <div style="text-align:right;">
           <span class="badge badge-warning">PENDIENTE</span>
-          <div style="margin-top:4px;"><span class="days-badge" style="background:#fef3c7;color:#b45309;">⏱ hace 1 día hábil · vence en 6 días</span></div>
+          <div style="margin-top:4px;"><span class="days-badge" style="background:#fef3c7;color:#b45309;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> hace 1 día hábil · vence en 6 días</span></div>
         </div>
       </div>
       <div class="sol-body">
         <div class="info-item"><div class="info-label">Cursos que domina</div><div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:2px;"><span class="badge badge-gray">FIS112</span><span class="badge badge-gray">MAT258</span><span class="badge badge-gray">FIS201</span><span class="badge badge-gray">MAT157</span></div></div>
-        <div class="info-item"><div class="info-label">Rango actual</div><div style="margin-top:2px;"><span class="rank-badge rank-AVANZADO" style="font-size:.72rem;">💜 AVANZADO · 3,520 pts</span></div></div>
-        <div class="info-item"><div class="info-label">Experiencia declarada</div><div class="info-value" style="font-size:.8rem;">Soy parte del grupo de estudio de Física de la facultad. He apoyado a 40+ estudiantes en los últimos 2 ciclos. Mis apuntes de FIS112 han tenido más de 200 descargas.</div></div>
-        <div class="info-item"><div class="info-label">Motivación</div><div class="info-value" style="font-size:.8rem;">Quiero que los materiales de Física sean verificados por alguien que realmente los entiende. He notado muchos errores en materiales sin validar.</div></div>
+        <div class="info-item"><div class="info-label">Rango actual</div><div style="margin-top:2px;"><span class="rank-badge rank-AVANZADO" style="font-size:.75rem;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> AVANZADO · 5,520 pts</span></div></div>
+        <div class="info-item"><div class="info-label">Experiencia declarada</div><div class="info-value" style="font-size:.8125rem;">Soy parte del grupo de estudio de Física de la facultad. He apoyado a 40+ estudiantes en los últimos 2 ciclos. Mis apuntes de FIS112 han tenido más de 200 descargas.</div></div>
+        <div class="info-item"><div class="info-label">Motivación</div><div class="info-value" style="font-size:.8125rem;">Quiero que los materiales de Física sean verificados por alguien que realmente los entiende. He notado muchos errores en materiales sin validar.</div></div>
       </div>
       <div class="sol-footer">
-        <button class="btn btn-secondary btn-sm" onclick="toggleExpand('exp2')">📋 Ver evidencia adjunta</button>
-        <button class="btn btn-success btn-sm" onclick="openDecisionModal('Lucía Pizarro Torres','aprobar',2)">✅ Aprobar</button>
-        <button class="btn btn-danger btn-sm" onclick="openDecisionModal('Lucía Pizarro Torres','rechazar',2)">❌ Rechazar</button>
+        <button class="btn btn-secondary btn-sm" onclick="toggleExpand('exp2')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Ver evidencia adjunta</button>
+        <button class="btn btn-success btn-sm" onclick="openDecisionModal('Lucía Pizarro Torres','aprobar',2)"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Aprobar</button>
+        <button class="btn btn-danger btn-sm" onclick="openDecisionModal('Lucía Pizarro Torres','rechazar',2)"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Rechazar</button>
         <div style="margin-left:auto;font-size:.75rem;color:var(--clr-text-subtle);">Postulada: 13 Jun 2026</div>
       </div>
       <div class="sol-expand" id="exp2">
         <div style="font-size:.8125rem;font-weight:600;margin-bottom:10px;">Evidencia adjunta (2 archivos)</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;gap:10px;align-items:center;padding:10px;background:white;border:1px solid var(--clr-border);border-radius:var(--r-md);width:fit-content;">
-            <div style="width:36px;height:36px;background:#fee2e2;color:#dc2626;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;">PDF</div>
-            <div><div style="font-size:.8125rem;font-weight:600;">grupo_estudio_constancia.pdf</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">218 KB</div></div>
-            <button class="btn btn-secondary btn-sm">⬇ Descargar</button>
+            <div style="width:36px;height:36px;background:#fee2e2;color:#dc2626;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.6875rem;font-weight:800;">PDF</div>
+            <div><div style="font-size:.8125rem;font-weight:600;">grupo_estudio_constancia.pdf</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">218 KB</div></div>
+            <button class="btn btn-secondary btn-sm"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Descargar</button>
           </div>
           <div style="display:flex;gap:10px;align-items:center;padding:10px;background:white;border:1px solid var(--clr-border);border-radius:var(--r-md);width:fit-content;">
-            <div style="width:36px;height:36px;background:#fef3c7;color:#b45309;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;">IMG</div>
-            <div><div style="font-size:.8125rem;font-weight:600;">estadisticas_descargas.jpg</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">89 KB</div></div>
-            <button class="btn btn-secondary btn-sm">⬇ Descargar</button>
+            <div style="width:36px;height:36px;background:#fef3c7;color:#b45309;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.6875rem;font-weight:800;">IMG</div>
+            <div><div style="font-size:.8125rem;font-weight:600;">estadisticas_descargas.jpg</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">89 KB</div></div>
+            <button class="btn btn-secondary btn-sm"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Descargar</button>
           </div>
         </div>
       </div>
@@ -162,30 +162,71 @@
     <!-- Solicitud 3: urgente -->
     <div class="solicitud-card" data-status="PENDIENTE" data-name="Roberto Mamani Quispe" style="border-color:#fca5a5;">
       <div class="sol-header" style="background:#fff5f5;">
-        <div class="avatar" style="width:44px;height:44px;font-size:.9rem;background:#fee2e2;color:#dc2626;">RM</div>
+        <div class="avatar" style="width:44px;height:44px;font-size:.875rem;background:#fee2e2;color:#dc2626;">RM</div>
         <div style="flex:1;min-width:0;">
           <div style="font-weight:700;font-size:.9375rem;">Roberto Mamani Quispe</div>
-          <div style="font-size:.78rem;color:var(--clr-text-muted);">Cód. 20190784 · Matemáticas · Ciclo 10</div>
+          <div style="font-size:.75rem;color:var(--clr-text-muted);">Cód. 20190784 · Matemáticas · Ciclo 10</div>
         </div>
         <div style="text-align:right;">
-          <span class="badge badge-danger">⚠ URGENTE — 6 días hábiles</span>
-          <div style="margin-top:4px;font-size:.72rem;color:#dc2626;font-weight:600;">Auto-anulación en 1 día hábil</div>
+          <span class="badge badge-danger"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> URGENTE — 6 días hábiles</span>
+          <div style="margin-top:4px;font-size:.75rem;color:#dc2626;font-weight:600;">Auto-anulación en 1 día hábil</div>
         </div>
       </div>
       <div class="sol-body">
         <div class="info-item"><div class="info-label">Cursos que domina</div><div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:2px;"><span class="badge badge-gray">MAT258</span><span class="badge badge-gray">MAT157</span><span class="badge badge-gray">EST120</span><span class="badge badge-gray">MAT301</span></div></div>
-        <div class="info-item"><div class="info-label">Rango actual</div><div style="margin-top:2px;"><span class="rank-badge rank-EXPERTO" style="font-size:.72rem;">🌙 EXPERTO · 2,890 pts</span></div></div>
-        <div class="info-item"><div class="info-label">Experiencia declarada</div><div class="info-value" style="font-size:.8rem;">Soy estudiante de último ciclo, próximo a graduarme. He publicado 15 materiales de cálculo y estadística, todos validados. Tengo experiencia como asistente de docencia.</div></div>
-        <div class="info-item"><div class="info-label">Motivación</div><div class="info-value" style="font-size:.8rem;">Antes de graduarme quiero dejar una contribución duradera validando materiales de matemáticas para los futuros estudiantes.</div></div>
+        <div class="info-item"><div class="info-label">Rango actual</div><div style="margin-top:2px;"><span class="rank-badge rank-EXPERTO" style="font-size:.75rem;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> EXPERTO · 3,240 pts</span></div></div>
+        <div class="info-item"><div class="info-label">Experiencia declarada</div><div class="info-value" style="font-size:.8125rem;">Soy estudiante de último ciclo, próximo a graduarme. He publicado 15 materiales de cálculo y estadística, todos validados. Tengo experiencia como asistente de docencia.</div></div>
+        <div class="info-item"><div class="info-label">Motivación</div><div class="info-value" style="font-size:.8125rem;">Antes de graduarme quiero dejar una contribución duradera validando materiales de matemáticas para los futuros estudiantes.</div></div>
       </div>
       <div class="sol-footer">
-        <button class="btn btn-secondary btn-sm" onclick="toggleExpand('exp3')">📋 Ver evidencia</button>
-        <button class="btn btn-success btn-sm" onclick="openDecisionModal('Roberto Mamani Quispe','aprobar',3)">✅ Aprobar ahora</button>
-        <button class="btn btn-danger btn-sm" onclick="openDecisionModal('Roberto Mamani Quispe','rechazar',3)">❌ Rechazar</button>
-        <div style="margin-left:auto;font-size:.75rem;color:#dc2626;font-weight:600;">⚠ Vence mañana</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleExpand('exp3')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Ver evidencia</button>
+        <button class="btn btn-success btn-sm" onclick="openDecisionModal('Roberto Mamani Quispe','aprobar',3)"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Aprobar ahora</button>
+        <button class="btn btn-danger btn-sm" onclick="openDecisionModal('Roberto Mamani Quispe','rechazar',3)"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Rechazar</button>
+        <div style="margin-left:auto;font-size:.75rem;color:#dc2626;font-weight:600;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-warning);vertical-align:-3px"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Vence mañana</div>
       </div>
       <div class="sol-expand" id="exp3">
-        <div class="alert alert-danger" style="font-size:.8rem;">⚠ Esta solicitud lleva 6 días hábiles sin resolución. Si no se toma una decisión antes de mañana, el sistema la <strong>anulará automáticamente</strong> y se notificará al estudiante.</div>
+        <div class="alert alert-danger" style="font-size:.8125rem;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Esta solicitud lleva 6 días hábiles sin resolución. Si no se toma una decisión antes de mañana, el sistema la <strong>anulará automáticamente</strong> y se notificará al estudiante.</div>
+      </div>
+    </div>
+
+    <!-- Solicitud 4 -->
+    <div class="solicitud-card" data-status="PENDIENTE" data-name="María Fernanda Torres">
+      <div class="sol-header">
+        <div class="avatar avatar-teal" style="width:44px;height:44px;font-size:.875rem;">MT</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-weight:700;font-size:.9375rem;">María Fernanda Torres</div>
+          <div style="font-size:.75rem;color:var(--clr-text-muted);">Cód. 20220567 · Comunicaciones · Ciclo 5</div>
+        </div>
+        <div style="text-align:right;">
+          <span class="badge badge-warning">PENDIENTE</span>
+          <div style="margin-top:4px;"><span class="days-badge" style="background:#fef3c7;color:#b45309;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> hace 2 días hábiles · vence en 5 días</span></div>
+        </div>
+      </div>
+      <div class="sol-body">
+        <div class="info-item"><div class="info-label">Cursos que domina</div><div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:2px;"><span class="badge badge-gray">COM101</span><span class="badge badge-gray">LIT205</span></div></div>
+        <div class="info-item"><div class="info-label">Rango actual</div><div style="margin-top:2px;"><span class="rank-badge rank-REGULAR" style="font-size:.75rem;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> REGULAR · 2,340 pts</span></div></div>
+        <div class="info-item"><div class="info-label">Experiencia declarada</div><div class="info-value" style="font-size:.8125rem;">Delegada de curso en COM101 durante dos ciclos. Reviso regularmente los materiales que suben mis compañeros antes de compartirlos en el grupo de la clase.</div></div>
+        <div class="info-item"><div class="info-label">Motivación</div><div class="info-value" style="font-size:.8125rem;">Quiero ayudar a mejorar la calidad de los materiales de Comunicaciones, una carrera con pocos apuntes disponibles en el repositorio.</div></div>
+      </div>
+      <div class="sol-footer">
+        <button class="btn btn-secondary btn-sm" onclick="toggleExpand('exp4')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Ver evidencia adjunta</button>
+        <button class="btn btn-success btn-sm" onclick="openDecisionModal('María Fernanda Torres','aprobar',4)"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Aprobar</button>
+        <button class="btn btn-danger btn-sm" onclick="openDecisionModal('María Fernanda Torres','rechazar',4)"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Rechazar</button>
+        <div style="margin-left:auto;font-size:.75rem;color:var(--clr-text-subtle);">Postulada: 12 Jun 2026</div>
+      </div>
+      <div class="sol-expand" id="exp4">
+        <div style="font-size:.8125rem;font-weight:600;margin-bottom:10px;">Evidencia adjunta (1 archivo)</div>
+        <div style="display:flex;gap:10px;align-items:center;padding:10px;background:white;border:1px solid var(--clr-border);border-radius:var(--r-md);width:fit-content;">
+          <div style="width:36px;height:36px;background:#fee2e2;color:#dc2626;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.6875rem;font-weight:800;">PDF</div>
+          <div><div style="font-size:.8125rem;font-weight:600;">constancia_delegada_com101.pdf</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">156 KB</div></div>
+          <button class="btn btn-secondary btn-sm"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Descargar</button>
+        </div>
+        <div style="margin-top:12px;">
+          <div class="criteria-check"><span style="color:var(--clr-success);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div style="font-size:.75rem;"><strong>Criterio 1:</strong> El solicitante tiene un rango mínimo de REGULAR (tiene REGULAR ✓)</div></div>
+          <div class="criteria-check"><span style="color:var(--clr-success);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div style="font-size:.75rem;"><strong>Criterio 2:</strong> Ha indicado al menos 2 cursos que domina (tiene 2 ✓)</div></div>
+          <div class="criteria-check"><span style="color:var(--clr-success);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div style="font-size:.75rem;"><strong>Criterio 3:</strong> Ha proporcionado una descripción de su experiencia ✓</div></div>
+          <div class="criteria-check"><span style="color:var(--clr-success);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span><div style="font-size:.75rem;"><strong>Criterio 4:</strong> Ha adjuntado evidencia de apoyo (1 archivo ✓)</div></div>
+        </div>
       </div>
     </div>
 
@@ -193,23 +234,23 @@
     <div style="font-size:.8125rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin:24px 0 12px;">Historial reciente</div>
     <div class="card">
       <div class="card-body" style="padding:0 20px;">
-        <div style="display:grid;grid-template-columns:1fr 100px 120px 140px;padding:8px 0;border-bottom:2px solid var(--clr-border);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--clr-text-subtle);">
+        <div style="display:grid;grid-template-columns:1fr 100px 120px 140px;padding:8px 0;border-bottom:2px solid var(--clr-border);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--clr-text-subtle);">
           <div>Estudiante</div><div>Estado</div><div>Decidido por</div><div>Fecha</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 100px 120px 140px;padding:10px 0;border-bottom:1px solid var(--clr-border);align-items:center;font-size:.875rem;">
-          <div><div style="font-weight:600;">Ana Gutiérrez</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">20210789 · Ing. Civil</div></div>
+          <div><div style="font-weight:600;">Ana Gutiérrez</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">20210789 · Ing. Civil</div></div>
           <div><span class="badge badge-success">Aprobada</span></div>
           <div style="font-size:.8125rem;color:var(--clr-text-muted);">Admin PUCP</div>
           <div style="font-size:.8125rem;color:var(--clr-text-muted);">08 Jun 2026</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 100px 120px 140px;padding:10px 0;border-bottom:1px solid var(--clr-border);align-items:center;font-size:.875rem;">
-          <div><div style="font-weight:600;">Pedro Lozano</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">20201123 · Economía</div></div>
+          <div><div style="font-weight:600;">Pedro Lozano</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">20201123 · Economía</div></div>
           <div><span class="badge badge-danger">Rechazada</span></div>
           <div style="font-size:.8125rem;color:var(--clr-text-muted);">Admin PUCP</div>
           <div style="font-size:.8125rem;color:var(--clr-text-muted);">05 Jun 2026</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 100px 120px 140px;padding:10px 0;align-items:center;font-size:.875rem;">
-          <div><div style="font-weight:600;">Sandra Ríos</div><div style="font-size:.72rem;color:var(--clr-text-subtle);">20180567 · Derecho</div></div>
+          <div><div style="font-weight:600;">Sandra Ríos</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">20180567 · Derecho</div></div>
           <div><span class="badge badge-gray">Anulada</span></div>
           <div style="font-size:.8125rem;color:var(--clr-text-muted);">Sistema (auto-anulada)</div>
           <div style="font-size:.8125rem;color:var(--clr-text-muted);">01 Jun 2026</div>
@@ -229,7 +270,7 @@
       <textarea class="form-control" id="modalObs" rows="4" maxlength="500" placeholder="Escribe el motivo de tu decisión (será enviado al estudiante por correo institucional)…" oninput="document.getElementById('ccModal').textContent=this.value.length+' / 500'"></textarea>
       <div style="display:flex;justify-content:flex-end;margin-top:2px;"><span class="char-counter" id="ccModal">0 / 500</span></div>
     </div>
-    <div class="alert alert-info" style="font-size:.8rem;margin-bottom:16px;">Esta acción quedará registrada en el <strong>registro de auditoría</strong> de forma inmutable. El estudiante recibirá una notificación por correo institucional en menos de 2 minutos.</div>
+    <div class="alert alert-info" style="font-size:.8125rem;margin-bottom:16px;">Esta acción quedará registrada en el <strong>registro de auditoría</strong> de forma inmutable. El estudiante recibirá una notificación por correo institucional en menos de 2 minutos.</div>
     <div style="display:flex;gap:10px;justify-content:flex-end;">
       <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
       <button class="btn" id="modalConfirmBtn" onclick="confirmDecision()">Confirmar</button>
@@ -248,7 +289,7 @@ function toggleExpand(id) {
 function openDecisionModal(name, action, cardIdx) {
   currentDecision = { name, action, cardIdx };
   const isAprobar = action === 'aprobar';
-  document.getElementById('modalTitle').textContent = (isAprobar ? '✅ Aprobar' : '❌ Rechazar') + ' solicitud de evaluador';
+  document.getElementById('modalTitle').textContent = (isAprobar ? 'Aprobar' : 'Rechazar') + ' solicitud de evaluador';
   document.getElementById('modalSubtitle').textContent = 'Estás a punto de ' + (isAprobar ? 'APROBAR' : 'RECHAZAR') + ' la solicitud de ' + name + '. Esta acción asignará/denegará el rol de Evaluador y notificará al estudiante.';
   document.getElementById('modalObsHint').textContent = isAprobar ? '(opcional)' : '(obligatorio)';
   const confirmBtn = document.getElementById('modalConfirmBtn');
@@ -272,7 +313,7 @@ function confirmDecision() {
   closeModal();
   const isAprobar = currentDecision.action === 'aprobar';
   alert(
-    (isAprobar ? '✅ Solicitud APROBADA\n\n' : '❌ Solicitud RECHAZADA\n\n') +
+    (isAprobar ? 'Solicitud APROBADA\n\n' : 'Solicitud RECHAZADA\n\n') +
     'Estudiante: ' + currentDecision.name + '\n' +
     (isAprobar ? 'El rol de Evaluador ha sido asignado. ' : 'El estudiante fue notificado con tus observaciones. ') +
     '\nNotificación enviada por correo institucional PUCP.\n' +

@@ -15,7 +15,7 @@
     .search-bar-hero .search-ico { position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--clr-text-subtle); }
     .type-icon-pdf { background:#fee2e2;color:#dc2626; }
     .type-icon-doc { background:#dbeafe;color:#2563eb; }
-    .type-icon-img { background:#d1fae5;color:#059669; }
+    .type-icon-img { background:var(--clr-success-light);color:var(--clr-success-dark); }
     .type-icon-ppt { background:#ffedd5;color:#ea580c; }
     .type-icon-xls { background:#dcfce7;color:#16a34a; }
     .sort-bar { display:flex;align-items:center;gap:10px;margin-bottom:16px; }
@@ -35,7 +35,7 @@
   </header>
 
   <aside class="sidebar">
-    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DR</div><div><div class="user-name">Diego Ramírez</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar" style="background:var(--rank-cachimbo);">⭐ CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
+    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DR</div><div><div class="user-name">Diego Ramírez</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar" style="background:var(--rank-cachimbo);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
     <span class="sidebar-section-label">Principal</span>
     <a href="dashboard.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
     <a href="repositorio.html" class="nav-item active"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Repositorio</a>
@@ -124,7 +124,7 @@
           <span>Tiempo de espera excedido. Por favor, inténtalo de nuevo.</span>
         </div>
         <div style="text-align:right;margin:-12px 0 16px;">
-          <button class="btn btn-ghost btn-sm" style="color:var(--clr-text-subtle);font-size:.72rem;" onclick="runSearch(true)">⚠️ Simular tiempo de espera excedido (demo)</button>
+          <button class="btn btn-ghost btn-sm" style="color:var(--clr-text-subtle);font-size:.75rem;" onclick="runSearch(true)"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-warning);vertical-align:-3px"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Simular tiempo de espera excedido (demo)</button>
         </div>
 
         <div class="sort-bar">
@@ -150,8 +150,8 @@
             <div class="mc-tags"><span class="badge badge-gray">derivadas</span><span class="badge badge-gray">parciales</span></div>
             <div class="mc-footer">
               <div style="font-size:.75rem;color:var(--clr-text-subtle);">Carlos R. · hace 3 días</div>
-              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
-                <span>❤️ 48</span><span>⬇️ 124</span>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.75rem;color:var(--clr-text-muted);">
+                <span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 48</span><span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> 124</span>
               </div>
             </div>
           </a>
@@ -169,8 +169,8 @@
             <div class="mc-tags"><span class="badge badge-gray">derivadas</span><span class="badge badge-gray">cálculo multivariable</span></div>
             <div class="mc-footer">
               <div style="font-size:.75rem;color:var(--clr-text-subtle);">Ana P. · hace 1 semana</div>
-              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
-                <span>❤️ 92</span><span>⬇️ 287</span>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.75rem;color:var(--clr-text-muted);">
+                <span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 92</span><span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> 287</span>
               </div>
             </div>
           </a>
@@ -188,8 +188,8 @@
             <div class="mc-tags"><span class="badge badge-gray">integrales</span><span class="badge badge-gray">final</span></div>
             <div class="mc-footer">
               <div style="font-size:.75rem;color:var(--clr-text-subtle);">Luis M. · hace 2 semanas</div>
-              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
-                <span>❤️ 76</span><span>⬇️ 203</span>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.75rem;color:var(--clr-text-muted);">
+                <span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 76</span><span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> 203</span>
               </div>
             </div>
           </a>
@@ -207,8 +207,8 @@
             <div class="mc-tags"><span class="badge badge-gray">regla de la cadena</span></div>
             <div class="mc-footer">
               <div style="font-size:.75rem;color:var(--clr-text-subtle);">Diego R. · hace 2 días</div>
-              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
-                <span>❤️ 12</span><span>⬇️ 18</span>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.75rem;color:var(--clr-text-muted);">
+                <span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 12</span><span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> 18</span>
               </div>
             </div>
           </a>
@@ -226,8 +226,8 @@
             <div class="mc-tags"><span class="badge badge-gray">vectorial</span><span class="badge badge-gray">gradiente</span><span class="badge badge-gray">curl</span></div>
             <div class="mc-footer">
               <div style="font-size:.75rem;color:var(--clr-text-subtle);">Mónica T. · hace 4 días</div>
-              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
-                <span>❤️ 54</span><span>⬇️ 167</span>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.75rem;color:var(--clr-text-muted);">
+                <span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 54</span><span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> 167</span>
               </div>
             </div>
           </a>
@@ -245,8 +245,8 @@
             <div class="mc-tags"><span class="badge badge-gray">límites</span><span class="badge badge-gray">continuidad</span></div>
             <div class="mc-footer">
               <div style="font-size:.75rem;color:var(--clr-text-subtle);">Jorge B. · hace 1 semana</div>
-              <div style="display:flex;gap:10px;margin-left:auto;font-size:.78rem;color:var(--clr-text-muted);">
-                <span>❤️ 38</span><span>⬇️ 145</span>
+              <div style="display:flex;gap:10px;margin-left:auto;font-size:.75rem;color:var(--clr-text-muted);">
+                <span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 38</span><span><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> 145</span>
               </div>
             </div>
           </a>
@@ -254,7 +254,7 @@
 
         <!-- Empty state (oculto por defecto) -->
         <div class="empty-state" id="repoEmptyState" style="display:none;padding:48px 20px;text-align:center;color:var(--clr-text-subtle);">
-          <div style="font-size:2.5rem;margin-bottom:10px;">📁</div>
+          <div style="font-size:2.5rem;margin-bottom:10px;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div>
           <div style="font-weight:600;color:var(--clr-text);margin-bottom:4px;">No hay materiales en esta pestaña</div>
           <div style="font-size:.875rem;">Prueba otra pestaña o sube tu propio material.</div>
         </div>
