@@ -15,7 +15,8 @@
     .profile-stat { text-align:center; }
     .profile-stat-num { font-size:1.25rem;font-weight:800; }
     .profile-stat-label { font-size:.75rem;opacity:.8; }
-    .tab-nav { display:flex;border-bottom:2px solid var(--clr-border);margin-bottom:20px; }
+    .tab-nav { display:flex;flex-wrap:wrap;border-bottom:2px solid var(--clr-border);margin-bottom:20px; }
+    .profile-stats-row { gap:16px;flex-wrap:wrap; }
     .tab-btn { padding:10px 16px;font-size:.875rem;font-weight:500;color:var(--clr-text-muted);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:.15s; }
     .tab-btn:hover { color:var(--clr-primary); }
     .tab-btn.active { color:var(--clr-primary);border-bottom-color:var(--clr-primary);font-weight:600; }
@@ -49,7 +50,7 @@
   </header>
 
   <aside class="sidebar">
-    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DR</div><div><div class="user-name">Diego Ramírez</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar" style="background:var(--rank-cachimbo);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
+    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DR</div><div><div class="user-name">Diego Ramírez</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar rank-CACHIMBO" data-rank="CACHIMBO"><span class="rank-icon" aria-hidden="true"></span> CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
     <span class="sidebar-section-label">Principal</span>
     <a href="dashboard.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
     <a href="repositorio.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Repositorio</a>
@@ -76,11 +77,12 @@
           <div class="profile-avatar-lg">DR</div>
           <div class="profile-name">Diego Ramírez Torres</div>
           <div class="profile-code">Cód. 20220142</div>
-          <div style="margin-top:8px;"><span style="background:rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;font-size:.75rem;font-weight:600;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> CACHIMBO</span></div>
+          <div style="margin-top:8px;"><span class="rank-badge-hero rank-CACHIMBO" data-rank="CACHIMBO"><span class="rank-icon" aria-hidden="true"></span> CACHIMBO</span></div>
           <div class="profile-stats-row">
             <div class="profile-stat"><div class="profile-stat-num">1,240</div><div class="profile-stat-label">Puntos</div></div>
-            <div class="profile-stat"><div class="profile-stat-num">12</div><div class="profile-stat-label">Materiales</div></div>
-            <div class="profile-stat"><div class="profile-stat-num">28</div><div class="profile-stat-label">Participaciones</div></div>
+            <div class="profile-stat"><div class="profile-stat-num">7</div><div class="profile-stat-label">Materiales</div></div>
+            <div class="profile-stat"><div class="profile-stat-num">5</div><div class="profile-stat-label">Validados</div></div>
+            <div class="profile-stat"><div class="profile-stat-num">23</div><div class="profile-stat-label">Participaciones</div></div>
           </div>
         </div>
 
@@ -89,12 +91,12 @@
           <div class="card-body" style="padding:18px;">
             <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin-bottom:10px;">Progreso de rango</div>
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-              <span style="font-size:.8125rem;font-weight:600;color:#64748b;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> CACHIMBO</span>
-              <span style="font-size:.8125rem;font-weight:600;color:#3b82f6;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> REGULAR</span>
+              <span class="rank-badge rank-CACHIMBO" data-rank="CACHIMBO" style="font-size:.8125rem;"><span class="rank-icon" aria-hidden="true"></span> CACHIMBO</span>
+              <span class="rank-badge rank-REGULAR" data-rank="REGULAR" style="font-size:.8125rem;"><span class="rank-icon" aria-hidden="true"></span> REGULAR</span>
             </div>
             <div class="xp-bar-track" style="height:10px;"><div class="xp-bar-fill" style="width:62%;height:10px;border-radius:5px;"></div></div>
             <div style="font-size:.75rem;color:var(--clr-text-subtle);margin-top:6px;text-align:right;">1,240 / 2,000 pts · faltan 760</div>
-            <div style="margin-top:12px;font-size:.8125rem;color:var(--clr-text-muted);">Próximo rango: <strong><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> REGULAR</strong><br><span style="color:var(--clr-text-subtle);">Descuentos en impresiones, insignia especial, acceso a recursos premium.</span></div>
+            <div style="margin-top:12px;font-size:.8125rem;color:var(--clr-text-muted);">Próximo rango: <strong><span class="rank-inline rank-REGULAR" data-rank="REGULAR"><span class="rank-icon" aria-hidden="true"></span></span> REGULAR</strong><br><span style="color:var(--clr-text-subtle);">Descuentos en impresiones, insignia especial, acceso a recursos premium.</span></div>
           </div>
         </div>
 
@@ -135,7 +137,9 @@
             <div class="tab-nav">
               <button class="tab-btn active" onclick="switchTab(this,'tabEdit')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg> Editar perfil</button>
               <button class="tab-btn" onclick="switchTab(this,'tabActivity')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Actividad</button>
+              <button class="tab-btn" onclick="switchTab(this,'tabFav')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Favoritos</button>
               <button class="tab-btn" onclick="switchTab(this,'tabNotif')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> Notificaciones</button>
+              <button class="tab-btn" onclick="switchTab(this,'tabPrivacy')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Privacidad</button>
             </div>
 
             <!-- Tab: Editar perfil -->
@@ -171,7 +175,7 @@
                     <option>Arte y Diseño</option>
                   </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom:14px;">
                   <label class="form-label" for="carreraSelect">Carrera</label>
                   <select class="form-control" id="carreraSelect">
                     <option>Ingeniería Informática</option>
@@ -183,6 +187,10 @@
                     <option>Economía</option>
                   </select>
                 </div>
+                <div class="form-group">
+                  <label class="form-label" for="telefonoInput">Teléfono de contacto</label>
+                  <input type="tel" class="form-control" id="telefonoInput" value="+51 987 654 321" placeholder="+51 999 999 999">
+                </div>
               </div>
 
               <div style="display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--clr-border);padding-top:16px;">
@@ -193,12 +201,43 @@
 
             <!-- Tab: Actividad -->
             <div class="tab-panel" id="tabActivity" style="padding-bottom:24px;">
-              <div class="activity-item"><div class="activity-dot" style="background:var(--clr-success);"></div><div><div style="font-weight:500;">Material validado: <em>Guía de Integrales MAT258</em></div><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 1 día · +80 puntos</div></div></div>
+              <div class="activity-item"><div class="activity-dot" style="background:var(--clr-success);"></div><div><div style="font-weight:500;">Material validado: <em>Guía de Integrales MAT258</em></div><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 1 día · +50 puntos</div></div></div>
               <div class="activity-item"><div class="activity-dot" style="background:#2563eb;"></div><div><div style="font-weight:500;">Respondiste en el foro de INF272</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 2 días · +10 puntos</div></div></div>
               <div class="activity-item"><div class="activity-dot" style="background:#f59e0b;"></div><div><div style="font-weight:500;">Subiste nuevo material: <em>Examen Parcial FIS112 2024-2</em></div><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 3 días · Pendiente de validación</div></div></div>
-              <div class="activity-item"><div class="activity-dot" style="background:var(--clr-success);"></div><div><div style="font-weight:500;">Material validado: <em>Apuntes Derivadas MAT157</em></div><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 5 días · +80 puntos</div></div></div>
+              <div class="activity-item"><div class="activity-dot" style="background:var(--clr-success);"></div><div><div style="font-weight:500;">Material validado: <em>Apuntes Derivadas MAT157</em></div><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 5 días · +50 puntos</div></div></div>
               <div class="activity-item"><div class="activity-dot" style="background:#8b5cf6;"></div><div><div style="font-weight:500;">Publicación en foro MAT258 recibió 8 votos</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 1 semana · +40 puntos</div></div></div>
               <div class="activity-item"><div class="activity-dot" style="background:#2563eb;"></div><div><div style="font-weight:500;">Te uniste a ConectaPUCP</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">15 Mar 2025 · +20 puntos de bienvenida</div></div></div>
+            </div>
+
+            <!-- Tab: Favoritos -->
+            <div class="tab-panel" id="tabFav" style="padding-bottom:24px;">
+              <div style="font-size:.8125rem;color:var(--clr-text-muted);margin-bottom:16px;">Materiales que guardaste para consultarlos más tarde.</div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <a href="material-detalle.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--clr-border);border-radius:var(--r-md);text-decoration:none;color:inherit;transition:border-color .15s;">
+                  <div style="width:36px;height:36px;background:#fee2e2;color:#dc2626;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.6875rem;font-weight:800;flex-shrink:0;">PDF</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:.875rem;font-weight:600;">Examen Parcial Cálculo 3 — 2025-1</div>
+                    <div style="font-size:.75rem;color:var(--clr-text-subtle);">MAT258 · Examen · Validado</div>
+                  </div>
+                  <svg width="16" height="16" fill="var(--clr-danger)" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </a>
+                <a href="material-detalle.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--clr-border);border-radius:var(--r-md);text-decoration:none;color:inherit;transition:border-color .15s;">
+                  <div style="width:36px;height:36px;background:#dbeafe;color:#2563eb;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.6875rem;font-weight:800;flex-shrink:0;">DOC</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:.875rem;font-weight:600;">Guía completa de Derivadas Parciales</div>
+                    <div style="font-size:.75rem;color:var(--clr-text-subtle);">MAT258 · Guía · Validado</div>
+                  </div>
+                  <svg width="16" height="16" fill="var(--clr-danger)" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </a>
+                <a href="material-detalle.html" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--clr-border);border-radius:var(--r-md);text-decoration:none;color:inherit;transition:border-color .15s;">
+                  <div style="width:36px;height:36px;background:#fee2e2;color:#dc2626;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:.6875rem;font-weight:800;flex-shrink:0;">PDF</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:.875rem;font-weight:600;">Resumen ejecutivo Cálculo Vectorial</div>
+                    <div style="font-size:.75rem;color:var(--clr-text-subtle);">MAT258 · Resumen · Validado</div>
+                  </div>
+                  <svg width="16" height="16" fill="var(--clr-danger)" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </a>
+              </div>
             </div>
 
             <!-- Tab: Notificaciones -->
@@ -210,8 +249,19 @@
               <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Mención en comentario</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Cuando alguien te menciona en el repositorio o foro</div></div><label class="toggle-switch"><input type="checkbox" checked aria-label="Mención"><span class="toggle-slider"></span></label></div>
               <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Cambio de rango</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Cuando sube tu rango de gamificación</div></div><label class="toggle-switch"><input type="checkbox" checked aria-label="Cambio de rango"><span class="toggle-slider"></span></label></div>
               <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Resultado postulación evaluador</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Cuando tu solicitud de rol evaluador es procesada</div></div><label class="toggle-switch"><input type="checkbox" checked aria-label="Postulación evaluador"><span class="toggle-slider"></span></label></div>
+              <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Eventos de grupo de estudio</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Nuevos miembros, reuniones y actividades en tus grupos</div></div><label class="toggle-switch"><input type="checkbox" checked aria-label="Eventos de grupo de estudio"><span class="toggle-slider"></span></label></div>
+              <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Calendario académico y fechas de examen</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Recordatorios de parciales, entregas y eventos del ciclo</div></div><label class="toggle-switch"><input type="checkbox" checked aria-label="Calendario académico"><span class="toggle-slider"></span></label></div>
               <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Correo electrónico</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Recibir también por correo institucional PUCP</div></div><label class="toggle-switch"><input type="checkbox" aria-label="Correo electrónico"><span class="toggle-slider"></span></label></div>
               <div style="margin-top:16px;"><button class="btn btn-primary btn-sm" onclick="saveNotif()">Guardar preferencias</button></div>
+            </div>
+
+            <!-- Tab: Privacidad -->
+            <div class="tab-panel" id="tabPrivacy" style="padding-bottom:24px;">
+              <div style="font-size:.8125rem;color:var(--clr-text-muted);margin-bottom:16px;">Controla qué información de tu perfil es visible para otros estudiantes.</div>
+              <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Mostrar mi perfil en el ranking público</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Tu nombre y puntos aparecerán en la tabla de ranking</div></div><label class="toggle-switch"><input type="checkbox" checked aria-label="Mostrar en ranking"><span class="toggle-slider"></span></label></div>
+              <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Mostrar mi actividad reciente</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Otros estudiantes pueden ver tus últimas acciones en la plataforma</div></div><label class="toggle-switch"><input type="checkbox" checked aria-label="Mostrar actividad reciente"><span class="toggle-slider"></span></label></div>
+              <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Ocultar mi correo institucional a otros estudiantes</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Solo evaluadores y administradores podrán ver tu correo PUCP</div></div><label class="toggle-switch"><input type="checkbox" aria-label="Ocultar correo institucional"><span class="toggle-slider"></span></label></div>
+              <div style="margin-top:16px;"><button class="btn btn-primary btn-sm" onclick="savePrivacy()">Guardar preferencias</button></div>
             </div>
           </div>
         </div>
@@ -241,6 +291,13 @@ function saveNotif() {
   btn.innerHTML = '<svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Preferencias guardadas';
   setTimeout(() => btn.textContent = 'Guardar preferencias', 2000);
 }
+function savePrivacy() {
+  const btn = event.target.closest('.btn');
+  btn.innerHTML = '<svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Preferencias guardadas';
+  setTimeout(() => btn.textContent = 'Guardar preferencias', 2000);
+}
 </script>
+<script src="../assets/ranks.js"></script>
+<script src="../assets/global.js"></script>
 </body>
 </html>

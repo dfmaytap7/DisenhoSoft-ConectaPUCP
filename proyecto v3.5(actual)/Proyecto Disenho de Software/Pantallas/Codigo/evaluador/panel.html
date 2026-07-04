@@ -31,24 +31,26 @@
   <aside class="sidebar">
     <div class="sidebar-user-card">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-green" style="width:40px;height:40px;font-size:.875rem;">MR</div><div><div class="user-name">María Rodríguez</div><div class="user-code">20190087</div></div></div>
-      <span class="rank-badge-sidebar" style="background:var(--rank-elite);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> ELITE</span>
+      <span class="rank-badge-sidebar rank-ELITE" data-rank="ELITE"><span class="rank-icon" aria-hidden="true"></span> ELITE</span>
       <div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>8,120 pts</span><span>ELITE ✓</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:100%;background:var(--rank-elite);"></div></div></div>
     </div>
     <span class="sidebar-section-label">Evaluador</span>
-    <a href="panel.html" class="nav-item active"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Materiales pendientes<span class="nav-badge">5</span></a>
-    <a href="#" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Mis evaluaciones</a>
-    <a href="#" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="18 20 18 10"/><polyline points="12 20 12 4"/><polyline points="6 20 6 14"/></svg>Mis estadísticas</a>
+    <a href="panel.html" class="nav-item active"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Materiales pendientes</a>
+    <a href="subida-material.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Subir material</a>
+    <a href="perfil.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Mi Perfil</a>
     <span class="sidebar-section-label">Comunidad</span>
     <a href="../estudiante/repositorio.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Repositorio</a>
-    <a href="../estudiante/foros.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Foros</a>
-    <a href="../estudiante/ranking.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="18 20 18 10"/><polyline points="12 20 12 4"/><polyline points="6 20 6 14"/></svg>Ranking</a>
   </aside>
 
   <main class="main-content">
+    <div class="alert alert-info" style="margin-bottom:20px;font-size:.875rem;">
+      <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      Los nuevos materiales pendientes se notifican exclusivamente por correo institucional PUCP. Esta pantalla es para revisar materiales que ya conoces.
+    </div>
     <div class="page-header">
       <div>
-        <h1 class="page-title">Materiales pendientes</h1>
-        <p class="page-subtitle">Revisa el contenido enviado por estudiantes y decide si aprobarlo o rechazarlo</p>
+        <h1 class="page-title">Revisión de materiales</h1>
+        <p class="page-subtitle">Los nuevos materiales pendientes se notifican exclusivamente por correo institucional PUCP en un plazo máximo de 2 minutos tras la subida. Usa esta pantalla para revisar y decidir sobre los materiales.</p>
       </div>
       <select class="form-control" style="width:170px;padding:7px 32px 7px 10px;font-size:.8125rem;" onchange="filterByType(this.value)">
         <option value="">Todos los tipos</option>
@@ -61,7 +63,7 @@
 
     <!-- Stats -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;">
-      <div class="stat-card"><div class="stat-label">Pendientes hoy</div><div class="stat-value" style="color:var(--clr-warning);">5</div></div>
+      <div class="stat-card"><div class="stat-label">Recibidos por correo hoy</div><div class="stat-value" style="color:var(--clr-warning);">5</div></div>
       <div class="stat-card"><div class="stat-label">Aprobados este mes</div><div class="stat-value" style="color:var(--clr-success);">34</div></div>
       <div class="stat-card"><div class="stat-label">Rechazados este mes</div><div class="stat-value" style="color:var(--clr-danger);">6</div></div>
       <div class="stat-card"><div class="stat-label">Tiempo promedio</div><div class="stat-value">1.2 días</div></div>
@@ -69,7 +71,7 @@
 
     <div class="eval-grid">
       <div>
-        <div style="font-size:.8125rem;font-weight:600;color:var(--clr-text-muted);margin-bottom:14px;">5 materiales esperando tu revisión</div>
+        <div style="font-size:.8125rem;font-weight:600;color:var(--clr-text-muted);margin-bottom:14px;">Materiales disponibles para revisión</div>
 
         <!-- Tarjeta 1 -->
         <div class="material-eval-card" id="card1">
@@ -113,8 +115,9 @@
             </div>
           </div>
           <div class="eval-footer">
-            <button class="btn btn-success btn-sm" onclick="openDecision('card1','decision1','aprobar')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Aprobar</button>
+            <button class="btn btn-success btn-sm" onclick="openDecision('card1','decision1','aprobar')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Validar</button>
             <button class="btn btn-danger btn-sm" onclick="openDecision('card1','decision1','rechazar')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Rechazar</button>
+            <button class="btn btn-warning btn-sm" onclick="openDecision('card1','decision1','reportar')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Reportar</button>
             <div style="margin-left:auto;font-size:.75rem;color:var(--clr-text-subtle);">Fecha límite de revisión: 16 Jun 2026</div>
           </div>
           <div class="decision-panel" id="decision1">
@@ -173,8 +176,9 @@
             </div>
           </div>
           <div class="eval-footer">
-            <button class="btn btn-success btn-sm" onclick="openDecision('card2','decision2','aprobar')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Aprobar</button>
+            <button class="btn btn-success btn-sm" onclick="openDecision('card2','decision2','aprobar')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Validar</button>
             <button class="btn btn-danger btn-sm" onclick="openDecision('card2','decision2','rechazar')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Rechazar</button>
+            <button class="btn btn-warning btn-sm" onclick="openDecision('card2','decision2','reportar')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Reportar</button>
             <div style="margin-left:auto;font-size:.75rem;color:var(--clr-text-subtle);">Fecha límite de revisión: 17 Jun 2026</div>
           </div>
           <div class="decision-panel" id="decision2">
@@ -214,7 +218,7 @@
               <div style="display:flex;justify-content:space-between;"><span>Aprobados hoy:</span><span class="badge badge-success">8</span></div>
               <div style="display:flex;justify-content:space-between;"><span>Rechazados hoy:</span><span class="badge badge-danger">2</span></div>
               <div style="display:flex;justify-content:space-between;"><span>Total histórico:</span><span class="badge badge-gray">247</span></div>
-              <div style="display:flex;justify-content:space-between;"><span>Puntos ganados hoy:</span><span style="font-weight:700;color:var(--clr-primary);">+160 pts</span></div>
+              <div style="display:flex;justify-content:space-between;"><span>Puntos ganados hoy:</span><span id="puntosHoy" style="font-weight:700;color:var(--clr-primary);">+160 pts</span></div>
             </div>
           </div>
         </div>
@@ -246,15 +250,19 @@ function openDecision(cardId, panelId, action) {
   panel.classList.add('open');
   const title = document.getElementById(panelId + '-title');
   const confirmBtn = document.getElementById(panelId.replace('decision', 'confirm'));
+  const obs = panel.querySelector('textarea');
   if (action === 'aprobar') {
     title.textContent = '¿Deseas aprobar este material?';
-    const obs = panel.querySelector('textarea');
     obs.placeholder = 'Puedes dejar un comentario opcional para el estudiante…';
     obs.required = false;
     if (confirmBtn) { confirmBtn.className = 'btn btn-success btn-sm'; confirmBtn.textContent = 'Confirmar aprobación'; }
+  } else if (action === 'reportar') {
+    title.textContent = 'Reportar material';
+    obs.placeholder = 'Describe el motivo del reporte (contenido inapropiado, plagio, datos personales, etc.)…';
+    obs.required = true;
+    if (confirmBtn) { confirmBtn.className = 'btn btn-warning btn-sm'; confirmBtn.textContent = 'Confirmar reporte'; }
   } else {
     title.textContent = 'Motivo del rechazo';
-    const obs = panel.querySelector('textarea');
     obs.placeholder = 'Escribe tus observaciones para que el estudiante sepa cómo mejorar su material…';
     obs.required = true;
     if (confirmBtn) { confirmBtn.className = 'btn btn-danger btn-sm'; confirmBtn.textContent = 'Confirmar rechazo'; }
@@ -266,12 +274,22 @@ function closeDecision(panelId) {
   document.getElementById(panelId).classList.remove('open');
 }
 
+function incrementPuntosHoy(amount) {
+  const el = document.getElementById('puntosHoy');
+  if (!el) return;
+  const current = parseInt(el.textContent.replace(/\D/g, ''), 10) || 0;
+  el.textContent = '+' + (current + amount) + ' pts';
+}
+
 function confirmDecision(cardId, panelId, idx) {
   const action = pendingActions[panelId];
   const obs = document.getElementById('obs' + idx).value.trim();
-  if (action === 'rechazar' && obs.length < 10) {
-    document.getElementById('err' + idx || '').textContent = 'Escribe un motivo con al menos 10 caracteres.';
-    alert('Por favor indica el motivo del rechazo para que el estudiante pueda mejorar.');
+  if ((action === 'rechazar' || action === 'reportar') && obs.length < 10) {
+    const errEl = document.getElementById('err' + idx);
+    if (errEl) errEl.textContent = 'Escribe un motivo con al menos 10 caracteres.';
+    alert(action === 'reportar'
+      ? 'Por favor describe el motivo del reporte con al menos 10 caracteres.'
+      : 'Por favor indica el motivo del rechazo para que el estudiante pueda mejorar.');
     return;
   }
   const card = document.getElementById(cardId);
@@ -279,13 +297,19 @@ function confirmDecision(cardId, panelId, idx) {
   card.style.pointerEvents = 'none';
   closeDecision(panelId);
   if (action === 'aprobar') {
+    incrementPuntosHoy(20);
     alert('Material aprobado.\n\nEl estudiante recibirá una notificación y sus puntos correspondientes.');
+  } else if (action === 'reportar') {
+    alert('Material reportado.\n\nEl equipo de moderación revisará el caso y tomará las acciones correspondientes.');
   } else {
+    incrementPuntosHoy(10);
     alert('Material rechazado.\n\nEl estudiante recibirá tu observación por notificación.');
   }
 }
 
 function filterByType(val) {}
 </script>
+<script src="../assets/ranks.js"></script>
+<script src="../assets/global.js"></script>
 </body>
 </html>

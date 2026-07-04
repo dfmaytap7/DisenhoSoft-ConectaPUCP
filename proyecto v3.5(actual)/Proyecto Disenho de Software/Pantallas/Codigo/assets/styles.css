@@ -10,11 +10,11 @@
    ============================================ */
 :root {
   /* Core palette */
-  --clr-primary:       #2563eb;
-  --clr-primary-dark:  #1d4ed8;
-  --clr-primary-mid:   #3b82f6;
-  --clr-primary-light: #eff6ff;
-  --clr-primary-border:#bfdbfe;
+  --clr-primary:       #2b6fe8;
+  --clr-primary-dark:  #1e56c9;
+  --clr-primary-mid:   #4a85ef;
+  --clr-primary-light: #edf3fe;
+  --clr-primary-border:#c5d8fa;
 
   --clr-success:       #16a34a;
   --clr-success-light: #dcfce7;
@@ -38,23 +38,34 @@
   --clr-teal-light:    #ccfbf1;
 
   /* Neutrals */
-  --clr-bg:            #f1f5f9;
+  --clr-bg:            #f4f6f9;
   --clr-surface:       #ffffff;
-  --clr-border:        #e2e8f0;
-  --clr-border-mid:    #cbd5e1;
-  --clr-text:          #1e293b;
-  --clr-text-muted:    #64748b;
-  --clr-text-subtle:   #94a3b8;
-  --clr-sidebar-bg:    #1e293b;
+  --clr-border:        #e4e9f0;
+  --clr-border-mid:    #cdd5e0;
+  --clr-text:          #1a2332;
+  --clr-text-muted:    #5c6b7f;
+  --clr-text-subtle:   #8b97a8;
+  --clr-sidebar-bg:    #1c2536;
 
-  /* Rank colors (progresión fría → cálida, distinta del verde de "éxito"
-     para no confundir el rango EXPERTO con un estado de validación) */
-  --rank-cachimbo:     #64748b;
-  --rank-regular:      #3b82f6;
-  --rank-experto:      #0d9488;
-  --rank-avanzado:     #8b5cf6;
-  --rank-senior:       #f59e0b;
-  --rank-elite:        #e11d48;
+  /* Rank colors — progresión fría → cálida, con variantes tintadas */
+  --rank-cachimbo:        #5b6b82;
+  --rank-cachimbo-light:  #eef1f5;
+  --rank-cachimbo-border: #c5ced9;
+  --rank-regular:         #3b6fd4;
+  --rank-regular-light:   #e8effb;
+  --rank-regular-border:  #b8cff5;
+  --rank-experto:         #1a9b8a;
+  --rank-experto-light:   #e0f5f2;
+  --rank-experto-border:  #a8e0d8;
+  --rank-avanzado:        #7b4fd4;
+  --rank-avanzado-light:  #f0ebfc;
+  --rank-avanzado-border: #d4c4f5;
+  --rank-senior:          #c2780a;
+  --rank-senior-light:    #fef5e4;
+  --rank-senior-border:   #f0d4a0;
+  --rank-elite:           #c41e5a;
+  --rank-elite-light:     #fce8ef;
+  --rank-elite-border:    #f0b8cc;
 
   /* Escala tipografica (base 16px). Usar siempre uno de estos pasos en vez
      de valores rem sueltos, para mantener jerarquia visual consistente. */
@@ -371,12 +382,20 @@ ul { list-style: none; }
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 3px 8px;
+  padding: 3px 10px;
   border-radius: var(--r-full);
   font-size: .75rem;
   font-weight: 700;
   margin-bottom: 8px;
+  color: white;
+  border: 1px solid rgba(255,255,255,.12);
 }
+.rank-badge-sidebar.rank-CACHIMBO  { background: var(--rank-cachimbo); }
+.rank-badge-sidebar.rank-REGULAR   { background: var(--rank-regular); }
+.rank-badge-sidebar.rank-EXPERTO   { background: var(--rank-experto); }
+.rank-badge-sidebar.rank-AVANZADO  { background: var(--rank-avanzado); }
+.rank-badge-sidebar.rank-SENIOR    { background: var(--rank-senior); }
+.rank-badge-sidebar.rank-ELITE     { background: var(--rank-elite); }
 
 .xp-bar-container { margin-top: 2px; }
 .xp-bar-label {
@@ -799,7 +818,7 @@ textarea.form-control {
 .badge-gray    { background: #f1f5f9; color: #475569; border: 1px solid var(--clr-border); }
 .badge-purple  { background: var(--clr-purple-light); color: var(--clr-purple); border: 1px solid #ddd6fe; }
 
-/* Rank badges */
+/* Rank badges — tintados (más legibles que pastillas sólidas planas) */
 .rank-badge {
   display: inline-flex;
   align-items: center;
@@ -808,14 +827,82 @@ textarea.form-control {
   border-radius: var(--r-full);
   font-size: .75rem;
   font-weight: 700;
+  border: 1px solid transparent;
+  line-height: 1;
+}
+.rank-badge.rank-CACHIMBO  { background: var(--rank-cachimbo-light);  color: var(--rank-cachimbo);  border-color: var(--rank-cachimbo-border); }
+.rank-badge.rank-REGULAR   { background: var(--rank-regular-light);   color: var(--rank-regular);   border-color: var(--rank-regular-border); }
+.rank-badge.rank-EXPERTO   { background: var(--rank-experto-light);   color: var(--rank-experto);   border-color: var(--rank-experto-border); }
+.rank-badge.rank-AVANZADO  { background: var(--rank-avanzado-light);  color: var(--rank-avanzado);  border-color: var(--rank-avanzado-border); }
+.rank-badge.rank-SENIOR    { background: var(--rank-senior-light);    color: var(--rank-senior);    border-color: var(--rank-senior-border); }
+.rank-badge.rank-ELITE     { background: var(--rank-elite-light);     color: var(--rank-elite);     border-color: var(--rank-elite-border); }
+
+/* Iconos de rango (inyectados por ranks.js) */
+.rank-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+.rank-icon .rank-svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+.rank-badge-sidebar .rank-icon .rank-svg { stroke: white; }
+.rank-inline {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: -2px;
+  width: 14px;
+  height: 14px;
+}
+.rank-inline .rank-icon { width: 14px; height: 14px; }
+
+/* Encabezados de sección por rango (tabla leaderboard) */
+.rank-section-header {
+  padding: 10px 20px 4px;
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--clr-border);
+}
+.rank-section-header.rank-CACHIMBO  { color: var(--rank-cachimbo); }
+.rank-section-header.rank-REGULAR   { color: var(--rank-regular); }
+.rank-section-header.rank-EXPERTO   { color: var(--rank-experto); }
+.rank-section-header.rank-AVANZADO  { color: var(--rank-avanzado); }
+.rank-section-header.rank-SENIOR    { color: var(--rank-senior); }
+.rank-section-header.rank-ELITE     { color: var(--rank-elite); }
+
+/* Card "Tu posición" en ranking */
+.rank-position-card {
+  background: linear-gradient(145deg, #2d4a8f 0%, #3b6fd4 55%, #4a85ef 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 20px rgba(43, 111, 232, .22);
+}
+
+/* Badge de rango sobre fondos oscuros/degradado (perfil hero) */
+.rank-badge-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: var(--r-full);
+  padding: 4px 12px;
+  font-size: .75rem;
+  font-weight: 600;
   color: white;
 }
-.rank-CACHIMBO  { background: var(--rank-cachimbo); }
-.rank-REGULAR   { background: var(--rank-regular); }
-.rank-EXPERTO   { background: var(--rank-experto); }
-.rank-AVANZADO  { background: var(--rank-avanzado); }
-.rank-SENIOR    { background: var(--rank-senior); color: #1a1a1a; }
-.rank-ELITE     { background: var(--rank-elite); }
+.rank-badge-hero .rank-icon .rank-svg { stroke: white; }
+.rank-position-card .rank-inline .rank-icon .rank-svg { stroke: white; }
 
 /* Status badges */
 .status-dot {
@@ -1339,8 +1426,11 @@ select.form-control {
   background-size: 16px;
 }
 
-/* Rank-badge with sidebar label (white text forced) */
-.rank-badge-sidebar { color: white; }
+/* Rank-badge sidebar: white icons via ranks.js stroke */
+/* Rank-badge sidebar: white icons via ranks.js stroke */
+.rank-badge-sidebar .rank-icon { color: white; }
+.notif-icon .rank-icon { width: 18px; height: 18px; }
+.notif-icon .rank-icon .rank-svg { width: 18px; height: 18px; }
 
 /* Breadcrumb in page-header */
 .page-header .breadcrumb { margin-bottom: 4px; }
@@ -1374,3 +1464,70 @@ select.form-control {
 .loading-overlay .loading-text { font-size: .875rem; color: var(--clr-text-muted); font-weight: 600; }
 .timeout-message[hidden] { display: none; }
 .inline-spinner { display: inline-flex; align-items: center; gap: 8px; }
+
+/* ============================================
+   27. RESPONSIVE (RC01)
+   ============================================ */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--clr-text-muted);
+  padding: 6px;
+  border-radius: var(--r-sm);
+  flex-shrink: 0;
+}
+.mobile-menu-btn:hover { background: var(--clr-bg); color: var(--clr-text); }
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, .45);
+  z-index: 90;
+}
+.sidebar-backdrop.show { display: block; }
+
+@media (max-width: 1024px) {
+  .repo-layout,
+  .profile-grid,
+  .upload-layout,
+  .eval-grid,
+  .thread-layout,
+  .content-layout { grid-template-columns: 1fr !important; }
+  .filter-panel { position: static; }
+  .sidebar-help { position: static; }
+  .stats-grid,
+  .page-header > div + div { flex-wrap: wrap; }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn { display: flex; align-items: center; }
+  .app-shell { grid-template-columns: 1fr; }
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: var(--topbar-h);
+    bottom: 0;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+    box-shadow: var(--shadow-lg);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .topbar-search { display: none; }
+  .login-page { grid-template-columns: 1fr; }
+  .login-hero { display: none; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .page-header { flex-direction: column; align-items: stretch; }
+  .search-bar-hero { flex-direction: column; }
+  .search-bar-hero .select-wrapper { width: 100% !important; }
+  .materials-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .main-content { padding: 16px; }
+  .stats-row { flex-wrap: wrap; gap: 16px; }
+  .profile-stats-row { gap: 12px; }
+}

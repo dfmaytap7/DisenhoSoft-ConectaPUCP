@@ -43,7 +43,7 @@
     </div>
 
     <h1 style="font-size:1.75rem;font-weight:800;color:var(--clr-text);margin-bottom:8px;">Bienvenido/a</h1>
-    <p style="font-size:.9375rem;color:var(--clr-text-muted);margin-bottom:24px;line-height:1.6;">Accede con tu cuenta institucional PUCP. El ingreso es exclusivo para miembros de la comunidad universitaria.</p>
+    <p style="font-size:.9375rem;color:var(--clr-text-muted);margin-bottom:24px;line-height:1.6;">Accede con tu correo institucional PUCP verificado por SSO CAS. El ingreso es exclusivo para miembros de la comunidad universitaria.</p>
 
     <!-- Alerta de sesión inválida (oculta por defecto, se muestra cuando el CAS/token expira) -->
     <div class="alert alert-danger" id="sessionAlert" role="alert" hidden style="margin-bottom:20px;">
@@ -54,7 +54,7 @@
     <!-- Único botón de ingreso -->
     <a href="estudiante/dashboard.html" class="login-btn">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-      Ingresar con mi cuenta PUCP
+      Ingresar con SSO CAS (correo PUCP)
     </a>
 
     <div style="margin-top:16px;text-align:center;font-size:.8125rem;color:var(--clr-text-subtle);">
@@ -121,5 +121,6 @@ if (new URLSearchParams(window.location.search).get('sesion') === 'invalida') {
   document.getElementById('sessionAlert').hidden = false;
 }
 </script>
+<script src="assets/global.js"></script>
 </body>
 </html>

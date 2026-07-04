@@ -35,7 +35,7 @@
   </header>
 
   <aside class="sidebar">
-    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DR</div><div><div class="user-name">Diego Ramírez</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar" style="background:var(--rank-cachimbo);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
+    <div class="sidebar-user-card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div class="avatar avatar-blue" style="width:40px;height:40px;font-size:.875rem;">DR</div><div><div class="user-name">Diego Ramírez</div><div class="user-code">20220142</div></div></div><span class="rank-badge-sidebar rank-CACHIMBO" data-rank="CACHIMBO"><span class="rank-icon" aria-hidden="true"></span> CACHIMBO</span><div class="xp-bar-container" style="margin-top:8px;"><div class="xp-bar-label"><span>1,240 pts</span><span>2,000 REGULAR</span></div><div class="xp-bar-track"><div class="xp-bar-fill" style="width:62%;"></div></div></div></div>
     <span class="sidebar-section-label">Principal</span>
     <a href="dashboard.html" class="nav-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
     <a href="repositorio.html" class="nav-item active"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Repositorio</a>
@@ -90,12 +90,45 @@
           <label class="checkbox-label"><input type="checkbox">2024-1<span class="count">589</span></label>
           <label class="checkbox-label"><input type="checkbox">2023-2<span class="count">412</span></label>
         </div>
-        <div class="filter-section" style="margin-bottom:0;">
+        <div class="filter-section">
           <h4>Formato</h4>
           <label class="checkbox-label"><input type="checkbox" checked>PDF<span class="count">1234</span></label>
           <label class="checkbox-label"><input type="checkbox">DOCX<span class="count">456</span></label>
           <label class="checkbox-label"><input type="checkbox">PPTX<span class="count">234</span></label>
           <label class="checkbox-label"><input type="checkbox">PNG/JPG<span class="count">89</span></label>
+        </div>
+        <div class="filter-section">
+          <h4>Curso</h4>
+          <label class="checkbox-label"><input type="checkbox">MAT258<span class="count">142</span></label>
+          <label class="checkbox-label"><input type="checkbox">INF272<span class="count">98</span></label>
+          <label class="checkbox-label"><input type="checkbox">FIS112<span class="count">67</span></label>
+        </div>
+        <div class="filter-section">
+          <h4>Antigüedad</h4>
+          <label class="checkbox-label"><input type="radio" name="antiguedad">Última semana<span class="count">28</span></label>
+          <label class="checkbox-label"><input type="radio" name="antiguedad">Último mes<span class="count">156</span></label>
+          <label class="checkbox-label"><input type="radio" name="antiguedad">Último semestre<span class="count">421</span></label>
+          <label class="checkbox-label"><input type="radio" name="antiguedad">Más de 1 año<span class="count">890</span></label>
+        </div>
+        <div class="filter-section">
+          <h4>Popularidad</h4>
+          <label class="checkbox-label"><input type="checkbox">Más de 50 favoritos<span class="count">312</span></label>
+          <label class="checkbox-label"><input type="checkbox">Más de 100 favoritos<span class="count">89</span></label>
+        </div>
+        <div class="filter-section">
+          <h4>Tema</h4>
+          <label class="checkbox-label"><input type="checkbox">derivadas<span class="count">178</span></label>
+          <label class="checkbox-label"><input type="checkbox">integrales<span class="count">134</span></label>
+          <label class="checkbox-label"><input type="checkbox">álgebra<span class="count">96</span></label>
+        </div>
+        <div class="filter-section">
+          <h4>Actividad</h4>
+          <label class="checkbox-label"><input type="checkbox">Alta actividad (10+ descargas/semana)<span class="count">45</span></label>
+          <label class="checkbox-label"><input type="checkbox">Con comentarios recientes<span class="count">67</span></label>
+        </div>
+        <div class="filter-section" style="margin-bottom:0;">
+          <h4>Autor</h4>
+          <input type="text" class="form-control" placeholder="Nombre del autor…" style="font-size:.8125rem;padding:8px 10px;">
         </div>
       </div>
 
@@ -128,7 +161,7 @@
         </div>
 
         <div class="sort-bar">
-          <span class="count">Mostrando <strong>24</strong> de <strong>312</strong> resultados para "cálculo"</span>
+          <span class="count" id="repoResultCount">Mostrando <strong>24</strong> de <strong>312</strong> resultados para "cálculo"</span>
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;">
             <span class="badge badge-gray">Examen ×</span>
             <span class="badge badge-gray">Apunte ×</span>
@@ -302,6 +335,8 @@ function switchRepoTab(btn, tab) {
 function runSearch(simulateTimeout) {
   const overlay = document.getElementById('loadingOverlay');
   const timeoutMsg = document.getElementById('repoTimeoutMsg');
+  const input = document.getElementById('repoSearchInput');
+  const query = input ? input.value.trim().toLowerCase() : '';
   timeoutMsg.hidden = true;
   overlay.classList.add('show');
   const waitMs = simulateTimeout ? 5200 : 1100;
@@ -309,9 +344,32 @@ function runSearch(simulateTimeout) {
     overlay.classList.remove('show');
     if (simulateTimeout) {
       timeoutMsg.hidden = false;
+      return;
     }
+    const cards = document.querySelectorAll('#materialsGrid .material-card');
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const title = card.querySelector('.mc-title')?.textContent || '';
+      const meta = card.querySelector('.mc-meta')?.textContent || '';
+      const footer = card.querySelector('.mc-footer')?.textContent || '';
+      const text = (title + ' ' + meta + ' ' + footer).toLowerCase();
+      const match = !query || text.includes(query);
+      card.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
+    });
+    const countEl = document.getElementById('repoResultCount');
+    if (countEl) {
+      const displayQuery = input ? input.value.trim() : '';
+      countEl.innerHTML = displayQuery
+        ? `Mostrando <strong>${visibleCount}</strong> de <strong>312</strong> resultados para "${displayQuery}"`
+        : `Mostrando <strong>${visibleCount}</strong> materiales`;
+    }
+    document.getElementById('materialsGrid').style.display = visibleCount === 0 ? 'none' : 'grid';
+    document.getElementById('repoEmptyState').style.display = visibleCount === 0 ? 'block' : 'none';
   }, waitMs);
 }
 </script>
+<script src="../assets/ranks.js"></script>
+<script src="../assets/global.js"></script>
 </body>
 </html>
