@@ -6,15 +6,6 @@
   <title>Iniciar sesión — ConectaPUCP</title>
   <link rel="stylesheet" href="assets/styles.css">
   <style>
-    .feature-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px; }
-    .feature-item { background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px;text-align:left; }
-    .feature-item .fi-icon { font-size:1.5rem;margin-bottom:8px; }
-    .feature-item .fi-title { font-size:.875rem;font-weight:600;margin-bottom:4px; }
-    .feature-item .fi-desc { font-size:.75rem;opacity:.65;line-height:1.5; }
-    .stats-row { display:flex;gap:32px;margin-top:40px; }
-    .stats-row .s { text-align:center; }
-    .stats-row .s .num { font-size:1.75rem;font-weight:800;display:block; }
-    .stats-row .s .lbl { font-size:.75rem;opacity:.6; }
     .login-btn {
       display:flex;align-items:center;justify-content:center;gap:12px;
       width:100%;padding:15px 24px;border-radius:12px;
@@ -30,8 +21,7 @@
 </head>
 <body>
 <div class="login-page">
-  <!-- Panel izquierdo -->
-  <div class="login-panel">
+  <div class="login-panel" style="max-width:480px;margin:0 auto;">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:52px;">
       <div class="brand-logo-icon" style="width:44px;height:44px;border-radius:10px;">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="12" r="3"/><circle cx="18" cy="8" r="2"/><line x1="11.8" y1="11" x2="16.4" y2="9.2"/></svg>
@@ -42,78 +32,22 @@
       </div>
     </div>
 
-    <h1 style="font-size:1.75rem;font-weight:800;color:var(--clr-text);margin-bottom:8px;">Bienvenido/a</h1>
-    <p style="font-size:.9375rem;color:var(--clr-text-muted);margin-bottom:24px;line-height:1.6;">Accede con tu correo institucional PUCP verificado por SSO CAS. El ingreso es exclusivo para miembros de la comunidad universitaria.</p>
+    <h1 style="font-size:1.75rem;font-weight:800;color:var(--clr-text);margin-bottom:8px;">Iniciar sesión</h1>
+    <p style="font-size:.9375rem;color:var(--clr-text-muted);margin-bottom:24px;line-height:1.6;">Accede con tu correo institucional PUCP verificado por SSO CAS.</p>
 
-    <!-- Alerta de sesión inválida (oculta por defecto, se muestra cuando el CAS/token expira) -->
     <div class="alert alert-danger" id="sessionAlert" role="alert" hidden style="margin-bottom:20px;">
       <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span>Sesión inválida. Por favor, vuelva a iniciar sesión.</span>
     </div>
 
-    <!-- Único botón de ingreso -->
-    <a href="estudiante/dashboard.html" class="login-btn">
+    <a href="estudiante/repositorio.html" class="login-btn">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
       Ingresar con SSO CAS (correo PUCP)
     </a>
 
-    <div style="margin-top:16px;text-align:center;font-size:.8125rem;color:var(--clr-text-subtle);">
-      Tu sesión se cerrará automáticamente por inactividad.
-    </div>
-
-    <!-- Accesos directos del prototipo -->
-    <div style="margin-top:32px;padding:16px;background:var(--clr-bg);border-radius:var(--r-md);border:1.5px dashed var(--clr-border-mid);">
-      <div style="font-size:.75rem;font-weight:700;color:var(--clr-text-subtle);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Prototipo — entrar como:</div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <a href="estudiante/dashboard.html" class="btn btn-secondary btn-sm btn-full"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg> Estudiante</a>
-        <a href="evaluador/panel.html" class="btn btn-secondary btn-sm btn-full"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Evaluador</a>
-        <a href="admin/dashboard.html" class="btn btn-secondary btn-sm btn-full"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Administrador</a>
-        <a href="login.html?sesion=invalida" class="btn btn-ghost btn-sm btn-full" style="color:var(--clr-text-subtle);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-warning);vertical-align:-3px"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Simular sesión expirada</a>
-      </div>
-    </div>
-
-    <p style="font-size:.75rem;color:var(--clr-text-subtle);margin-top:auto;padding-top:28px;text-align:center;">
+    <p style="font-size:.75rem;color:var(--clr-text-subtle);margin-top:32px;text-align:center;">
       ConectaPUCP · PUCP 2025-2
     </p>
-  </div>
-
-  <!-- Panel derecho -->
-  <div class="login-hero">
-    <div>
-      <div style="font-size:.8125rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;opacity:.5;margin-bottom:12px;">ConectaPUCP</div>
-      <h1>Comparte y aprende<br>con tu comunidad PUCP</h1>
-      <p style="opacity:.7;margin-top:12px;">El repositorio colaborativo donde los estudiantes comparten material académico, participan en foros y forman grupos de estudio.</p>
-    </div>
-
-    <div class="feature-grid">
-      <div class="feature-item">
-        <div class="fi-icon"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-        <div class="fi-title">Repositorio</div>
-        <div class="fi-desc">Sube y descarga apuntes, exámenes y guías revisados por la comunidad.</div>
-      </div>
-      <div class="feature-item">
-        <div class="fi-icon"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
-        <div class="fi-title">Foros</div>
-        <div class="fi-desc">Discute dudas y comparte ideas con tus compañeros de carrera.</div>
-      </div>
-      <div class="feature-item">
-        <div class="fi-icon"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div class="fi-title">Grupos de estudio</div>
-        <div class="fi-desc">Crea o únete a grupos con fechas, cursos y objetivos definidos.</div>
-      </div>
-      <div class="feature-item">
-        <div class="fi-icon"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-warning);vertical-align:-3px"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 5H4a3 3 0 0 0 3 5"/><path d="M17 5h3a3 3 0 0 1-3 5"/></svg></div>
-        <div class="fi-title">Puntos y rangos</div>
-        <div class="fi-desc">Gana reconocimiento por cada contribución a la comunidad.</div>
-      </div>
-    </div>
-
-    <div class="stats-row">
-      <div class="s"><span class="num">2,400+</span><span class="lbl">Materiales</span></div>
-      <div class="s"><span class="num">850+</span><span class="lbl">Estudiantes</span></div>
-      <div class="s"><span class="num">120+</span><span class="lbl">Evaluadores</span></div>
-      <div class="s"><span class="num">340+</span><span class="lbl">Cursos</span></div>
-    </div>
   </div>
 </div>
 <script>

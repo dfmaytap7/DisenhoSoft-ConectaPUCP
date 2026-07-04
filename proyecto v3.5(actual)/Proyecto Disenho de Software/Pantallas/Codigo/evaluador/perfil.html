@@ -76,41 +76,7 @@
           <div class="profile-name">María Rodríguez Vargas</div>
           <div class="profile-code">Cód. 20190087</div>
           <div style="margin-top:8px;"><span style="background:rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;font-size:.75rem;font-weight:600;">Evaluador</span></div>
-          <div class="profile-stats-row">
-            <div class="profile-stat"><div class="profile-stat-num">8,120</div><div class="profile-stat-label">Puntos</div></div>
-            <div class="profile-stat"><div class="profile-stat-num">247</div><div class="profile-stat-label">Evaluaciones</div></div>
-            <div class="profile-stat"><div class="profile-stat-num">34</div><div class="profile-stat-label">Este mes</div></div>
-          </div>
-        </div>
-
-        <div class="card mb-16">
-          <div class="card-body" style="padding:18px;">
-            <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin-bottom:10px;">Progreso de rango</div>
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-              <span class="rank-badge rank-ELITE" data-rank="ELITE" style="font-size:.8125rem;"><span class="rank-icon" aria-hidden="true"></span> ELITE</span>
-              <span style="font-size:.8125rem;font-weight:600;color:#15803d;">Rango máximo alcanzado</span>
-            </div>
-            <div class="xp-bar-track" style="height:10px;"><div class="xp-bar-fill" style="width:100%;height:10px;border-radius:5px;background:var(--rank-elite);"></div></div>
-            <div style="font-size:.75rem;color:var(--clr-text-subtle);margin-top:6px;text-align:right;">8,120 pts · ELITE ✓</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body" style="padding:18px;">
-            <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--clr-text-subtle);margin-bottom:12px;">Insignias de evaluador</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-              <div style="text-align:center;padding:10px;background:var(--clr-bg-subtle);border-radius:var(--r-md);">
-                <div style="font-size:1.5rem;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-                <div style="font-size:.75rem;font-weight:600;color:var(--clr-text);margin-top:4px;">Evaluador activo</div>
-                <div style="font-size:.6875rem;color:var(--clr-text-subtle);">100+ evaluaciones</div>
-              </div>
-              <div style="text-align:center;padding:10px;background:var(--clr-bg-subtle);border-radius:var(--r-md);">
-                <div style="font-size:1.5rem;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-warning);vertical-align:-3px"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 5H4a3 3 0 0 0 3 5"/><path d="M17 5h3a3 3 0 0 1-3 5"/></svg></div>
-                <div style="font-size:.75rem;font-weight:600;color:var(--clr-text);margin-top:4px;">Revisor experto</div>
-                <div style="font-size:.6875rem;color:var(--clr-text-subtle);">200+ evaluaciones</div>
-              </div>
-            </div>
-          </div>
+          <p style="font-size:.8125rem;opacity:.85;margin-top:12px;text-align:center;">8,120 puntos acumulados</p>
         </div>
       </div>
 
@@ -119,8 +85,8 @@
           <div class="card-body" style="padding:0 24px;">
             <div class="tab-nav">
               <button class="tab-btn active" onclick="switchTab(this,'tabEdit')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg> Editar perfil</button>
-              <button class="tab-btn" onclick="switchTab(this,'tabActivity')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg> Actividad</button>
-              <button class="tab-btn" onclick="switchTab(this,'tabNotif')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> Notificaciones</button>
+              <button class="tab-btn" onclick="switchTab(this,'tabStats')" id="tabStatsBtn"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Estadísticas</button>
+              <button class="tab-btn" onclick="switchTab(this,'tabNotif')"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> Preferencias de alertas</button>
             </div>
 
             <div class="tab-panel active" id="tabEdit" style="padding-bottom:24px;">
@@ -138,38 +104,10 @@
               </div>
 
               <div class="edit-form-section">
-                <h3>Datos opcionales</h3>
-                <div class="form-group" style="margin-bottom:14px;">
-                  <label class="form-label" for="bioInput">Biografía / Descripción <span class="form-label-sub">(pública)</span></label>
-                  <textarea class="form-control" id="bioInput" rows="3" maxlength="300" oninput="document.getElementById('ccBio').textContent=this.value.length+' / 300'" placeholder="Cuéntale a la comunidad sobre tu experiencia como evaluador…">Evaluadora de materiales académicos en Ciencias e Ingeniería. Especializada en cursos de matemáticas e informática.</textarea>
-                  <div style="display:flex;justify-content:flex-end;margin-top:4px;"><div class="char-counter" id="ccBio">118 / 300</div></div>
-                </div>
-                <div class="form-group" style="margin-bottom:14px;">
+                <h3>Datos de contacto</h3>
+                <div class="form-group">
                   <label class="form-label" for="telefonoInput">Teléfono de contacto</label>
                   <input type="tel" class="form-control" id="telefonoInput" value="+51 987 654 321" placeholder="Ej. +51 999 888 777">
-                </div>
-                <div class="form-group" style="margin-bottom:14px;">
-                  <label class="form-label" for="facultadSelect">Facultad</label>
-                  <select class="form-control" id="facultadSelect">
-                    <option selected>Ciencias e Ingeniería</option>
-                    <option>Gestión y Alta Dirección</option>
-                    <option>Letras y Ciencias Humanas</option>
-                    <option>Derecho</option>
-                    <option>Ciencias Sociales</option>
-                    <option>Arte y Diseño</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="carreraSelect">Carrera</label>
-                  <select class="form-control" id="carreraSelect">
-                    <option selected>Ingeniería Informática</option>
-                    <option>Ingeniería Civil</option>
-                    <option>Ingeniería Industrial</option>
-                    <option>Matemáticas</option>
-                    <option>Física</option>
-                    <option>Administración de Empresas</option>
-                    <option>Economía</option>
-                  </select>
                 </div>
               </div>
 
@@ -179,20 +117,25 @@
               </div>
             </div>
 
-            <div class="tab-panel" id="tabActivity" style="padding-bottom:24px;">
-              <div class="activity-item"><div class="activity-dot" style="background:var(--clr-success);"></div><div><div style="font-weight:500;">Material validado: <em>Guía de Árboles AVL — INF272</em></div><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 2 horas · +20 puntos</div></div></div>
-              <div class="activity-item"><div class="activity-dot" style="background:var(--clr-danger);"></div><div><div style="font-weight:500;">Material rechazado: <em>Apuntes FIS112 sin curso</em></div><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 5 horas · +10 puntos</div></div></div>
-              <div class="activity-item"><div class="activity-dot" style="background:var(--clr-warning);"></div><div><div style="font-weight:500;">Material reportado: <em>Examen MAT157 2024-1</em></div><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 1 día · En revisión por moderación</div></div></div>
-              <div class="activity-item"><div class="activity-dot" style="background:var(--clr-success);"></div><div><div style="font-weight:500;">Material validado: <em>Resumen Cálculo 3 — Integrales</em></div><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 2 días · +20 puntos</div></div></div>
-              <div class="activity-item"><div class="activity-dot" style="background:var(--clr-primary);"></div><div><div style="font-weight:500;">Aprobada postulación como evaluador</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">15 Ago 2025 · Rol Evaluador activado</div></div></div>
+            <div class="tab-panel" id="tabStats" style="padding-bottom:24px;">
+              <p style="font-size:.8125rem;color:var(--clr-text-muted);margin-bottom:16px;">Indicadores personales actualizados en tiempo real (RF22).</p>
+              <div class="stats-grid" style="grid-template-columns:1fr 1fr;">
+                <div class="stat-card"><div class="stat-label">Documentos subidos</div><div class="stat-value">12</div></div>
+                <div class="stat-card"><div class="stat-label">Documentos validados</div><div class="stat-value">247</div></div>
+                <div class="stat-card"><div class="stat-label">Participación en foros</div><div class="stat-value">41</div></div>
+                <div class="stat-card"><div class="stat-label">Puntos acumulados</div><div class="stat-value">8,120</div></div>
+              </div>
+              <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--clr-border);">
+                <div style="font-size:.8125rem;font-weight:600;color:var(--clr-text-muted);margin-bottom:10px;">Últimas validaciones (RF10)</div>
+                <div class="activity-item"><div class="activity-dot" style="background:var(--clr-success);"></div><div><strong>Material aprobado</strong> — Examen Parcial Cálculo 3 · <span style="color:var(--clr-success);">+15 pts</span><div style="font-size:.75rem;color:var(--clr-text-subtle);">hace 2 horas</div></div></div>
+                <div class="activity-item"><div class="activity-dot" style="background:var(--clr-success);"></div><div><strong>Material aprobado</strong> — Guía de Integrales MAT258 · <span style="color:var(--clr-success);">+15 pts</span><div style="font-size:.75rem;color:var(--clr-text-subtle);">ayer</div></div></div>
+              </div>
             </div>
 
             <div class="tab-panel" id="tabNotif" style="padding-bottom:24px;">
-              <div style="font-size:.8125rem;color:var(--clr-text-muted);margin-bottom:16px;">Configura qué notificaciones deseas recibir como evaluador.</div>
-              <div class="alert alert-info" style="font-size:.8125rem;margin-bottom:16px;">Los avisos de materiales pendientes se envían exclusivamente por correo institucional PUCP (no in-app).</div>
-              <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Resultado de reporte</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Cuando moderación resuelve un material que reportaste</div></div><label class="toggle-switch"><input type="checkbox" checked aria-label="Resultado de reporte"><span class="toggle-slider"></span></label></div>
-              <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Cambio de rango</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Cuando sube tu rango de gamificación</div></div><label class="toggle-switch"><input type="checkbox" checked aria-label="Cambio de rango"><span class="toggle-slider"></span></label></div>
-              <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Resumen semanal de evaluaciones</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Estadísticas de tus revisiones de la semana</div></div><label class="toggle-switch"><input type="checkbox" checked aria-label="Resumen semanal"><span class="toggle-slider"></span></label></div>
+              <div style="font-size:.8125rem;color:var(--clr-text-muted);margin-bottom:16px;">Preferencias de notificación del evaluador.</div>
+              <div class="alert alert-info" style="font-size:.8125rem;margin-bottom:16px;">Los avisos de materiales pendientes de validación se envían exclusivamente por correo institucional PUCP en un plazo máximo de 2 minutos (RF08). No hay bandeja in-app para evaluadores.</div>
+              <div class="notification-row"><div><div style="font-size:.875rem;font-weight:500;">Correo electrónico</div><div style="font-size:.75rem;color:var(--clr-text-subtle);">Recibir también por correo institucional PUCP</div></div><label class="toggle-switch"><input type="checkbox" checked aria-label="Correo electrónico"><span class="toggle-slider"></span></label></div>
               <div style="margin-top:16px;"><button class="btn btn-primary btn-sm" onclick="saveNotif()">Guardar preferencias</button></div>
             </div>
           </div>

@@ -50,7 +50,7 @@
       <input type="search" placeholder="Buscar materiales, foros, cursos…">
     </div>
     <div class="topbar-actions">
-      <a href="notificaciones.html" class="icon-btn"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="badge-count">3</span></a>
+      <button class="icon-btn" title="Avisos por correo institucional (RF08)"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
       <div class="user-menu">
         <div class="avatar avatar-green">MR</div>
         <div class="user-menu-info"><div class="user-name">María Rodríguez</div><div class="user-role">Evaluador</div></div>
@@ -73,7 +73,7 @@
   <!-- Main -->
   <main class="main-content">
     <div class="page-header">
-      <div class="breadcrumb"><a href="panel.html">Inicio</a><span class="sep">›</span><a href="repositorio.html">Repositorio</a><span class="sep">›</span><span>Subir Material</span></div>
+      <div class="breadcrumb"><a href="panel.html">Validación</a><span class="sep">›</span><span>Subir Material</span></div>
       <div class="page-header-row">
         <div><h1 class="page-title">Subir Material Académico</h1><p class="page-subtitle">Comparte apuntes, exámenes y guías con la comunidad PUCP</p></div>
       </div>
@@ -179,31 +179,13 @@
 
           <!-- Actions -->
           <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;">
-            <a href="repositorio.html" class="btn btn-secondary">Cancelar</a>
+            <a href="panel.html" class="btn btn-secondary">Cancelar</a>
             <button type="button" class="btn btn-primary" id="submitBtn" disabled onclick="submitForm()">
               <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
               Subir material
             </button>
           </div>
         </form>
-      </div>
-
-      <!-- Help sidebar -->
-      <div class="sidebar-help">
-        <h3><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-warning);vertical-align:-3px"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1v.2h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg> Consejos</h3>
-        <div class="help-item"><div class="hi-icon" style="background:var(--clr-primary-light);color:var(--clr-primary);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div><div>Los archivos deben ser <strong>menores a 100 MB</strong>. Comprime imágenes grandes antes de subir.</div></div>
-        <div class="help-item"><div class="hi-icon" style="background:var(--clr-success-light);color:var(--clr-success-dark);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div>Los <strong>exámenes pasados</strong> y <strong>guías prácticas</strong> tienen mayor tasa de aprobación.</div></div>
-        <div class="help-item"><div class="hi-icon" style="background:var(--clr-warning-light);color:#b45309;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div>No subas materiales con información <strong>personal o confidencial</strong> de terceros.</div></div>
-        <div class="help-item"><div class="hi-icon" style="background:var(--clr-purple-light);color:var(--clr-purple);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div><div>Las etiquetas mejoran la <strong>visibilidad</strong> en búsquedas. Usa términos específicos del curso.</div></div>
-        <div class="help-item"><div class="hi-icon" style="background:var(--clr-danger-light);color:var(--clr-danger);"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div>No cambies la extensión de un archivo para eludir los formatos permitidos. El sistema detecta el tipo real del archivo automáticamente.</div></div>
-
-        <div class="divider"></div>
-        <h3 style="margin-bottom:8px;"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Puntos por subir</h3>
-        <div style="font-size:.8125rem;color:var(--clr-text-muted);line-height:1.7;">
-          <div><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Subida aceptada: <strong>+20 pts</strong></div>
-          <div><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--clr-success);vertical-align:-3px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Material validado: <strong>+50 pts</strong></div>
-          <div><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-3px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Like en tu material: <strong>+5 pts</strong></div>
-        </div>
       </div>
     </div>
   </main>
@@ -415,7 +397,7 @@ function submitForm() {
   let p = 0;
   const iv = setInterval(() => {
     p += Math.random() * 18;
-    if(p >= 100) { p = 100; clearInterval(iv); setTimeout(() => { window.location.href = 'repositorio.html'; }, 500); }
+    if(p >= 100) { p = 100; clearInterval(iv); setTimeout(() => { window.location.href = 'panel.html'; }, 500); }
     fill.style.width = p.toFixed(0) + '%';
     pct.textContent = p.toFixed(0) + '%';
   }, 200);
